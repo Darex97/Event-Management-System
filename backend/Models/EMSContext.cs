@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Models
 {
-    public class EMSContext : DbContext
+    //ovde sam dodao Identity
+    public class EMSContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<Event> Events {get; set;}
 
