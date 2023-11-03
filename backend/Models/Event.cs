@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Models
 {
@@ -25,6 +26,7 @@ namespace Models
         public string PicturePath { get; set; }
 
         [Required]
+        [JsonIgnore]
         public UserAdmin Creator {get; set;}
 
         public List<ConnectionEventUser> RegistredUsers {get; set;}

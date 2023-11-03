@@ -29,8 +29,8 @@ public class UserAdminController : ControllerBase
     public ActionResult GetUsers()
     {
         //eager loading
-        var users = Context.UsersAdmins.ToList();
-                    //.Include(p=>p.CreatedEvents)
+        var users = Context.UsersAdmins//.ToList();
+                    .Include(p=>p.CreatedEvents).ToList();
                    // .ThenInclude(q=>q.ID);
 
 
@@ -39,7 +39,7 @@ public class UserAdminController : ControllerBase
     }
 
     [AllowAnonymous]
-    [Route("GetUSers/id")]
+    [Route("GetUSers/{id}")]
     [HttpGet]
     public async Task<ActionResult> GetUsersIdAsync(int id)
     {

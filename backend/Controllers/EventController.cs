@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,13 +19,14 @@ public class EventController : ControllerBase
     }
 
     //Cisto za proveru baze
-    [Route("GetEventbyId/id")]
+    [Route("GetEventbyId/{id}")]
     [AllowAnonymous]
     [HttpGet]
     public ActionResult GetEventbyId(int id)
     {
         var events = Context.Events.Where(p=> p.ID == id)
-                                   .Include(p=> p.RegistredUsers);
+                                   .Include(q=> q.RegistredUsers).ToList();
+                                   
         
 
             
@@ -61,7 +63,7 @@ public class EventController : ControllerBase
 
   
     [AllowAnonymous] // izmeni posle na korisnika i admina
-    [Route("AddEvent/Name/Date/Time/Place/Categories/LongDescribe/ShortDescribe/PicturePath/CreatorId")] 
+    [Route("AddEvent/{name}/{date}/{time}/{place}/{categories}/{longDes}/{shortDes}/{picturePath}/{creatorId}")] 
     [HttpPost]
     public async Task<ActionResult> AddEvent (string name,string date,string time,string place,string categories,string longDes,string shortDes,string picturePath, int creatorId)
     {
@@ -104,4 +106,111 @@ public class EventController : ControllerBase
         }
 
     }
+
+    ///register for event
+    [AllowAnonymous] // izmeni posle na korisnika i admina
+    [Route("RegisterForEvent/{idEvent}/{idUser}")] 
+    [HttpPut]
+    public async Task<ActionResult> RegisterForEvent (int idEvent, int idUser)
+    {
+        try
+        {
+            
+
+            var event1 = Context.Events.Where(p => p.ID == idEvent).FirstOrDefault();
+            if (event1 == null)
+            {
+                return BadRequest("Event doesn't exist");
+            }
+            var user1 = Context.UsersAdmins.Where(p => p.ID == idUser).FirstOrDefault();
+            if (user1 == null)
+            {
+                return BadRequest("User doesn't exist");
+            }        
+
+            //UserAdmin Creator = await Context.UsersAdmins.FindAsync(creatorId);
+               
+            ConnectionEventUser ceu = new ConnectionEventUser();
+            ceu.RegistratedUser = user1;
+            ceu.ForWhatEvent = event1;
+                
+            if(ceu!= null){                          
+            Context.ConnectionEventUsers.Add(ceu);
+            await Context.SaveChangesAsync();
+            return Ok();
+            }
+            else 
+            {
+                return BadRequest("Neuspesno kreiranje veze");
+            }
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+    }
+
+        [Route("ChangeEventUser/{idEvent}/{name}/{date}/{time}/{place}/{categories}/{longDes}/{shortDes}/{picturePath}")]
+        [HttpPut]
+        [AllowAnonymous]
+        public async Task<ActionResult> ChangePlan(int idEvent,string name,string date,string time,string place,string categories,string longDes,string shortDes, string picturePath)
+        {
+            //var strucnoLiceA = Context.StrucnaLIca.Where(p => p.ID == idStrucnjaka).FirstOrDefault();
+            
+            var event2 = Context.Events.Where(p => p.ID == idEvent).FirstOrDefault();
+            if (event2 == null)
+            {
+                return BadRequest("Plan ne postoji");
+            }
+            try
+            {
+                var eventForChange = await Context.Events.FindAsync(event2.ID);
+                //var strucnjak = await Context.StrucnaLIca.FindAsync(idStrucnjaka);
+                eventForChange.Name = name;
+                eventForChange.Date = date;
+                eventForChange.Time = time;
+                eventForChange.Place=place;
+                eventForChange.Categories = categories;
+                eventForChange.LongDescribe = longDes;
+                eventForChange.ShortDescribe = shortDes;
+                eventForChange.PicturePath = picturePath;
+                
+
+                await Context.SaveChangesAsync();
+                return Ok();
+            }
+
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+           
+        }
+
+        [Route("DeleteEvent/{id}/{idUser}")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public async Task<ActionResult> DeleteEvent(int id, int idUser)
+        {
+            //var strucnoLiceA = Context.UsersAdmins.Where(p => p.ID == idUser).FirstOrDefault();
+            
+            var event2 = Context.Events.Where(p => p.ID == id).FirstOrDefault();
+            if (event2 == null)
+            {
+                return BadRequest("Event ne postoji");
+            }
+            try
+            {
+                var event1 = await Context.Events.FindAsync(event2.ID);
+                Context.Events.Remove(event1);
+                await Context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
+        }
 }

@@ -12,7 +12,7 @@ namespace Models
         [JsonIgnore]
         public UserAdmin RegistratedUser {get; set;}
 
-        //[Required]
+        [Required]
         [JsonIgnore]
         public Event ForWhatEvent {get; set;}
 
