@@ -1,0 +1,119 @@
+section {
+  
+    display: table;
+   
+  }
+  .example-form{
+    display: flex;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: orange;
+    font-size: 25px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    
+    justify-content: right;
+    display: table-cell;
+    max-width: 600px;
+   
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+   
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 65px;
+    // margin: 8px 8px 8px 0;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .navBar{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .glavna{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .slika{
+    width: 100%;
+    max-width: 100%;
+    max-height: 800px;
+    height: auto;
+  }
+
+//   eventi
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }  
+
+  .expiriences{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .donjiKontejner{
+    background-color: lightblue;
+    display: flex;
+    justify-content: space-between;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: orange;
+    font-size: 25px;
+    min-height: 50px;
+    
+   
+  }
+  .eventsMain{
+    display: flex;
+    flex-direction: column;
+  }
+  .expiriecesText{
+    display: flex;
+    align-self: center;
+    
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: orange;
+    font-size: 25px;
+    
+  }
+  .copy-container {
+    margin-top: 15px;
+  }
+  .ems-container{
+    margin-top: 15px;
+  }
