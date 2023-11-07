@@ -11,5 +11,6 @@ import { ExampleHeader } from './exampleHeader';
 })
 export class SignupComponent {
   exampleHeader = ExampleHeader;
+  hide = true;
 }
 

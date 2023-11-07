@@ -13,20 +13,25 @@ namespace Models
 
         [Required]
         [MaxLength(50)]
-        public string Name { get; set; } //=Null!
+        public string FirstName { get; set; } //=Null!
 
         [Required]
         [MaxLength(50)]
-        public string Surname { get; set; }
+        public string LastName { get; set; }
 
         [Required]
+        public string Gender { get; set; }
+
+        
         public int IsAdmin { get; set; }
 
-        [Required]
+        
         public string PicturePath { get; set; }
 
         [Required]
-        public int Years { get; set; }
+        public string BirthDay { get; set; }
+
+        public string City { get; set; }
 
         [Required]
         public string Username { get; set; }

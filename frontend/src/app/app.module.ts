@@ -23,6 +23,8 @@ import { EventsListComponent } from './components/events-list/events-list.compon
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { KorisnikPocetnaComponent } from './components/korisnik-pocetna/korisnik-pocetna.component';
 import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
