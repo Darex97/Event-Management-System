@@ -1,0 +1,59 @@
+.slika{
+    width: 100%;
+    max-width: 100%;
+    max-height: 700px;
+    height: auto;
+  }
+.btn {
+    @media (max-width: 530px) {
+        display: none;
+    }
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: whitesmoke;
+    
+    
+    color: orange;
+    font-size: 55px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+.createText{
+    padding-top: 7px;
+    color: orange;
+    font-size: 35px;
+    text-align: center;
+}
+.createDonji{
+    display: flex;
+    flex-direction: row;
+}
+.slika2{
+    width: 50%;
+    max-width: 100%;
+    max-height: 700px;
+    height: auto;
+}
+.text2 {
+   
+    color: orange;
+    font-size: 25px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.textDugme{
+    width: 50%;
+}
+.example-card {
+    max-width: 400px;
+    margin-bottom: 8px;
+  }
+
+
