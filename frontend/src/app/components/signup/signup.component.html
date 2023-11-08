@@ -1,7 +1,7 @@
 <div class="glavni">
     <div class="forma">
         <div a routerLink="/pocetna" class="text">NigniteEMS</div>
-        <div class="text1">Create an account</div>
+        <div  class="text1">Create an account</div>
 
         <form class="example-form">
 
@@ -10,11 +10,11 @@
                 <tr>
                     <td><mat-form-field class="example-full-width">
                             <mat-label>First name</mat-label>
-                            <input matInput>
+                            <input matInput (keyup)="onChangeFirstName($event)">
                         </mat-form-field></td>
                     <td><mat-form-field class="example-full-width">
                             <mat-label>Last Name</mat-label>
-                            <input matInput>
+                            <input matInput (keyup)="onChangeLastName($event)">
                         </mat-form-field></td>
                 </tr>
             </table>
@@ -22,7 +22,7 @@
             <p>
                 <mat-form-field>
                     <mat-label>Gender</mat-label>
-                    <mat-select>
+                    <mat-select (selectionChange)="onChangeGender($event)">
                         <mat-option value="M">Male</mat-option>
                         <mat-option value="F">Female</mat-option>
                     </mat-select>
@@ -32,9 +32,9 @@
             <p>
                 <mat-form-field>
                     <mat-label>Custom calendar header</mat-label>
-                    <input matInput [matDatepicker]="picker">
+                    <input (dateChange)="onChangeDate($event)"  matInput [matDatepicker]="picker">
                     <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker-toggle  matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
                 </mat-form-field>
 
@@ -43,7 +43,7 @@
             <p>
                 <mat-form-field class="example-full-width">
                     <mat-label>Usernanme</mat-label>
-                    <textarea matInput placeholder="example@gmail.com"></textarea>
+                    <textarea matInput placeholder="example@gmail.com" (keyup)="onChangeUsername($event)" ></textarea>
                 </mat-form-field>
 
             </p>
@@ -51,14 +51,14 @@
             <p>
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
-                    <textarea matInput placeholder="example@gmail.com"></textarea>
+                    <textarea matInput placeholder="example@gmail.com" (keyup)="onChangeEmail($event)"></textarea>
                 </mat-form-field>
 
             </p>
             <p>
                 <mat-form-field>
                     <mat-label>Enter your password</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'">
+                    <input (keyup)="onChangePassword($event)" matInput [type]="hide ? 'password' : 'text'">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
@@ -68,7 +68,7 @@
            
 
             <div class="dugmici"> 
-                <button mat-raised-button color="warn">Sign Up</button>
+                <button type="button" (click)="onSignup()" mat-raised-button color="warn">Sign Up</button>
 
                 <button a routerLink="/login" mat-raised-button color="warn">Log In</button>
             </div>

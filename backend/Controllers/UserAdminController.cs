@@ -39,12 +39,15 @@ public class UserAdminController : ControllerBase
     }
 
     [AllowAnonymous]
-    [Route("GetUSers/{id}")]
+    [Route("GetUSers/{username}")]
     [HttpGet]
-    public async Task<ActionResult> GetUsersIdAsync(int id)
+    public ActionResult GetUsersIdAsync(string username)
     {
-        UserAdmin Creator = await Context.UsersAdmins.FindAsync(id);
-        return Ok(Creator);
+        var user = Context.UsersAdmins
+            .Where(e => e.Username==username)
+            .Include(p => p.CreatedEvents);
+           
+            return Ok(user);
 
 
         
@@ -53,6 +56,7 @@ public class UserAdminController : ControllerBase
 
     [Route("AddUser")]
     [HttpPost]
+    [AllowAnonymous]
     public async Task<ActionResult> AddUser([FromBody] UserAdmin userAdmin)
     {
         try

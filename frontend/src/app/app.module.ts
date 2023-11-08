@@ -24,6 +24,9 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { KorisnikPocetnaComponent } from './components/korisnik-pocetna/korisnik-pocetna.component';
 import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component';
 import {MatIconModule} from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 
@@ -44,6 +47,7 @@ import {MatIconModule} from '@angular/material/icon';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     //i ovo
