@@ -2,6 +2,7 @@ import { EventClass } from "./eventClass";
 
 export class User {
 
+    
     firstName: string;
     lastNAme: string;
     birthDay: string;
@@ -11,10 +12,12 @@ export class User {
     password: string;
     gender: string;
     picturePath: string;
-   // events: EventClass;
+    id?:number
+    createdEvents?: EventClass [];
 
     constructor(
 
+        
         FirstName: string,
         LastNAme: string,    
         Gender: string,   
@@ -26,14 +29,16 @@ export class User {
         Email: string,     
         
         Password: string,
+        Id?:number,
         
         
               
         
-      //  Events: EventClass
+        CreatedEvents?: EventClass []
 
     ) 
     {
+        
         this.firstName=FirstName;
         this.lastNAme=LastNAme;
         this.birthDay=Birthday;
@@ -43,7 +48,8 @@ export class User {
         this.password=Password;
         this.gender=Gender;
         this.picturePath=PicturePath;
-       // this.events=Events;
+        this.id=Id;
+        this.createdEvents=CreatedEvents;
 
     }
 }

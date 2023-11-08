@@ -24,7 +24,9 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { KorisnikPocetnaComponent } from './components/korisnik-pocetna/korisnik-pocetna.component';
 import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component';
 import {MatIconModule} from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { UserService } from './services/user.service';
 
 
 
@@ -63,7 +65,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [UserService,
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

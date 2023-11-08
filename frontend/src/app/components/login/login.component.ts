@@ -63,6 +63,8 @@ onLogin(){
   this.userService.loginUsers(this.loginInfo).subscribe((token:any)=>{
     this.tokenInfo=token;
     this.localStorage.set("token",token.token);
+    this.localStorage.set("date",token.expiration);
+    this.router.navigate(['korisnikPocetna']);  
     
   })
 };

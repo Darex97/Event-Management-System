@@ -54,6 +54,15 @@
 .example-card {
     max-width: 400px;
     margin-bottom: 8px;
-  }
+}
+.listOrganizatori{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.organizatori{
+    display: flex;
+    flex-direction: column;
+}
 
 

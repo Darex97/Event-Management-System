@@ -8,3 +8,11 @@
   .spacer{
     flex: 1 1 auto;
   }
+.main{
+  display: flex;
+  justify-content: space-between;
+}
+.copy{
+  text-align: center;
+  width: 100%;
+}
