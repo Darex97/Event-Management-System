@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent {
 
   tokenInfo:any;
+  hide = true;
   
   loginInfo:Login=new Login("","");
 

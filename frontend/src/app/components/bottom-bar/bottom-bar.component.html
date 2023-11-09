@@ -1,11 +1,11 @@
 <mat-toolbar class="main" color="primary">
-    <span>NigniteEMS</span>
+    <span a routerLink="/pocetna"  >NigniteEMS</span>
     
     <span class="copy">©Copyright2023</span>
     <div class="spacer"></div>
       
       <a mat-button>About</a>
-      <a mat-button>Contact</a>
+      <a (click)="onContact()" mat-button>Contact</a>
     </mat-toolbar>
 
      <!-- <a name="bottom"></a>

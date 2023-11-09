@@ -2,10 +2,13 @@
     display: flex;
     flex-direction: row;
     
+   
+    
+    
 }
 
 .slika{
-    @media (max-width: 1174px) {
+    @media (max-width: 1256px) {
         display: none;
     }
     
@@ -16,12 +19,14 @@
 }
 
 .forma{
-    @media (max-width: 1174px) {
+    @media (max-width: 1256px) {
         margin-left: auto;
         margin-right: auto;
     }
     display: flex;
-    padding-top:7%;
+    padding-left: 3%;
+    padding-top:9%;
+    padding-right: 2.7%;
     flex-direction: column;
 }
 .example-form {

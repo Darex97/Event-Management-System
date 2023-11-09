@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class BottomBarComponent {
 
+
+  onContact(){
+    alert("Name: Anastasia Last name: Khan Email address: anastasia.khan@gmail.com  Phone Number: (500) 555-0150    ");
+  }
 }

@@ -14,15 +14,25 @@
 
             </p>
 
+            <p>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Enter your password</mat-label>
+                    <input (keyup)="onChangePassword($event)" matInput [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+            </p>
+
             
 
-            <p>
+            <!-- <p>
                 <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
                     <textarea (keyup)="onChangePassword($event)" matInput placeholder="example@gmail.com"></textarea>
                 </mat-form-field>
 
-            </p>
+            </p> -->
             <div class="dugmici"> 
                 <button type="button" (click)="onLogin()" mat-raised-button color="warn">Log In</button>
 
@@ -44,3 +54,4 @@
 
 
 </div>
+<app-bottom-bar> </app-bottom-bar>
