@@ -65,6 +65,7 @@ onLogin(){
     this.tokenInfo=token;
     this.localStorage.set("token",token.token);
     this.localStorage.set("date",token.expiration);
+    this.localStorage.set("id",token.id);
     this.router.navigate(['korisnikPocetna']);  
     
   })

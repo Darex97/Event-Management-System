@@ -1,11 +1,11 @@
 <div class="glavna">
 
 
-    <div class="navBar">
+    <mat-toolbar class="navBar">
         <section>
             <div class="example-label">NigniteEMS</div>
             <form class="example-form">
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width ">
                     <!-- <mat-label>Search</mat-label> -->
                     <input matInput placeholder="Search events" value="">
 
@@ -28,7 +28,7 @@
 
         </div>
 
-    </div>
+    </mat-toolbar>
     <!-- SLIKA -->
     <div class="slika">
         <img class="slika"
@@ -43,8 +43,9 @@
           Events
         </div>
         
-
+        
         <div a routerLink="/eventsList" class="seeAllText">
+            
             
                 See All Events
            
@@ -52,7 +53,7 @@
         <hr>
     
         <div class="listEvents">
-          <div *ngFor="let event of events" class="event">
+          <div *ngFor="let event of events " class="event">
             <!-- <div *ngIf="user.createdEvents?.length "> -->
     
             
@@ -81,7 +82,9 @@
     <div class="expirienceMain">
         <div class="expiriecesText" > 
                 <label >Users Experience</label>
+                
         </div>
+        
         <div class="expiriences">
             <mat-card class="example-card">
                 <mat-card-header>

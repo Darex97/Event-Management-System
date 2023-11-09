@@ -54,10 +54,14 @@ namespace JWTAuthentication.NET6._0.Controllers
 
                var token = GetToken(authClaims);
 
+                //Ovo sam dodao
+               UserAdmin userForId =  Context.UsersAdmins.Where(e => e.Username == model.Username).FirstOrDefault();
+
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo,
+                    id=userForId.ID
                 });
             }
             return Unauthorized();

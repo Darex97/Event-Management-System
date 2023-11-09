@@ -9,11 +9,18 @@ section {
   
   .example-label {
     display: table-cell;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    //font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: orange;
     font-size: 25px;
     margin-left: 8px;
     min-width: 120px;
+  }
+  .search{
+    padding-left: 1%;
+  }
+  .mat-toolbar{
+   // background-color: black;
+    color: orange;
   }
   
   .example-button-row {
@@ -47,6 +54,7 @@ section {
     max-width: 500px;
     width: 100%;
     max-height: 65px;
+    padding-left: 10%;
     // margin: 8px 8px 8px 0;
   }
   
@@ -116,14 +124,14 @@ section {
     flex-direction: column;
   }
   .expiriecesText{
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding-top: 2%;
+    padding-bottom: 2%;
     display: flex;
     align-self: center;
     
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: orange;
-    font-size: 25px;
+    font-size: 45px;
     
   }
   .seeAllText{
@@ -133,10 +141,6 @@ section {
     display: flex;
     align-self:flex-end;
     align-items: center;
-    
-    
-   
-   
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: orange;
     font-size: 25px;

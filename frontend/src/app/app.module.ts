@@ -27,6 +27,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { UserService } from './services/user.service';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -63,7 +65,9 @@ import { UserService } from './services/user.service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatRadioModule,
+    MatMenuModule
   ],
   providers: [UserService,
   {

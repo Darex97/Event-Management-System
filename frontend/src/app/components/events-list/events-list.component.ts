@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { EventClass } from 'src/app/classes/eventClass';
+import { EventServiceService } from 'src/app/services/event-service.service';
+import { LocalStorageService } from 'src/app/services/localStorage.services';
 
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
-
-interface Car {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-events-list',
@@ -18,18 +13,56 @@ interface Car {
 })
 export class EventsListComponent {
 
-  selectedValue: string | undefined;
-  selectedCar: string | undefined;
+  public events: EventClass[] = [];
+  public selectedLocation:string = "All";
+  public selectedCategory:string = "All";
+  public selectedLanguage:string = "All";
+  public selectedPaid:number = 0;
+  public checkifThereisToken:string | null = ""
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
+ 
 
-  cars: Car[] = [
-    {value: 'volvo', viewValue: 'Volvo'},
-    {value: 'saab', viewValue: 'Saab'},
-    {value: 'mercedes', viewValue: 'Mercedes'},
-  ];
+  constructor( private eventService:EventServiceService,
+     private localStorageService:LocalStorageService,
+     private router: Router) {} 
+
+  ngOnInit(): void {
+
+    this.eventService.getEventsUnauth().subscribe((eventData: any) => {
+
+      this.events = eventData;
+      console.log(this.events);
+    })
+
+    
+
+  }
+
+  onLocationChange(ob:any){
+    this.selectedLocation=ob.value;
+    //console.log(this.selectedLocation);
+  }
+  onCategoryChange(ob:any){
+    this.selectedCategory=ob.value;
+    //console.log(this.selectedLocation);
+  }
+  onLanguageChange(ob:any){
+    this.selectedLanguage=ob.value;
+    //console.log(this.selectedLanguage);
+  }
+  onChangePaid(ob:any){
+    this.selectedPaid=ob.value;
+    //console.log(this.selectedPaid);
+  }
+  onRegister(){
+    this.checkifThereisToken = this.localStorageService.get("token")
+    if(this.checkifThereisToken == null){   
+       this.router.navigate(['login']); 
+    }
+    
+
+  }
+
+
+  
 }

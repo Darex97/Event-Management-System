@@ -1,7 +1,9 @@
 import { EventServiceService } from './../../services/event-service.service';
 import { ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { EventClass } from 'src/app/classes/eventClass';
+import { LocalStorageService } from 'src/app/services/localStorage.services';
 
 @Component({
   selector: 'app-pocetna',
@@ -15,11 +17,19 @@ export class PocetnaComponent {
   originally bred for hunting.`;
 
   public events: EventClass[] = [];
+  public idUser:string | null ="";
 
   constructor(private viewportScroller: ViewportScroller,
-    private eventService:EventServiceService) {} 
+    private eventService:EventServiceService,
+    private localStorage:LocalStorageService,
+    private router: Router) {} 
 
   ngOnInit(): void {
+
+    this.idUser = this.localStorage.get("id");
+    if(this.idUser!=null){
+      this.router.navigate(['korisnikPocetna']); 
+    }
 
     this.eventService.getEventsUnauth().subscribe((eventData: any) => {
 

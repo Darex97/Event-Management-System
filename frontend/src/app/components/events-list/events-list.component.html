@@ -1,62 +1,122 @@
-<div class="glavni"> 
-    <app-nav-bar></app-nav-bar>
-    <hr>
-    <div class="filters">
-        <form>
-            
-            <mat-form-field>
-                <mat-label>Location</mat-label>
-                <mat-select>
-                    <mat-option value="M">Male</mat-option>
-                    <mat-option value="F">Female</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <p> Selected Location: {{selectedValue}} </p>
-            
-            
-          </form>
-          <form>
-            
-            <mat-form-field>
-                <mat-label>Categories</mat-label>
-                <mat-select>
-                    <mat-option value="M">Male</mat-option>
-                    <mat-option value="F">Female</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <p> Selected category: {{selectedValue}} </p>
-            
-            
-          </form>
-        
+<div class="glavni">
+    <div>
+        <app-nav-bar class="navBar"></app-nav-bar>
+        <hr>
     </div>
-    <hr>
+
+    <div>
+        <div class="filters">
+            <div class="slectFilters">
+
+                <form class="formClass">
+
+                    <mat-form-field>
+                        <mat-label>Location</mat-label>
+                        <mat-select (selectionChange)="onLocationChange($event)" [(value)]="selectedLocation">
+                            <mat-option value="All">All Locations</mat-option>
+                            <mat-option *ngFor="let event of events" value={{event.place}}>{{event.place}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <p> Selected Location: {{selectedLocation}} </p>
+
+
+                </form>
+                <form class="formClass">
+
+                    <mat-form-field>
+                        <mat-label>Categories</mat-label>
+                        <mat-select (selectionChange)="onCategoryChange($event)" [(value)]="selectedCategory">
+                            <mat-option value="All">All Events </mat-option>
+                            <mat-option value="Social">Social </mat-option>
+                            <mat-option value="Educational">Educational </mat-option>
+                            <mat-option value="Cultural">Cultural </mat-option>
+                            <mat-option value="Sports">Sports </mat-option>
+                            <mat-option value="Business">Business </mat-option>
+                            <mat-option value="Entertainment">Entertainment</mat-option>
+                            <mat-option value="Charity and Fundraising">Charity and Fundraising</mat-option>
+                            <mat-option value="Technology and Innovation">Technology and Innovation</mat-option>
+                            <mat-option value="Health and Wellness">Health and Wellness</mat-option>
+                            <mat-option value="Community">Community </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <p> Selected category: {{selectedCategory}} </p>
+
+
+                </form>
+
+                <form class="formClass">
+
+                    <mat-form-field>
+                        <mat-label>Language</mat-label>
+                        <mat-select (selectionChange)="onLanguageChange($event)" [(value)]="selectedLanguage">
+                            <mat-option value="All">All Languages </mat-option>
+                            <mat-option value="English">English </mat-option>
+                            <mat-option value="German">German </mat-option>
+                            <mat-option value="Spanish">Spanish </mat-option>
+                            <mat-option value="French">French </mat-option>
+                            <mat-option value="Italian">Italian </mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                    <p> Selected category: {{selectedLanguage}} </p>
+
+
+                </form>
+            </div>
+
+            <div class="radioFilter">
+
+                <mat-radio-group (change)="onChangePaid($event)" aria-label="Select an option" >
+                    <mat-radio-button checked="true" value="0">Free</mat-radio-button>
+                    <mat-radio-button value="1">Paid</mat-radio-button>
+                  </mat-radio-group>
+
+            </div>
+
+
+        </div>
+        <hr>
+
+    </div>
+
+
+
+    <!-- EVENTI -->
     <div class="events">
-        <mat-card class="example-card">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Shiba Inu</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                alt="Photo of a Shiba Inu">
-            <mat-card-content>
-                <p>
-                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                    bred for hunting.
-                </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-            </mat-card-actions>
-        </mat-card>
+        <ng-container *ngFor="let event of events">
+            <div *ngIf="event.place == selectedLocation || selectedLocation == 'All'" class="oneEvent">
+
+
+
+                <mat-card class="example-card ">
+
+
+
+                    <mat-card-header>
+
+
+                        <mat-card-title>Name :{{event.name}}</mat-card-title>
+                        <mat-card-subtitle>Location: {{event.place}}</mat-card-subtitle>
+                        <mat-card-subtitle>Date: {{event.date}}</mat-card-subtitle>
+                        <mat-card-subtitle>Time: {{event.time}}</mat-card-subtitle>
+                    </mat-card-header>
+                    PROMENI SLIKA DA SE CITA IZ BAZU
+                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                        alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <p>
+                            {{event.shortDescribe}}
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions class="button">
+                        <button (click)="onRegister()" mat-button>REGISTER FOR EVENT</button>
+                        
+                    </mat-card-actions>
+
+                </mat-card>
+            </div>
+        </ng-container>
+
     </div>
-   
+    <app-bottom-bar class="botomBar"></app-bottom-bar>
 </div>
-
-<app-bottom-bar class="botomBar"></app-bottom-bar>
-
-
-    

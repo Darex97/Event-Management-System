@@ -1,7 +1,20 @@
 <mat-toolbar color="primary">
-    <span>NigniteEMS</span>
-    <div class="spacer"></div>
-      <a mat-button>Home</a>
-      <a mat-button>About</a>
-      <a mat-button>Contact</a>
-    </mat-toolbar>
+  <span a routerLink="/pocetna">NigniteEMS</span>
+  <div class="spacer"></div>
+  <ng-container *ngIf=" idUser != null">
+    <a a routerLink="/korisnikPocetna" mat-button>Home</a>
+    <a a routerLink="/createEvent" mat-button>Create Event</a>
+    <a a routerLink="/eventsList" mat-button>Find Events</a>
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button routerLink="/userProfil" mat-menu-item>Account Settings</button>
+      <button (click)="onLogOut()"  mat-menu-item>Log Out</button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-container *ngIf=" idUser == null">
+    <a mat-button>Home</a>
+    <a mat-button>About</a>
+    <a mat-button>Contact</a>
+  </ng-container>
+</mat-toolbar>
