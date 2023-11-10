@@ -58,3 +58,12 @@
     
     justify-content: center;
   }
+  .button:hover {
+    background-color: rgba(225, 225, 225, 0.459);
+    cursor: pointer;
+    }
+  .buttonPosition{
+      display: flex;
+    
+    justify-content: center;
+    }

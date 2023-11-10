@@ -37,10 +37,10 @@ namespace Models
         // {
         //     base.OnModelCreating(modelBuilder);
 
-        //     modelBuilder.Entity<ConnectionEventUser>()
-        //         .HasOne(p => p.RegistratedUser)
-        //         .WithMany()
-        //         .WillCascadeOnDelete(false);
+        //     modelBuilder.Entity<UserAdmin>()
+        //         .HasMany(p => p.CreatedEvents)
+        //         .WithOne()
+        //         .HasForeignKey(e => e.CreatorID);
         // }
     }
 }

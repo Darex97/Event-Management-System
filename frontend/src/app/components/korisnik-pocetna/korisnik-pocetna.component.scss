@@ -1,11 +1,21 @@
+.glavna{
+    overflow-x: hidden;
+}
 .slika{
-    width: 100%;
+
+    padding-left: 1%;
+    padding-right: 2%;
+    width: 98%;
     max-width: 100%;
     max-height: 700px;
     height: auto;
+
+    
+ 
+   
   }
 .btn {
-    @media (max-width: 530px) {
+    @media (max-width: 573px) {
         display: none;
     }
     position: absolute;
@@ -13,7 +23,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    background-color: whitesmoke;
+    //background-color: whitesmoke;
+    background-color: rgba(225, 225, 225, 0.459);
     
     
     color: orange;
@@ -23,8 +34,13 @@
     cursor: pointer;
     border-radius: 5px;
   }
+  .btn:hover {
+    background-color: whitesmoke;
+    
+    }
 .createText{
-    padding-top: 7px;
+    padding-top: 1%;
+    padding-bottom: 1%;
     color: orange;
     font-size: 35px;
     text-align: center;
@@ -32,38 +48,123 @@
 .createDonji{
     display: flex;
     flex-direction: row;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+.removeHr{
+    @media (max-width: 832px) {
+        display: none;
+    }
 }
 .slika2{
+    @media (max-width: 832px) {
+        display: none;
+    }
     width: 50%;
     max-width: 100%;
     max-height: 700px;
     height: auto;
 }
+
+.textDugme{
+    @media (max-width: 832px) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
 .text2 {
    
+    @media (max-width: 832px) {
+        display: none;
+    }
+    
+    align-self: center;
     color: orange;
     font-size: 25px;
     padding: 12px 24px;
     border: none;
-    cursor: pointer;
+    padding-bottom: 10%;
     border-radius: 5px;
+    max-width: 450px;
 }
-.textDugme{
-    width: 50%;
+
+.mat-mdc-raised-button{
+
+   height: 68px;
+
+
+
 }
+
 .example-card {
     max-width: 400px;
     margin-bottom: 8px;
+    
+   
+}
+.roundObject{
+    
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(224, 224, 224, 0.587);
+    max-width: 130px;
+    min-width: 130px;
+    min-height: 130px;
+    margin-bottom: 8px;
+    border-radius: 500px;
+}
+.roundObject:hover {
+    background-color: rgba(225, 225, 225, 0.459);
+    cursor: pointer;
+    }
+.listCategories{
+    display: flex;
+    align-items: center;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    overflow-x: auto;
+    
+}
+.oneCategory{
+    padding-left: 2%;
+    padding-right: 2%;
 }
 .listOrganizatori{
     
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: flex;   
+    overflow-x: auto;
+    align-items: center;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}.oneOrganizator{
+    
+    padding-left: 1.5%;
+    padding-right: 1.5%;
 }
-.organizatori{
-    display: flex;
-    flex-direction: column;
+
+.roundObject2{
+    
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(224, 224, 224, 0.587);
+    max-width: 170px;
+    min-width: 170px;
+    min-height: 170px;
+    margin-bottom: 8px;
+    border-radius: 500px;
 }
+.roundObject2:hover {
+    background-color: rgba(225, 225, 225, 0.459);
+    cursor: pointer;
+    }
 
 

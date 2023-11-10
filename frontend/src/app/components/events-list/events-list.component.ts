@@ -34,6 +34,8 @@ export class EventsListComponent {
       console.log(this.events);
     })
 
+    this.selectedCategory=this.eventService.getCategory();
+
     
 
   }

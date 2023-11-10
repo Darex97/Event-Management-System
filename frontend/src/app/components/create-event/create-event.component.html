@@ -1,81 +1,163 @@
 <div class="glavni">
 
-    <app-nav-bar> </app-nav-bar>
+    <div>
+        <app-nav-bar></app-nav-bar>
+        <hr>
+    </div>
 
-    <div class="informations">
+    <div class="donjiDeo">
 
-        
 
-        <form class="example-form">
+        <div class="informations">
 
             
 
+            <form class="example-form">
 
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td><mat-form-field class="example-full-width">
-                            <mat-label>First name</mat-label>
-                            <input matInput>
-                        </mat-form-field></td>
-                    <td><mat-form-field class="example-full-width">
-                            <mat-label>Last Name</mat-label>
-                            <input matInput>
-                        </mat-form-field></td>
-                </tr>
-            </table>
 
-            <p>
-                <mat-form-field>
-                    <mat-label>Gender</mat-label>
-                    <mat-select>
-                        <mat-option value="M">Male</mat-option>
-                        <mat-option value="F">Female</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </p>
 
-            <p>
-                <mat-form-field>
-                    <mat-label>Custom calendar header</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
-                </mat-form-field>
-
-            </p>
-
-            <p>
                 <mat-form-field class="example-full-width">
-                    <mat-label>Email</mat-label>
-                    <textarea matInput placeholder="example@gmail.com"></textarea>
+
+                    <mat-label>Event Name</mat-label>
+                    <input (keyup)="onChangeName($event)" matInput>
                 </mat-form-field>
 
-            </p>
+                <p>
+                    <mat-form-field class="example-full-width" >
+                        <mat-label>Custom calendar header</mat-label>
+                        <input (dateChange)="onChangeDate($event)"  matInput [matDatepicker]="picker">
+                        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
+                    </mat-form-field>
+
+                </p>
+
+                <p>
+                    <mat-form-field >
+                        <mat-label>Hour</mat-label>
+                        <mat-select (selectionChange)="onChangeHour($event)">
+                            <mat-option *ngFor="let hour of timeHours" value={{hour}}>{{hour}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field >
+                        <mat-label>Minut</mat-label>
+                        <mat-select (selectionChange)="onChangeMinutes($event)">
+                            <mat-option *ngFor="let minute of timeMinuts" value={{minute}}>{{minute}}</mat-option>
+                      
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+
+                <p> 
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Place</mat-label>
+                        <input (keyup)="onChangePlace($event)" matInput>
+
+                    </mat-form-field>
+                </p>
+
+                
+
+                <p>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Categories</mat-label>
+                        <mat-select (selectionChange)="onChangeCategory($event)">
+                            <mat-option value="Social">Social </mat-option>
+                            <mat-option value="Educational">Educational </mat-option>
+                            <mat-option value="Cultural">Cultural </mat-option>
+                            <mat-option value="Sports">Sports </mat-option>
+                            <mat-option value="Business">Business </mat-option>
+                            <mat-option value="Entertainment">Entertainment</mat-option>
+                            <mat-option value="Charity and Fundraising">Charity and Fundraising</mat-option>
+                            <mat-option value="Technology and Innovation">Technology and Innovation</mat-option>
+                            <mat-option value="Health and Wellness">Health and Wellness</mat-option>
+                            <mat-option value="Community">Community </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Language</mat-label>
+                        <mat-select (selectionChange)="onChangeLanguage($event)">
+                            <mat-option value="English">English </mat-option>
+                            <mat-option value="German">German </mat-option>
+                            <mat-option value="Spanish">Spanish </mat-option>
+                            <mat-option value="French">French </mat-option>
+                            <mat-option value="Italian">Italian </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    
+                </p>
+
+               
+
+                <p> 
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Price €</mat-label>
+                        <input (keyup)="onChangePrice($event)" matInput>
+
+                    </mat-form-field>
+                </p>
+
+                <p> 
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Describe</mat-label>
+                        <input (keyup)="onChangeDescribe($event)" matInput>
+
+                    </mat-form-field>
+                </p>
+
+                <p> 
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Describe Briefly</mat-label>
+                        <input (keyup)="onChangeDescibeShort($event)" matInput>
+
+                    </mat-form-field>
+                </p>
+            </form >
+
+            <form class="formPT">
+            <mat-card-header class="slika">
+                
+                <mat-card-title-group>
+                    <img class="slika" mat-card-xl-image
+                        src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                </mat-card-title-group>
+            </mat-card-header>
+
+            <mat-form-field class="example-full-width">
+
+                <mat-label>Insert picture URL</mat-label>
+                <input matInput>
+                
+            </mat-form-field>
+            <button (click)="onChangeUrl()" mat-raised-button class="btnUrl" color="primary">Insert</button>
+
         </form>
-
-        <mat-card-header>
-            <mat-card-title-group>
-              <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
-            </mat-card-title-group>
-          </mat-card-header>
-
-    </div>
-    <div class="buttons">
-        <div *ngIf="true" class="example-button-row">
-
-            <button mat-raised-button color="primary">Create</button>
-            <button mat-raised-button>Exit</button>
             
+
         </div>
+        <div class="buttons">
+            <div *ngIf="true" class="example-button-row">
 
-        <div *ngIf="false" class="example-button-row">
+                <button (click)="onCreate()" mat-raised-button color="primary">Create</button>
+                <button mat-raised-button a routerLink="/korisnikPocetna">Exit</button>
 
-            <button mat-raised-button color="primary">Save Changes</button>
-            <button mat-raised-button>Exit</button>
-            
+            </div>
+
+            <div *ngIf="false" class="example-button-row">
+
+                <button mat-raised-button color="primary">Save Changes</button>
+                <button mat-raised-button a routerLink="/korisnikPocetna">Exit</button>
+
+            </div>
+
         </div>
-
+        <app-bottom-bar class="botomBar"></app-bottom-bar>
     </div>
+    
 
 </div>

@@ -61,11 +61,76 @@ public class EventController : ControllerBase
         return Ok(events);
     }
 
+    [AllowAnonymous]
+    [Route("GetEvent/{name}")]
+    [HttpGet]
+    public ActionResult GetUsersIdAsync(string name)
+    {
+        var eventReturn = Context.Events
+            .Where(e => e.Name==name);
+           
+            return Ok(eventReturn);
+
+
+        
+        
+    }
+
+
   
+    // [AllowAnonymous] // izmeni posle na korisnika i admina
+    // [Route("AddEventSAJ")] 
+    // [HttpPost]
+    // public async Task<ActionResult> AddEvent ([FromBody] Event ev)
+    // {
+    //     try
+    //     {
+            
+
+    //         var event2 = Context.Events.Where(p => p.Name == ev.Name).FirstOrDefault();
+    //         if (event2 != null)
+    //         {
+    //             return BadRequest("Event exist");
+    //         }     
+
+    //         UserAdmin Creator = await Context.UsersAdmins.FindAsync(7);
+    //         //UserAdmin Creator2 = Context.UsersAdmins.Where(p => p.ID == 7).FirstOrDefault();
+               
+    //         Event event1 = new Event();
+    //         event1.Name = ev.Name;
+    //         event1.Date = ev.Date;
+    //         event1.Time = ev.Time;
+    //         event1.Place = ev.Place;
+    //         event1.Price= ev.Price;
+    //         event1.Language = ev.Language;
+    //         event1.Categories = ev.Categories;
+    //         event1.LongDescribe = ev.LongDescribe;
+    //         event1.ShortDescribe = ev.ShortDescribe;
+    //         event1.PicturePath = ev.PicturePath;
+    //         event1.Creator = Creator;
+                
+    //         if(event1!= null){                          
+    //         Context.Events.Add(event1);
+    //         await Context.SaveChangesAsync();
+    //         return Ok();
+    //         }
+    //         else 
+    //         {
+    //             return BadRequest("Neuspesno kreiranje eventa");
+    //         }
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         return BadRequest(e.Message);
+    //     }
+
+    // }
+
+
     [AllowAnonymous] // izmeni posle na korisnika i admina
-    [Route("AddEvent/{name}/{date}/{time}/{place}/{categories}/{longDes}/{shortDes}/{picturePath}/{creatorId}")] 
+    [Route("AddEvent/{name}/{date}/{time}/{place}/{price}/{language}/{categories}/{longDes}/{shortDes}/{picturePath}/{creatorId}")] 
     [HttpPost]
-    public async Task<ActionResult> AddEvent (string name,string date,string time,string place,string categories,string longDes,string shortDes,string picturePath, int creatorId)
+    public async Task<ActionResult> AddEvent (string name,string date,string time,string place,string price,string language,string categories,string longDes,string shortDes,string picturePath, int creatorId)
     {
         try
         {
@@ -84,6 +149,8 @@ public class EventController : ControllerBase
             event1.Date = date;
             event1.Time = time;
             event1.Place = place;
+            event1.Price= price;
+            event1.Language = language;
             event1.Categories = categories;
             event1.LongDescribe = longDes;
             event1.ShortDescribe = shortDes;

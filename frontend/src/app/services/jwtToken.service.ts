@@ -10,6 +10,7 @@ export class JWTTokenService {
     decodedToken!: { [key: string]: string; };
 
     constructor() {
+      
     }
 
     setToken(token: string) {

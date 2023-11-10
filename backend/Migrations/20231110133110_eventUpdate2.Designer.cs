@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
@@ -11,9 +12,11 @@ using Models;
 namespace backend.Migrations
 {
     [DbContext(typeof(EMSContext))]
-    partial class EMSContextModelSnapshot : ModelSnapshot
+    [Migration("20231110133110_eventUpdate2")]
+    partial class eventUpdate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,11 +289,6 @@ namespace backend.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("ShortDescribe")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -419,7 +417,7 @@ namespace backend.Migrations
                         .IsRequired();
 
                     b.HasOne("Models.UserAdmin", "RegistratedUser")
-                        .WithMany()
+                        .WithMany("RegistratedEvents")
                         .HasForeignKey("RegistratedUserID");
 
                     b.Navigation("ForWhatEvent");
@@ -446,6 +444,8 @@ namespace backend.Migrations
             modelBuilder.Entity("Models.UserAdmin", b =>
                 {
                     b.Navigation("CreatedEvents");
+
+                    b.Navigation("RegistratedEvents");
                 });
 #pragma warning restore 612, 618
         }

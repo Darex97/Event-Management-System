@@ -1,12 +1,17 @@
+import { User } from "./user";
+
 export class EventClass {
         name: string;      
         date: string;
         time: string;
         place: string;
+        price:string;
+        language:string;
         categories: string;
         longDescribe: string;
-        picturePath: string;
         shortDescribe: string;
+        picturePath: string;
+        creator?: User;
 
     constructor(
 
@@ -14,10 +19,13 @@ export class EventClass {
         Date: string,
         Time: string,
         Place: string,
+        Price:string,
+        Language:string,
         Categories: string,
         LongDescribe: string,
+        ShortDescribe: string,
         PicturePath: string,
-        ShortDescribe: string
+        Creator?:User
 
     ) 
     {
@@ -25,10 +33,13 @@ export class EventClass {
         this.date = Date;
         this.time=Time;
         this.place = Place;
+        this.price = Price;
+        this.language = Language;
         this.categories = Categories;
         this.longDescribe = LongDescribe;
-        this.picturePath=PicturePath;
         this.shortDescribe=ShortDescribe;
+        this.picturePath=PicturePath;
+        this.creator = Creator;
 
     }
 }
