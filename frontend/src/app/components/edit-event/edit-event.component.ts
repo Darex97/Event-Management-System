@@ -5,13 +5,12 @@ import { LocalStorageService } from 'src/app/services/localStorage.services';
 import { ExampleHeader } from '../signup/exampleHeader';
 
 @Component({
-  selector: 'app-event-information',
-  templateUrl: './event-information.component.html',
-  styleUrls: ['./event-information.component.scss']
+  selector: 'app-edit-event',
+  templateUrl: './edit-event.component.html',
+  styleUrls: ['./edit-event.component.scss']
 })
+export class EditEventComponent {
 
-
-export class EventInformationComponent {
 
   @Output() closePopup = new EventEmitter();
   @Input() eventForChange:EventClass = new EventClass("","","","","","","","","","");
@@ -99,5 +98,14 @@ export class EventInformationComponent {
 
   close(){
     this.closePopup.emit();
+   }
+
+   onChangeEvent(){
+
+        this.eventService.changeEvent(this.eventForChange).subscribe();
+
+      
+     
+   
    }
 }

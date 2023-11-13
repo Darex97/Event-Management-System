@@ -13,10 +13,10 @@ namespace Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public int CreatorID {get;set;}
+        // public int CreatorID {get;set;}
         
         [Required]
-        [MaxLength(50)]
+        [MaxLength(150)]
         public string Date { get; set; }    
         
         [Required]
@@ -47,7 +47,7 @@ namespace Models
         [Required]
         public string PicturePath { get; set; }
 
-        [Required]
+        //[Required]
         //[JsonIgnore]
         public UserAdmin Creator {get; set;}
 

@@ -29,6 +29,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { UserService } from './services/user.service';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
+import { MyEventsComponent } from './components/my-events/my-events.component';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
 
 
 
@@ -49,7 +51,9 @@ import {MatMenuModule} from '@angular/material/menu';
     EventsListComponent,
     CreateEventComponent,
     KorisnikPocetnaComponent,
-    BottomBarComponent
+    BottomBarComponent,
+    MyEventsComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,

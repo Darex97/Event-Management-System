@@ -9,6 +9,8 @@ import { EventInformationComponent } from './components/event-information/event-
 import { EventsListComponent } from './components/events-list/events-list.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { KorisnikPocetnaComponent } from './components/korisnik-pocetna/korisnik-pocetna.component';
+import { MyEventsComponent } from './components/my-events/my-events.component';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
 
 const routes: Routes = [
   {path: 'pocetna' , component: PocetnaComponent},
@@ -20,6 +22,8 @@ const routes: Routes = [
   {path: 'eventsList' , component: EventsListComponent},
   {path: 'createEvent' , component: CreateEventComponent},
   {path: 'korisnikPocetna' , component: KorisnikPocetnaComponent},
+  {path: 'myEvents' , component: MyEventsComponent},
+  {path: 'editEvent' , component: EditEventComponent},
 
 
 

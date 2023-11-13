@@ -9,11 +9,11 @@ namespace Models
         public int ID { get; set; }
 
         //[Required]
-        [JsonIgnore]
+        //[JsonIgnore]
         public UserAdmin RegistratedUser {get; set;}
 
         [Required]
-        [JsonIgnore]
+        //[JsonIgnore]
         public Event ForWhatEvent {get; set;}
 
 

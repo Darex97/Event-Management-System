@@ -11,8 +11,8 @@ export class EventServiceService {
 
   constructor(public httpClient: HttpClient) { }
 
-  getEventsUnauth(){
-    return this.httpClient.get("https://localhost:7057/Event/GetAllEvents")
+   getEventsUnauth(){
+     return this.httpClient.get("https://localhost:7057/Event/GetAllEvents")
    }
 
   setCategory(category:string){
@@ -24,8 +24,16 @@ export class EventServiceService {
   eventAlredyExist(name:string){ /////ZA REGISTRACIJU  
     return this.httpClient.get("https://localhost:7057/Event/GetEvent/"+name);
   }
+  // postEvent(event : EventClass,idCreator:number ){
+  //   console.log(event,idCreator);
+  //   return   this.httpClient.post("https://localhost:7057/Event/AddEvent/"+event.name+"/"+event.date+"/"+event.time+"/"+event.place+"/"+event.price+"/"+event.language+"/"+event.categories+"/"+event.longDescribe+"/"+event.shortDescribe+"/"+event.picturePath+"/"+idCreator,event)
+  //  }
   postEvent(event : EventClass,idCreator:number ){
-    console.log(event,idCreator);
-    return   this.httpClient.post("https://localhost:7057/Event/AddEvent/"+event.name+"/"+event.date+"/"+event.time+"/"+event.place+"/"+event.price+"/"+event.language+"/"+event.categories+"/"+event.longDescribe+"/"+event.shortDescribe+"/"+event.picturePath+"/"+idCreator,event)
+    //console.log(event,idCreator);
+    return   this.httpClient.post("https://localhost:7057/Event/AddEvent/"+idCreator,event)
+   }
+  changeEvent(event : EventClass ){
+    //console.log(event,idCreator);
+    return   this.httpClient.put("https://localhost:7057/Event/ChangeEventUser",event)
    }
 }

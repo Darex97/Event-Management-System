@@ -45,7 +45,7 @@ namespace Models
 
         public List<Event> CreatedEvents {get; set;}
 
-        //public List<ConnectionEventUser> RegistratedEvents {get; set;}
+        public List<ConnectionEventUser> RegistratedEvents {get; set;}
 
     }
 }

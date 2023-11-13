@@ -33,8 +33,8 @@ export class PocetnaComponent {
 
     this.eventService.getEventsUnauth().subscribe((eventData: any) => {
 
-      this.events = eventData;
-      console.log(this.events);
+      this.events = eventData.slice(0,6);
+      
     })
 
   }

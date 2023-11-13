@@ -53,6 +53,22 @@ public class UserAdminController : ControllerBase
         return Ok(users);
     }
 
+    //[Authorize(Roles = UserRoles.User)]
+    [Route("GetUserEvents/{idUser}")]
+    [AllowAnonymous]
+    [HttpGet]
+    public ActionResult GetUserEvents(int idUser)
+    {
+        //eager loading
+        var users = Context.UsersAdmins.Where(q=> q.ID==idUser)//.ToList();
+                    .Include(p=>p.CreatedEvents).ToList();
+                   // .ThenInclude(q=>q.ID);
+
+
+        
+        return Ok(users);
+    }
+
     [AllowAnonymous]
     [Route("GetUSers/{username}")]
     [HttpGet]

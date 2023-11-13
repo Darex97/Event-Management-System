@@ -6,14 +6,13 @@ import { EventServiceService } from 'src/app/services/event-service.service';
 import { LocalStorageService } from 'src/app/services/localStorage.services';
 import { UserService } from 'src/app/services/user.service';
 
-
-
 @Component({
-  selector: 'app-events-list',
-  templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.scss']
+  selector: 'app-my-events',
+  templateUrl: './my-events.component.html',
+  styleUrls: ['./my-events.component.scss']
 })
-export class EventsListComponent {
+export class MyEventsComponent {
+  
 
   public events: EventClass[] = [];
   public selectedLocation:string = "All";
@@ -36,48 +35,33 @@ export class EventsListComponent {
 
   ngOnInit(): void {
 
-     this.eventService.getEventsUnauth().subscribe((eventData: any) => {
+    
 
-      this.events = eventData;
-      console.log(this.events);
-
-      this.events.forEach(element => {
-        
-        this.allLocations.push(element.place);
-      });
-
-      // this.userServie.getUsersEvents(Number(this.localStorageService.get("id"))).subscribe((userData: any) =>{
-      //   this.user = userData[0];
-      //   console.log(this.user);
-      //   this.userEvents=this.user.createdEvents;
-      // //   this.user.createdEvents?.forEach(event => {
-      // //   this.userEvents.push(event);
-      // this.user.createdEvents?.forEach(event =>{
-      //   console.log(this.userEvents?.includes(event))
-      // })
-      //    console.log( this.userEvents)
-      // // })
-        
-      // })
+      this.userServie.getUsersEvents(Number(this.localStorageService.get("id"))).subscribe((userData: any) =>{
+        this.user = userData[0];
+        console.log(this.user);
+        this.userEvents=this.user.createdEvents;
+        console.log(this.userEvents);
+      })
 
       this.allLocations = this.allLocations.filter((value, index, array) => {
       return array.indexOf(value) === index;
     });
     
-  })
+  
 
     this.selectedCategory=this.eventService.getCategory();
 
     this.idUser = this.localStorageService.get("id");
 
   }
-  // close(){
-  //   this.eventInformationPopup=false;
-  // }
-  // openEvent(event:EventClass){
-  //   this.eventForPopup = event;
-  //   this.eventInformationPopup=true;
-  // }
+  close(){
+    this.eventInformationPopup=false;
+  }
+  openEvent(event:EventClass){
+    this.eventForPopup = event;
+    this.eventInformationPopup=true;
+  }
 
   onLocationChange(ob:any){
     this.selectedLocation=ob.value;
@@ -108,4 +92,5 @@ export class EventsListComponent {
 
 
   
+
 }

@@ -8,6 +8,8 @@
     <button mat-button [matMenuTriggerFor]="menu">Menu</button>
     <mat-menu #menu="matMenu">
       <button routerLink="/userProfil" mat-menu-item>Account Settings</button>
+      <button routerLink="/myEvents" mat-menu-item>My Events</button>
+
       <button (click)="onLogOut()"  mat-menu-item>Log Out</button>
     </mat-menu>
   </ng-container>
