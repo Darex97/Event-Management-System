@@ -10,98 +10,153 @@
     <div class="d">
 
         <div class="profilInfo">
-            <!-- <div> profil info</div> -->
+
             <mat-card class="example-card1">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <div>
-                            <mat-card-title>Profil Photo</mat-card-title>
+                <div class="imageandInfo">
+                    <div class="imageInfo">
+                        <mat-card-header>
+                            <mat-card-title-group>
+                                <div>
+                                    <mat-card-title>Profil Photo</mat-card-title>
 
-                            <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                    <img mat-card-xl-image
+                                        src="https://material.angular.io/assets/img/examples/shiba2.jpg">
 
-                        </div>
+                                </div>
 
 
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content>
-                    <table class="example-full-width" cellspacing="0">
-                        <tr>
-                            <td><mat-form-field class="example-full-width">
-                                    <mat-label>First name</mat-label>
-                                    <input matInput>
-                                </mat-form-field></td>
+                            </mat-card-title-group>
+                        </mat-card-header>
+                        <mat-form-field class="example-full-width1">
 
-                        </tr>
-                        <tr>
-
-                            <td><mat-form-field class="example-full-width">
-                                    <mat-label>Last Name</mat-label>
-                                    <input matInput>
-                                </mat-form-field></td>
-                        </tr>
-                    </table>
-
-                    <p>
-                        <mat-form-field>
-                            <mat-label>Gender</mat-label>
-                            <mat-select>
-                                <mat-option value="M">Male</mat-option>
-                                <mat-option value="F">Female</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </p>
-
-                    <p>
-                        <mat-form-field>
-                            <mat-label>Calendar </mat-label>
-                            <input matInput [matDatepicker]="picker">
-                            <mat-hint>MM/DD/YYYY</mat-hint>
-                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
-                        </mat-form-field>
-
-                    </p>
-
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Email</mat-label>
-                            <textarea matInput placeholder="example@gmail.com"></textarea>
+                            <mat-label>Insert picture URL</mat-label>
+                            <input #imageSrc class="urlInputTxt" matInput>
 
                         </mat-form-field>
-                    </p>
-                    <p>
-                        <button mat-raised-button color="warn">Save Changes</button>
-                    </p>
-                </mat-card-content>
+                        <button type="button" (click)="onChangeUrl(imageSrc.value)" mat-raised-button class="btnUrl"
+                            color="primary">Insert</button>
+
+                    </div>
+
+                    <div class="infoInputs">
+
+
+                        <mat-card-content>
+                            <table class="example-full-width" cellspacing="0">
+                                <tr>
+                                    <td><mat-form-field class="example-full-width">
+                                            <mat-label>First name</mat-label>
+                                            <input value="{{user.firstName}}" (keyup)="onChangeName($event)" matInput>
+                                        </mat-form-field></td>
+
+                                </tr>
+                                <tr>
+
+                                    <td><mat-form-field class="example-full-width">
+                                            <mat-label>Last Name</mat-label>
+                                            <input value="{{user.lastName}}" (keyup)="onChangeLastName($event)"
+                                                matInput>
+                                        </mat-form-field></td>
+                                </tr>
+                            </table>
+
+                            <p>
+                                <mat-form-field>
+                                    <mat-label>Gender</mat-label>
+                                    <mat-select value={{user.gender}} (selectionChange)="onChangeGender($event)">
+                                        <mat-option value="M">Male</mat-option>
+                                        <mat-option value="F">Female</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </p>
+
+                            <!-- <p>
+                            <mat-form-field class="example-full-width datepicker">
+                                <mat-label>{{user.birthDay}}</mat-label>
+                                <input (dateChange)="onChangeDate($event)" matInput [matDatepicker]="picker">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+
+                        </p> -->
+
+                            <p>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Email</mat-label>
+                                    <input value="{{user.email}}" (keyup)="onChangeEmail($event)" matInput>
+
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>City</mat-label>
+                                    <input value="{{user.city}}" (keyup)="onChangeCity($event)" matInput>
+
+
+                                </mat-form-field>
+                            </p>
+                            <!-- <p>
+                            <mat-form-field class="example-full-width">
+                              <mat-label>Username</mat-label>
+                              <input value="{{user.username}}" (keyup)="onChangeUsername($event)" matInput>
+                    
+                            </mat-form-field>
+                          </p> -->
+                            <p>
+                                <button (click)="onChangeUser()" mat-raised-button color="warn">Save Changes</button>
+                            </p>
+                        </mat-card-content>
+                    </div>
+                </div>
             </mat-card>
 
 
         </div>
 
         <div class="eventsList">
-            <div class="eventText">Registrated Events</div>
-            <mat-card class="example-card">
-                <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>Shiba Inu</mat-card-title>
-                  <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                <mat-card-content>
-                  <p>
-                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                    bred for hunting.
-                  </p>
-                </mat-card-content>
-                <mat-card-actions>
-                  <button mat-button>LIKE</button>
-                  <button mat-button>SHARE</button>
-                </mat-card-actions>
-              </mat-card>
+            <ng-container *ngFor="let event of userEventConections">
+
+
+
+                <div class="oneEvent">
+                    <mat-card class="example-card ">
+
+
+
+                        <mat-card-header>
+
+
+                            <mat-card-title>Name :{{event.forWhatEvent.name}}</mat-card-title>
+                            <mat-card-subtitle>Location: {{event.forWhatEvent.place}}</mat-card-subtitle>
+                            <mat-card-subtitle>Date: {{event.forWhatEvent.date}}</mat-card-subtitle>
+                            <mat-card-subtitle>Time: {{event.forWhatEvent.time}}</mat-card-subtitle>
+                        </mat-card-header>
+                        PROMENI SLIKA DA SE CITA IZ BAZU
+                        <img class="picture" mat-card-image
+                            src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                        <mat-card-content>
+                            <p>
+                                {{event.forWhatEvent.shortDescribe}}
+                            </p>
+                        </mat-card-content>
+                        <mat-card-actions class="buttonPosition">
+                            <button class="button" mat-button>Edit Event</button>
+
+
+                        </mat-card-actions>
+
+                    </mat-card>
+
+                </div>
+            </ng-container>
+
+
+
         </div>
+
+
 
     </div>
 
+    <app-bottom-bar></app-bottom-bar>
 </div>

@@ -87,14 +87,15 @@
       <ng-container *ngFor="let user of users">
           
       
-        <div *ngIf="user.createdEvents?.length "  class="oneOrganizator">
+        <div  *ngIf="user.createdEvents?.length "  class="oneOrganizator">
 
-
+          
+          <div> </div>
 
           <mat-card class="roundObject2">
             <mat-card-header>
               <mat-card-title-group>
-                <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                <img (mouseover)="onHower(user)" (mouseout)="onImgMouseout()" mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
                 
 
               </mat-card-title-group>
@@ -105,7 +106,7 @@
           </mat-card>
         </div>
     </ng-container>
-  
+    <app-organizer-hover [userForShow]="userForSend" *ngIf="hover"> </app-organizer-hover>
     </div>
 
 

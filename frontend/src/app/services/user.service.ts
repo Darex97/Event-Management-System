@@ -30,5 +30,9 @@ export class UserService {
   loginUsers(loginInfo: Login) {
     return this.httpClient.post("https://localhost:7057/api/Authenticate/login", loginInfo)
   }
+  putUserForChange(user:User){
+    
+    return this.httpClient.put("https://localhost:7057/UserAdmin/ChangeUser/"+user.id+"/"+user.firstName+"/"+user.lastName+"/"+user.city+"/"+user.email+"/"+user.gender+"/"+user.picturePath,user)
+   }
 
 }

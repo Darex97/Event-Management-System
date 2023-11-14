@@ -25,7 +25,7 @@ onChangeFirstName(event : Event){
    this.user.firstName = (event.target as HTMLInputElement).value;
   }
 onChangeLastName(event : Event){
-   this.user.lastNAme = (event.target as HTMLInputElement).value;
+   this.user.lastName = (event.target as HTMLInputElement).value;
   }
 onChangeGender(event:any){
    this.user.gender = event.value;

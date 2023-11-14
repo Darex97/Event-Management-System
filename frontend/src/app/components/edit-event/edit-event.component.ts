@@ -62,11 +62,17 @@ export class EditEventComponent {
   onChangeDescibeShort(event: Event) {
     this.eventForChange.shortDescribe = (event.target as HTMLInputElement).value;
   }
-  onChangeUrl() {
+  // onChangeUrl() {
     
-    this.eventForChange.picturePath = (document.querySelector(".urlInputTxt") as HTMLInputElement).value;
-    console.log(this.eventForChange.picturePath)
-    //this.event.picturePath;
+  //   this.eventForChange.picturePath = (document.querySelector(".urlInputTxt") as HTMLInputElement).value;
+  //   console.log(this.eventForChange.picturePath)
+  //   //this.event.picturePath;
+  // }
+  onChangeUrl(imageSrc: string) {
+    this.eventForChange.picturePath = imageSrc; 
+    // this.eventForChange.picturePath = (document.querySelector(".urlInputTxt") as HTMLInputElement).value;
+     console.log(this.eventForChange.picturePath)
+    // //this.event.picturePath;
   }
  
   onChangeHour(event: any) {

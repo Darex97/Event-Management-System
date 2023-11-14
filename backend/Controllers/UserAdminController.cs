@@ -10,14 +10,14 @@ namespace backend.Controllers;
 [Route("[controller]")]
 public class UserAdminController : ControllerBase
 {
-    public EMSContext Context {get; set;}
+    public EMSContext Context { get; set; }
 
-    
+
     private IConfiguration _config;
     public UserAdminController(EMSContext context,
     IConfiguration config)
     {
-        Context= context;
+        Context = context;
         _config = config;
     }
 
@@ -30,11 +30,11 @@ public class UserAdminController : ControllerBase
     {
         //eager loading
         var users = Context.UsersAdmins//.ToList();
-                    .Include(p=>p.CreatedEvents).ToList();
-                   // .ThenInclude(q=>q.ID);
+                    .Include(p => p.CreatedEvents).ToList();
+        // .ThenInclude(q=>q.ID);
 
 
-        
+
         return Ok(users);
     }
 
@@ -45,11 +45,11 @@ public class UserAdminController : ControllerBase
     {
         //eager loading
         var users = Context.UsersAdmins//.ToList();
-                    .Include(p=>p.CreatedEvents).ToList();
-                   // .ThenInclude(q=>q.ID);
+                    .Include(p => p.CreatedEvents).ToList();
+        // .ThenInclude(q=>q.ID);
 
 
-        
+
         return Ok(users);
     }
 
@@ -60,12 +60,12 @@ public class UserAdminController : ControllerBase
     public ActionResult GetUserEvents(int idUser)
     {
         //eager loading
-        var users = Context.UsersAdmins.Where(q=> q.ID==idUser)//.ToList();
-                    .Include(p=>p.CreatedEvents).ToList();
-                   // .ThenInclude(q=>q.ID);
+        var users = Context.UsersAdmins.Where(q => q.ID == idUser)//.ToList();
+                    .Include(p => p.CreatedEvents).ToList();
+        // .ThenInclude(q=>q.ID);
 
 
-        
+
         return Ok(users);
     }
 
@@ -75,16 +75,16 @@ public class UserAdminController : ControllerBase
     public ActionResult GetUsersIdAsync(string username)
     {
         var user = Context.UsersAdmins
-            .Where(e => e.Username==username)
+            .Where(e => e.Username == username)
             .Include(p => p.CreatedEvents);
-           
-            return Ok(user);
+
+        return Ok(user);
 
 
-        
-        
+
+
     }
-    
+
 
     [Route("AddUser")]
     [HttpPost]
@@ -97,11 +97,47 @@ public class UserAdminController : ControllerBase
             await Context.SaveChangesAsync();
             return Ok();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             return BadRequest(e.Message);
         }
-        
-        
+
+
+    }
+
+    [Route("ChangeUser/{idUser}/{firstName}/{lastName}/{city}/{email}/{gender}/{picturePath}")]
+    [HttpPut]
+    [AllowAnonymous]
+    public async Task<ActionResult> ChangeUser(int idUser,string firstName,string lastName,string city,string email,string gender,string picturePath)
+    {
+        //var strucnoLiceA = Context.StrucnaLIca.Where(p => p.ID == idStrucnjaka).FirstOrDefault();
+
+        var user2 = Context.UsersAdmins.Where(p => p.ID == idUser).FirstOrDefault();
+        if (user2 == null)
+        {
+            return BadRequest("User ne postoji");
+        }
+        try
+        {
+            var userForChange = await Context.UsersAdmins.FindAsync(idUser);
+            //UserAdmin Creator2 = Context.UsersAdmins.Where(p => p.ID == 7).FirstOrDefault();
+
+
+            userForChange.FirstName = firstName;
+            userForChange.LastName = lastName;
+            userForChange.City = city;
+            userForChange.Email = email;
+            userForChange.Gender = gender;
+            userForChange.PicturePath = picturePath;
+
+            await Context.SaveChangesAsync();
+            return Ok();
+        }
+
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
     }
 }

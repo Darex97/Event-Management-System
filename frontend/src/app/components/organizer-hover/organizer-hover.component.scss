@@ -1,0 +1,47 @@
+.popup{
+    flex: 1 1;
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 35%;
+    top: 40%;
+    width: 30%; /* Full width */
+    height: 40%; /* Full height */
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 35px;
+    min-width: 200px;
+  }
+  .main{
+    display: flex;
+    flex-direction: column;
+  }
+  .image{
+    display: flex;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  .info{
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    padding-left: 2%;
+    text-size-adjust: 100%;
+   
+}
+.lblTxt{
+   // text-size-adjust: auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    color: orange;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+    text-size-adjust: 100%;
+   
+    flex-wrap: wrap;
+}

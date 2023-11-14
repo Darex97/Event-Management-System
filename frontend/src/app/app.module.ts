@@ -31,7 +31,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
 import { MyEventsComponent } from './components/my-events/my-events.component';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
-
+import { OrganizerHoverComponent } from './components/organizer-hover/organizer-hover.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -53,7 +54,8 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
     KorisnikPocetnaComponent,
     BottomBarComponent,
     MyEventsComponent,
-    EditEventComponent
+    EditEventComponent,
+    OrganizerHoverComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
     MatToolbarModule,
     MatIconModule,
     MatRadioModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSlideToggleModule
   ],
   providers: [UserService,
   {

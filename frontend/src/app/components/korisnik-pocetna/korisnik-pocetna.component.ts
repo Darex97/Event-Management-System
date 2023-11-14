@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class KorisnikPocetnaComponent {
 
+
   longText = `Events are more than just gatherings; they're powerful connectors and experience enhancers.
    In a world saturated with digital interactions, face-to-face events provide a unique platform for
     meaningful connections. Whether it's networking at a professional conference, celebrating culture, 
@@ -19,7 +20,9 @@ export class KorisnikPocetnaComponent {
 
   public users: User[] = [];
   public categories: string[] = ["Social","Educational","Cultural","Sports","Business","Entertainment","Charity and Fundraising","Technology and Innovation","Health and Wellness","Community"];
- 
+  public hover = false;
+  public userForSend:User = new User("","","","","","","","","");
+  
   constructor(private userService: UserService,
     private eventService:EventServiceService,
     private router: Router) {
@@ -39,4 +42,15 @@ export class KorisnikPocetnaComponent {
     this.eventService.setCategory(category);
     this.router.navigate(['eventsList'])
   }
+  onHower(user:User) {
+    console.log("Nestoooo")
+    this.userForSend=user;
+    this.hover=true;
+    }
+
+  onImgMouseout(){
+    this.hover=false;
+      console.log("Nestoooo2")
+
+    }
 }

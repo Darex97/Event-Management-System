@@ -4,7 +4,7 @@ export class User {
 
     
     firstName: string;
-    lastNAme: string;
+    lastName: string;
     birthDay: string;
     email: string;
     city: string;
@@ -19,7 +19,7 @@ export class User {
 
         
         FirstName: string,
-        LastNAme: string,    
+        LastName: string,    
         Gender: string,   
         PicturePath: string,
         Birthday: string,
@@ -40,7 +40,7 @@ export class User {
     {
         
         this.firstName=FirstName;
-        this.lastNAme=LastNAme;
+        this.lastName=LastName;
         this.birthDay=Birthday;
         this.email=Email;
         this.city=City;

@@ -23,11 +23,19 @@
   .mat-mdc-radio-button ~ .mat-mdc-radio-button {
     margin-left: 16px;
   }
-  .radioFilter{
+  // .radioFilter{
+  //   display: flex;
+  //   flex-direction: row;
+  //   padding-left: 3%;
+  //   padding-right: 3%;
+  // }
+  .slideToggle{
     display: flex;
     flex-direction: row;
-    padding-left: 3%;
+    padding-left: 4%;
     padding-right: 3%;
+    align-items: center;
+    
   }
   .formClass{
     padding-left: 1%;

@@ -159,10 +159,10 @@
         <mat-form-field class="example-full-width">
   
           <mat-label>Insert picture URL</mat-label>
-          <input class="urlInputTxt" matInput>
+          <input #imageSrc class="urlInputTxt" matInput>
   
         </mat-form-field>
-        <button type="button" (click)="onChangeUrl()" mat-raised-button class="btnUrl" color="primary">Insert</button>
+        <button type="button" (click)="onChangeUrl(imageSrc.value)" mat-raised-button class="btnUrl" color="primary">Insert</button>
   
   
       </form>
