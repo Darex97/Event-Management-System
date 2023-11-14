@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EventClass } from '../classes/eventClass';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class EventServiceService {
   constructor(public httpClient: HttpClient) { }
 
    getEventsUnauth(){
-     return this.httpClient.get("https://localhost:7057/Event/GetAllEvents")
+     return this.httpClient.get(environment.apiUrl+"Event/GetAllEvents")
    }
 
   setCategory(category:string){
@@ -22,7 +23,7 @@ export class EventServiceService {
     return this.selectedCategory;
   }
   eventAlredyExist(name:string){ /////ZA REGISTRACIJU  
-    return this.httpClient.get("https://localhost:7057/Event/GetEvent/"+name);
+    return this.httpClient.get(environment.apiUrl+"Event/GetEvent/"+name);
   }
   // postEvent(event : EventClass,idCreator:number ){
   //   console.log(event,idCreator);
@@ -30,10 +31,10 @@ export class EventServiceService {
   //  }
   postEvent(event : EventClass,idCreator:number ){
     //console.log(event,idCreator);
-    return   this.httpClient.post("https://localhost:7057/Event/AddEvent/"+idCreator,event)
+    return   this.httpClient.post(environment.apiUrl+"Event/AddEvent/"+idCreator,event)
    }
   changeEvent(event : EventClass ){
     //console.log(event,idCreator);
-    return   this.httpClient.put("https://localhost:7057/Event/ChangeEventUser",event)
+    return   this.httpClient.put(environment.apiUrl+"Event/ChangeEventUser",event)
    }
 }
