@@ -39,12 +39,63 @@ public class EventController : ControllerBase
     [HttpGet]
     public ActionResult GetAllEvents()
     {
-        var events = Context.Events;
+        var events = Context.Events
+                    .Include(p=> p.Categories);
         
 
             
            
         return Ok(events);
+    }
+
+    [Route("GetAllCategories")]
+    [AllowAnonymous]
+    [HttpGet]
+    public ActionResult GetAllCategories()
+    {
+        var categories = Context.Categories;
+        
+
+            
+           
+        return Ok(categories);
+    }
+
+    [Route("AddCategory")] 
+    [AllowAnonymous]
+    [HttpPost]
+    public async Task<ActionResult> AddEvent ([FromBody] Category category)
+    {
+        try
+        {
+            
+
+            var cat2 = Context.Categories.Where(p => p.ID == category.ID).FirstOrDefault();
+            if (cat2 != null)
+            {
+                return BadRequest("Category exist");
+            }     
+
+                        
+            Category cat1 = new Category();
+            cat1.Type = category.Type;
+            
+                
+            if(cat1!= null){                          
+            Context.Categories.Add(cat1);
+            await Context.SaveChangesAsync();
+            return Ok();
+            }
+            else 
+            {
+                return BadRequest("Neuspesno kreiranje kategorije");
+            }
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
     }
 
 
@@ -82,6 +133,7 @@ public class EventController : ControllerBase
     public ActionResult GetUsersIdAsync(string name)
     {
         var eventReturn = Context.Events
+            .Include(p=>p.Categories)
             .Where(e => e.Name==name);
            
             return Ok(eventReturn);
@@ -95,7 +147,7 @@ public class EventController : ControllerBase
   
      // izmeni posle na korisnika i admina
     [Route("AddEvent/{idCreator}")] 
-    
+    //[AllowAnonymous]
     [HttpPost]
     public async Task<ActionResult> AddEvent ([FromBody] Event ev,int idCreator)
     {
@@ -110,6 +162,7 @@ public class EventController : ControllerBase
             }     
 
             UserAdmin Creator = await Context.UsersAdmins.FindAsync(idCreator);
+            Category Category = await Context.Categories.FindAsync(ev.Categories.ID);
             //UserAdmin Creator2 = Context.UsersAdmins.Where(p => p.ID == 7).FirstOrDefault();
             
             Event event1 = new Event();
@@ -119,7 +172,7 @@ public class EventController : ControllerBase
             event1.Place = ev.Place;
             event1.Price= ev.Price;
             event1.Language = ev.Language;
-            event1.Categories = ev.Categories;
+            event1.Categories = Category;
             event1.LongDescribe = ev.LongDescribe;
             event1.ShortDescribe = ev.ShortDescribe;
             event1.PicturePath = ev.PicturePath;
@@ -234,42 +287,42 @@ public class EventController : ControllerBase
 
     }
 
-        [Route("ChangeEventUser/{idEvent}/{name}/{date}/{time}/{place}/{categories}/{longDes}/{shortDes}/{picturePath}")]
-        [HttpPut]
-        [AllowAnonymous]
-        public async Task<ActionResult> ChangePlan(int idEvent,string name,string date,string time,string place,string categories,string longDes,string shortDes, string picturePath)
-        {
-            //var strucnoLiceA = Context.StrucnaLIca.Where(p => p.ID == idStrucnjaka).FirstOrDefault();
+        // [Route("ChangeEventUser/{idEvent}/{name}/{date}/{time}/{place}/{categories}/{longDes}/{shortDes}/{picturePath}")]
+        // [HttpPut]
+        // [AllowAnonymous]
+        // public async Task<ActionResult> ChangePlan(int idEvent,string name,string date,string time,string place,string categories,string longDes,string shortDes, string picturePath)
+        // {
+        //     //var strucnoLiceA = Context.StrucnaLIca.Where(p => p.ID == idStrucnjaka).FirstOrDefault();
             
-            var event2 = Context.Events.Where(p => p.ID == idEvent).FirstOrDefault();
-            if (event2 == null)
-            {
-                return BadRequest("Plan ne postoji");
-            }
-            try
-            {
-                var eventForChange = await Context.Events.FindAsync(event2.ID);
-                //var strucnjak = await Context.StrucnaLIca.FindAsync(idStrucnjaka);
-                eventForChange.Name = name;
-                eventForChange.Date = date;
-                eventForChange.Time = time;
-                eventForChange.Place=place;
-                eventForChange.Categories = categories;
-                eventForChange.LongDescribe = longDes;
-                eventForChange.ShortDescribe = shortDes;
-                eventForChange.PicturePath = picturePath;
+        //     var event2 = Context.Events.Where(p => p.ID == idEvent).FirstOrDefault();
+        //     if (event2 == null)
+        //     {
+        //         return BadRequest("Plan ne postoji");
+        //     }
+        //     try
+        //     {
+        //         var eventForChange = await Context.Events.FindAsync(event2.ID);
+        //         //var strucnjak = await Context.StrucnaLIca.FindAsync(idStrucnjaka);
+        //         eventForChange.Name = name;
+        //         eventForChange.Date = date;
+        //         eventForChange.Time = time;
+        //         eventForChange.Place=place;
+        //         eventForChange.Categories = categories;
+        //         eventForChange.LongDescribe = longDes;
+        //         eventForChange.ShortDescribe = shortDes;
+        //         eventForChange.PicturePath = picturePath;
                 
 
-                await Context.SaveChangesAsync();
-                return Ok();
-            }
+        //         await Context.SaveChangesAsync();
+        //         return Ok();
+        //     }
 
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+        //     catch (Exception e)
+        //     {
+        //         return BadRequest(e.Message);
+        //     }
            
-        }
+        // }
 
         [Route("ChangeEventUser")]
         [HttpPut]

@@ -1,183 +1,29 @@
-<div class="glavni">
-  <!-- <div class="nav">
-    <app-nav-bar></app-nav-bar>
+<div class="main">
+
+  <div class="navBar">
+    <app-nav-bar> </app-nav-bar>
     <hr>
-  </div> -->
-  <div class="opis">
-    <!-- <mat-card class="example-card">
-            <mat-card-header>
-              <mat-card-title-group>
-                <mat-card-title>Name : {{eventForChange.name}}</mat-card-title>
-                
-                <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
-              </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content>
-               <div>Place</div>
-               <div>Date </div>
-               <div>Time</div>
-               <div>Categgories</div>
-               <div>LongDescribe</div>
-            </mat-card-content>
-          </mat-card>
+  </div>
 
-          <div class="regUsers">
-            <div class="txtUsers">
-                Registrated ussers
-    
-            </div>
-            <div>
-                <mat-card class="example-card1">
-                    <mat-card-header>
-                      <mat-card-title-group>
-                        <mat-card-title>Shiba Inu</mat-card-title>
-                        
-                        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
-                      </mat-card-title-group>
-                    </mat-card-header>
-                    <mat-card-content>
-                     
-                    </mat-card-content>
-                  </mat-card>
-            </div> -->
-    <form class="example-form">
+  <div class="allinfo">
 
+    <div class="imageDiv">
+      <img class="slika" 
+      src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    </div>
 
-
-      <mat-form-field class="example-full-width">
-
-        <mat-label>Event Name</mat-label>
-        <input (keyup)="onChangeName($event)" value="{{eventForChange.name}}" matInput>
-      </mat-form-field>
-
-      <p>
-        <mat-form-field class="example-full-width datepicker">
-          <mat-label>{{eventForChange.date}}</mat-label>
-          <input (dateChange)="onChangeDate($event)" matInput [matDatepicker]="picker">
-          <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-
-      </p>
-
-      <p>
-        <mat-form-field>
-          <mat-label>Hour</mat-label>
-          <mat-select value={{hour}} (selectionChange)="onChangeHour($event)">
-            <mat-option *ngFor="let hour of timeHours" value={{hour}}>{{hour}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Minut</mat-label>
-          <mat-select value={{minut}} (selectionChange)="onChangeMinutes($event)">
-            <mat-option *ngFor="let minute of timeMinuts" value={{minute}}>{{minute}}</mat-option>
-
-          </mat-select>
-        </mat-form-field>
-      </p>
-
-      <p>
-        <mat-form-field class="example-full-width">
-          <mat-label>Place</mat-label>
-          <input value="{{eventForChange.place}}" (keyup)="onChangePlace($event)" matInput>
-
-        </mat-form-field>
-      </p>
-
-
-
-      <p>
-        <mat-form-field class="example-full-width">
-          <mat-label>Categories</mat-label>
-          <mat-select value={{eventForChange.categories}} (selectionChange)="onChangeCategory($event)">
-            <mat-option value="Social">Social </mat-option>
-            <mat-option value="Educational">Educational </mat-option>
-            <mat-option value="Cultural">Cultural </mat-option>
-            <mat-option value="Sports">Sports </mat-option>
-            <mat-option value="Business">Business </mat-option>
-            <mat-option value="Entertainment">Entertainment</mat-option>
-            <mat-option value="Charity and Fundraising">Charity and Fundraising</mat-option>
-            <mat-option value="Technology and Innovation">Technology and Innovation</mat-option>
-            <mat-option value="Health and Wellness">Health and Wellness</mat-option>
-            <mat-option value="Community">Community </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Language</mat-label>
-          <mat-select value={{eventForChange.language}} (selectionChange)="onChangeLanguage($event)">
-            <mat-option value="English">English </mat-option>
-            <mat-option value="German">German </mat-option>
-            <mat-option value="Spanish">Spanish </mat-option>
-            <mat-option value="French">French </mat-option>
-            <mat-option value="Italian">Italian </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-
-      <p>
-
-      </p>
-
-
-
-      <p>
-        <mat-form-field class="example-full-width">
-          <mat-label>Price €</mat-label>
-          <input value="{{eventForChange.price}}" (keyup)="onChangePrice($event)" matInput>
-
-        </mat-form-field>
-      </p>
-
-      <p>
-        <mat-form-field class="example-full-width">
-          <mat-label>Describe</mat-label>
-          <input value="{{eventForChange.longDescribe}}" (keyup)="onChangeDescribe($event)" matInput>
-
-        </mat-form-field>
-      </p>
-
-      <p>
-        <mat-form-field class="example-full-width">
-          <mat-label>Describe Briefly</mat-label>
-          <input value="{{eventForChange.shortDescribe}}" (keyup)="onChangeDescibeShort($event)" matInput>
-
-        </mat-form-field>
-      </p>
-    </form>
-
-    <form class="formPT">
-      <mat-card-header class="slika">
-
-        <mat-card-title-group>
-          <img class="slika" mat-card-xl-image
-            src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-        </mat-card-title-group>
-      </mat-card-header>
-
-      <mat-form-field class="example-full-width">
-
-        <mat-label>Insert picture URL</mat-label>
-        <input class="urlInputTxt" matInput>
-
-      </mat-form-field>
-      <button type="button" (click)="onChangeUrl()" mat-raised-button class="btnUrl" color="primary">Insert</button>
-
-
-    </form>
-
-
+    <div class="info">
+      ime
+      {{eventForShow.name}}
+    </div>
 
 
   </div>
 
-  <button (click)="close()" mat-raised-button>Close</button>
+  <div class="botBar">
+    <app-bottom-bar> </app-bottom-bar>
+  </div>
+
+
+
 </div>
-
-
-<!-- </div> -->
-
-
-
-<!-- </div> -->

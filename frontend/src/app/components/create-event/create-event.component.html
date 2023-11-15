@@ -63,16 +63,8 @@
                     <mat-form-field class="example-full-width">
                         <mat-label>Categories</mat-label>
                         <mat-select (selectionChange)="onChangeCategory($event)">
-                            <mat-option value="Social">Social </mat-option>
-                            <mat-option value="Educational">Educational </mat-option>
-                            <mat-option value="Cultural">Cultural </mat-option>
-                            <mat-option value="Sports">Sports </mat-option>
-                            <mat-option value="Business">Business </mat-option>
-                            <mat-option value="Entertainment">Entertainment</mat-option>
-                            <mat-option value="Charity and Fundraising">Charity and Fundraising</mat-option>
-                            <mat-option value="Technology and Innovation">Technology and Innovation</mat-option>
-                            <mat-option value="Health and Wellness">Health and Wellness</mat-option>
-                            <mat-option value="Community">Community </mat-option>
+                            <mat-option *ngFor="let category of categories"  value={{category.id}}>{{category.type}}</mat-option>
+
                         </mat-select>
                     </mat-form-field>
 

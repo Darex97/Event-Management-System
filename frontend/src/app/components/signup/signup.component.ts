@@ -6,6 +6,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { ExampleHeader } from './exampleHeader';
 import { User } from 'src/app/classes/user';
 import { Router } from '@angular/router';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-signup',
@@ -27,7 +28,7 @@ onChangeFirstName(event : Event){
 onChangeLastName(event : Event){
    this.user.lastName = (event.target as HTMLInputElement).value;
   }
-onChangeGender(event:any){
+onChangeGender(event:MatSelectChange){
    this.user.gender = event.value;
    //console.log( event.value)
   }

@@ -6,6 +6,7 @@ import { EventServiceService } from 'src/app/services/event-service.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/localStorage.services';
 import { MatSelectChange } from '@angular/material/select';
+import { Category } from 'src/app/classes/category';
 
 @Component({
   selector: 'app-create-event',
@@ -18,9 +19,10 @@ export class CreateEventComponent {
 
   public timeHours: string[] = [];
   public timeMinuts: string[] = [];
-  public event: EventClass = new EventClass("", "", "", "", "", "", "", "", "", "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  public event: EventClass = new EventClass("", "", "", "", "", "", "", "", "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   public hour:string="0";
   public minut:string="0";
+  public categories:Category[] = [];
 
   constructor(private eventService: EventServiceService,
     private router: Router,
@@ -29,7 +31,12 @@ export class CreateEventComponent {
   }
 
   ngOnInit(): void {
-
+    /////////////kategorije
+    this.eventService.getAllCategories().subscribe((categoryData:any) =>{
+      this.categories = categoryData;
+      console.log(this.categories);
+    })
+    //////////////
   }
 
   addMinutes() {
@@ -68,16 +75,20 @@ export class CreateEventComponent {
     this.event.time = this.hour+":"+this.minut;
     console.log(this.event.time)
   }
-  onChangeMinutes(event: any) {
+  onChangeMinutes(event: MatSelectChange) {
     this.minut = event.value;
     this.event.time = this.hour+":"+this.minut;
     console.log(this.event.time)
   }
-  onChangeCategory(event: any) {
-    this.event.categories = event.value;
-    //console.log( event.value)
+  onChangeCategory(event: MatSelectChange) {
+    let id:number = Number(event.value);
+    let category = this.categories.find((obj:Category)=>{
+      return obj.id === id;
+    })
+    this.event.categories = category;
+    console.log( this.event.categories)
   }
-  onChangeLanguage(event: any) {
+  onChangeLanguage(event: MatSelectChange) {
     this.event.language = event.value;
     //console.log( event.value)
   }

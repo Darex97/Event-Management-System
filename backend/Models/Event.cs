@@ -36,7 +36,7 @@ namespace Models
         public string Language { get; set; }
 
         [Required]
-        public string Categories { get; set; }   
+        public Category Categories { get; set; }   
 
         [Required]
         public string LongDescribe { get; set; } 

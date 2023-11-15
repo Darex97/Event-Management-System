@@ -1,3 +1,4 @@
+import { Category } from "./category";
 import { User } from "./user";
 
 export class EventClass {
@@ -7,10 +8,10 @@ export class EventClass {
         place: string;
         price:string;
         language:string;
-        categories: string;
         longDescribe: string;
         shortDescribe: string;
         picturePath: string;
+        categories?: Category;
         creator?: User;
 
     constructor(
@@ -21,10 +22,10 @@ export class EventClass {
         Place: string,
         Price:string,
         Language:string,
-        Categories: string,
         LongDescribe: string,
         ShortDescribe: string,
         PicturePath: string,
+        Categories?: Category,
         Creator?:User
 
     ) 

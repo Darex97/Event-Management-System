@@ -3,6 +3,8 @@ import { EventClass } from 'src/app/classes/eventClass';
 import { EventServiceService } from 'src/app/services/event-service.service';
 import { LocalStorageService } from 'src/app/services/localStorage.services';
 import { ExampleHeader } from '../signup/exampleHeader';
+import { MatSelectChange } from '@angular/material/select';
+import { Category } from 'src/app/classes/category';
 
 @Component({
   selector: 'app-edit-event',
@@ -13,22 +15,39 @@ export class EditEventComponent {
 
 
   @Output() closePopup = new EventEmitter();
-  @Input() eventForChange:EventClass = new EventClass("","","","","","","","","","");
+  @Input() eventForChange:EventClass = new EventClass("","","","","","","","","");
   public timeHours: string[] = [];
   public timeMinuts: string[] = [];
   public hour:string="0";
   public minut:string="0";
   public splitedTime:string []=[];
   exampleHeader = ExampleHeader;
+  public categories:Category[] = [];
+  public chosenCategory?:string = "dddd";
+
+
 
   
 
   constructor(private eventService: EventServiceService,
     private localStorageService: LocalStorageService) { 
       this.addMinutes()
+      
+      
     }
 
   ngOnInit(): void {
+     /////////////kategorije
+     this.eventService.getAllCategories().subscribe((categoryData:any) =>{
+      this.categories = categoryData;
+      console.log(this.categories);
+      this.chosenCategory = this.eventForChange.categories?.type;
+      console.log(this.chosenCategory)
+    })
+    //////////////
+    
+    
+
     console.log(this.eventForChange)
     this.splitedTime= this.eventForChange.time.split(":",2);
     this.hour=this.splitedTime[0];
@@ -75,21 +94,25 @@ export class EditEventComponent {
     // //this.event.picturePath;
   }
  
-  onChangeHour(event: any) {
+  onChangeHour(event: MatSelectChange) {
     this.hour = event.value;
     this.eventForChange.time = this.hour+":"+this.minut;
     console.log(this.eventForChange.time)
   }
-  onChangeMinutes(event: any) {
+  onChangeMinutes(event: MatSelectChange) {
     this.minut = event.value;
     this.eventForChange.time = this.hour+":"+this.minut;
     console.log(this.eventForChange.time)
   }
-  onChangeCategory(event: any) {
-    this.eventForChange.categories = event.value;
-    //console.log( event.value)
+  onChangeCategory(event: MatSelectChange) {
+    let id:number = Number(event.value);
+    let category = this.categories.find((obj:Category)=>{
+      return obj.id === id;
+    })
+    this.eventForChange.categories = category;
+    console.log( this.eventForChange.categories)
   }
-  onChangeLanguage(event: any) {
+  onChangeLanguage(event: MatSelectChange) {
     this.eventForChange.language = event.value;
     //console.log( event.value)
   }

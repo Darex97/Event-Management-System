@@ -15,6 +15,9 @@ export class EventServiceService {
    getEventsUnauth(){
      return this.httpClient.get(environment.apiUrl+"Event/GetAllEvents")
    }
+   getAllCategories(){
+    return this.httpClient.get(environment.apiUrl+"Event/GetAllCategories")
+  }
 
   setCategory(category:string){
     this.selectedCategory=category;

@@ -8,6 +8,7 @@ import { EventClass } from 'src/app/classes/eventClass';
 import { User } from 'src/app/classes/user';
 import { UserEventConection } from 'src/app/classes/userEventConection';
 import { UserEventService } from 'src/app/services/user-event.service';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-user-profil',
@@ -47,16 +48,16 @@ export class UserProfilComponent {
 
   }
 
-  onChangeName(event:any){
+  onChangeName(event:KeyboardEvent){
     this.user.username = (event.target as HTMLInputElement).value;
     console.log(this.user.username)
   }
-  onChangeLastName(event:any){
+  onChangeLastName(event:KeyboardEvent){
     this.user.lastName = (event.target as HTMLInputElement).value;
     console.log(this.user.lastName)
 
   }
-  onChangeGender(event:any){
+  onChangeGender(event:MatSelectChange){
     this.user.gender = event.value;
     console.log(this.user.gender)
 
@@ -66,12 +67,12 @@ export class UserProfilComponent {
   //   console.log(this.user.birthDay)
 
   // }
-  onChangeEmail(event:any){
+  onChangeEmail(event:KeyboardEvent){
     this.user.email = (event.target as HTMLInputElement).value;
     console.log(this.user.email)
 
   }
-  onChangeCity(event:any){
+  onChangeCity(event:KeyboardEvent){
     this.user.city = (event.target as HTMLInputElement).value;
     console.log(this.user.city)
 

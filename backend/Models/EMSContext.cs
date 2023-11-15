@@ -13,6 +13,8 @@ namespace Models
 
         public DbSet<ConnectionEventUser> ConnectionEventUsers {get; set;}
 
+        public DbSet<Category> Categories {get; set;}
+
         public EMSContext()
         {
 

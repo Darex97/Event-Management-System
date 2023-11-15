@@ -25,18 +25,9 @@
 
                     <mat-form-field>
                         <mat-label>Categories</mat-label>
-                        <mat-select (selectionChange)="onCategoryChange($event)" [(value)]="selectedCategory">
+                        <mat-select (selectionChange)="onCategoryChange($event)" [(value)]="categorySelect.type">
                             <mat-option value="All">All Events </mat-option>
-                            <mat-option value="Social">Social </mat-option>
-                            <mat-option value="Educational">Educational </mat-option>
-                            <mat-option value="Cultural">Cultural </mat-option>
-                            <mat-option value="Sports">Sports </mat-option>
-                            <mat-option value="Business">Business </mat-option>
-                            <mat-option value="Entertainment">Entertainment</mat-option>
-                            <mat-option value="Charity and Fundraising">Charity and Fundraising</mat-option>
-                            <mat-option value="Technology and Innovation">Technology and Innovation</mat-option>
-                            <mat-option value="Health and Wellness">Health and Wellness</mat-option>
-                            <mat-option value="Community">Community </mat-option>
+                            <mat-option *ngFor="let category of categories" value={{category.type}}>{{category.type}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <p> Selected category: {{selectedCategory}} </p>
@@ -87,7 +78,7 @@
     <!-- EVENTI -->
     <div class="events">
         <ng-container *ngFor="let event of events">
-            <div   *ngIf="event.place == selectedLocation || selectedLocation == 'All'" class="oneEvent">
+            <div (click)="onOpenEventInfo(event.name)"  *ngIf="event.place == selectedLocation || selectedLocation == 'All'" class="oneEvent">
 
 
 
@@ -125,3 +116,4 @@
 
     <app-bottom-bar class="botomBar"></app-bottom-bar>
 </div>
+

@@ -12,85 +12,83 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./my-events.component.scss']
 })
 export class MyEventsComponent {
-  
+
 
   public events: EventClass[] = [];
-  public selectedLocation:string = "All";
-  public allLocations:string [] = [];
-  public selectedCategory:string = "All";
-  public selectedLanguage:string = "All";
-  public selectedPaid:number = 0;
-  public checkifThereisToken:string | null = ""
-  public idUser:string | null ="";
-  public eventInformationPopup:boolean=false;
-  public eventForPopup:EventClass = new EventClass("","","","","","","","","","");
-  public user:User = new User("","","","","","","","","");
+  public selectedLocation: string = "All";
+  public allLocations: string[] = [];
+  public selectedCategory: string = "All";
+  public selectedLanguage: string = "All";
+  public selectedPaid: number = 0;
+  public checkifThereisToken: string | null = ""
+  public idUser: string | null = "";
+  public eventInformationPopup: boolean = false;
+  public eventForPopup: EventClass = new EventClass("", "", "", "", "", "", "", "", "");
+  public user: User = new User("", "", "", "", "", "", "", "", "");
   public userEvents?: EventClass[] = [];
- 
 
-  constructor( private eventService:EventServiceService,
-     private localStorageService:LocalStorageService,
-     private router: Router,
-     private userServie:UserService) {} 
+
+  constructor(private localStorageService: LocalStorageService,  
+    private userServie: UserService) { }
 
   ngOnInit(): void {
 
-    
 
-      this.userServie.getUsersEvents(Number(this.localStorageService.get("id"))).subscribe((userData: any) =>{
-        this.user = userData[0];
-        console.log(this.user);
-        this.userEvents=this.user.createdEvents;
-        console.log(this.userEvents);
-      })
 
-      this.allLocations = this.allLocations.filter((value, index, array) => {
-      return array.indexOf(value) === index;
-    });
-    
-  
+    this.userServie.getUsersEvents(Number(this.localStorageService.get("id"))).subscribe((userData: any) => {
+      this.user = userData[0];
+      console.log(this.user);
+      this.userEvents = this.user.createdEvents;
+      console.log(this.userEvents);
+    })
 
-    this.selectedCategory=this.eventService.getCategory();
+    //   this.allLocations = this.allLocations.filter((value, index, array) => {
+    //   return array.indexOf(value) === index;
+    // });
 
-    this.idUser = this.localStorageService.get("id");
+
+
+    // this.selectedCategory = this.eventService.getCategory();
+
+     this.idUser = this.localStorageService.get("id");
 
   }
-  close(){
-    this.eventInformationPopup=false;
+  close() {
+    this.eventInformationPopup = false;
   }
-  openEvent(event:EventClass){
+  openEvent(event: EventClass) {
     this.eventForPopup = event;
-    this.eventInformationPopup=true;
+    this.eventInformationPopup = true;
   }
 
-  onLocationChange(ob:any){
-    this.selectedLocation=ob.value;
-    //console.log(this.selectedLocation);
-  }
-  onCategoryChange(ob:any){
-    this.selectedCategory=ob.value;
-    //console.log(this.selectedLocation);
-  }
-  onLanguageChange(ob:any){
-    this.selectedLanguage=ob.value;
-    //console.log(this.selectedLanguage);
-  }
-  onChangePaid(ob:any){
-    this.selectedPaid=ob.value;
-    //console.log(this.selectedPaid);
-  }
-  onRegister(){
-    this.checkifThereisToken = this.localStorageService.get("token")
-    if(this.checkifThereisToken == null){   
-       this.router.navigate(['login']); 
-    }
-  }
+  // onLocationChange(ob:any){
+  //   this.selectedLocation=ob.value;
+  //   //console.log(this.selectedLocation);
+  // }
+  // onCategoryChange(ob:any){
+  //   this.selectedCategory=ob.value;
+  //   //console.log(this.selectedLocation);
+  // }
+  // onLanguageChange(ob:any){
+  //   this.selectedLanguage=ob.value;
+  //   //console.log(this.selectedLanguage);
+  // }
+  // onChangePaid(ob:any){
+  //   this.selectedPaid=ob.value;
+  //   //console.log(this.selectedPaid);
+  // }
+  // onRegister(){
+  //   this.checkifThereisToken = this.localStorageService.get("token")
+  //   if(this.checkifThereisToken == null){   
+  //      this.router.navigate(['login']); 
+  //   }
+  // }
 
   // uniqueNumbers = this.allLocations.filter(function(value, index, array) {
   //   return array.indexOf(value) === index;
   // });
 
 
-  
+
 
 }

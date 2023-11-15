@@ -30,7 +30,9 @@ public class UserAdminController : ControllerBase
     {
         //eager loading
         var users = Context.UsersAdmins//.ToList();
-                    .Include(p => p.CreatedEvents).ToList();
+                    .Include(p => p.CreatedEvents)
+                    .ThenInclude(q => q.Categories)
+                    .ToList();
         // .ThenInclude(q=>q.ID);
 
 
@@ -45,7 +47,9 @@ public class UserAdminController : ControllerBase
     {
         //eager loading
         var users = Context.UsersAdmins//.ToList();
-                    .Include(p => p.CreatedEvents).ToList();
+                    .Include(p => p.CreatedEvents)
+                    .ThenInclude(q => q.Categories)
+                    .ToList();
         // .ThenInclude(q=>q.ID);
 
 
@@ -61,7 +65,8 @@ public class UserAdminController : ControllerBase
     {
         //eager loading
         var users = Context.UsersAdmins.Where(q => q.ID == idUser)//.ToList();
-                    .Include(p => p.CreatedEvents).ToList();
+                    .Include(p => p.CreatedEvents)
+                    .ThenInclude(q=> q.Categories).ToList();
         // .ThenInclude(q=>q.ID);
 
 

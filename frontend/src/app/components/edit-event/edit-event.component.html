@@ -85,28 +85,19 @@
           </mat-form-field>
         </p>
   
-  
-  
         <p>
           <mat-form-field class="example-full-width">
             <mat-label>Categories</mat-label>
-            <mat-select value={{eventForChange.categories}} (selectionChange)="onChangeCategory($event)">
-              <mat-option value="Social">Social </mat-option>
-              <mat-option value="Educational">Educational </mat-option>
-              <mat-option value="Cultural">Cultural </mat-option>
-              <mat-option value="Sports">Sports </mat-option>
-              <mat-option value="Business">Business </mat-option>
-              <mat-option value="Entertainment">Entertainment</mat-option>
-              <mat-option value="Charity and Fundraising">Charity and Fundraising</mat-option>
-              <mat-option value="Technology and Innovation">Technology and Innovation</mat-option>
-              <mat-option value="Health and Wellness">Health and Wellness</mat-option>
-              <mat-option value="Community">Community </mat-option>
+            <mat-select placeholder="{{eventForChange.categories?.type}}" value="{{eventForChange.categories?.type}}" (selectionChange)="onChangeCategory($event)">
+              <mat-option *ngFor="let category of categories" value={{category.id}}>{{category.type}}</mat-option>
+
+           
             </mat-select>
           </mat-form-field>
-  
+          
           <mat-form-field class="example-full-width">
             <mat-label>Language</mat-label>
-            <mat-select value={{eventForChange.language}} (selectionChange)="onChangeLanguage($event)">
+            <mat-select value={{eventForChange.language}} placeholder="{{eventForChange.language}}" (selectionChange)="onChangeLanguage($event)">
               <mat-option value="English">English </mat-option>
               <mat-option value="German">German </mat-option>
               <mat-option value="Spanish">Spanish </mat-option>
