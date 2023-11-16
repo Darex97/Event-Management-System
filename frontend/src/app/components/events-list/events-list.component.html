@@ -14,7 +14,8 @@
                         <mat-label>Location</mat-label>
                         <mat-select (selectionChange)="onLocationChange($event)" [(value)]="selectedLocation">
                             <mat-option value="All">All Locations</mat-option>
-                            <mat-option *ngFor="let location of allLocations" value={{location}}>{{location}}</mat-option>
+                            <mat-option *ngFor="let location of allLocations"
+                                value={{location}}>{{location}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <p> Selected Location: {{selectedLocation}} </p>
@@ -25,9 +26,11 @@
 
                     <mat-form-field>
                         <mat-label>Categories</mat-label>
-                        <mat-select (selectionChange)="onCategoryChange($event)" [(value)]="categorySelect.type">
+                        <mat-select (selectionChange)="onCategoryChange($event)" [(value)]="selectedCategory">
+                        <!-- <mat-select (selectionChange)="onCategoryChange($event)" [(value)]="categorySelect.type"> -->
                             <mat-option value="All">All Events </mat-option>
-                            <mat-option *ngFor="let category of categories" value={{category.type}}>{{category.type}}</mat-option>
+                            <mat-option *ngFor="let category of categories"
+                                value={{category.type}}>{{category.type}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <p> Selected category: {{selectedCategory}} </p>
@@ -64,7 +67,8 @@
 
             </div> -->
             <div class="slideToggle">
-                <mat-slide-toggle>Free</mat-slide-toggle>
+                <mat-slide-toggle checked={{selectedPriceFlag}} (toggleChange)="onChangePaid()">Free
+                </mat-slide-toggle>
 
             </div>
 
@@ -78,7 +82,11 @@
     <!-- EVENTI -->
     <div class="events">
         <ng-container *ngFor="let event of events">
-            <div (click)="onOpenEventInfo(event.name)"  *ngIf="event.place == selectedLocation || selectedLocation == 'All'" class="oneEvent">
+            <!-- <ng-container *ngIf="event.categories?.type === selectedCategory || selectedLocation == 'All'" > -->
+                <!-- <ng-container *ngIf="event.language === selectedLanguage || selectedLocation == 'All'" > -->
+
+            <div (click)="onOpenEventInfo(event.name)"
+                *ngIf="(event.place == selectedLocation || selectedLocation == 'All') && (event.language == selectedLanguage || selectedLanguage == 'All') && (event.categories?.type == selectedCategory || selectedCategory == 'All') && ((selectedPriceFlag == false ) || (selectedPriceFlag == true && event.price == '0'))" class="oneEvent">
 
 
 
@@ -104,16 +112,18 @@
                     </mat-card-content>
                     <mat-card-actions class="buttonPosition">
                         <button (click)="onRegister()" class="button" mat-button>REGISTER FOR EVENT</button>
-                      
-                        
+
+
                     </mat-card-actions>
 
                 </mat-card>
+                
             </div>
-        </ng-container>
+            </ng-container>
+        <!-- </ng-container>
+        </ng-container> -->
 
     </div>
 
     <app-bottom-bar class="botomBar"></app-bottom-bar>
 </div>
-

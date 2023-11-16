@@ -142,6 +142,19 @@ public class EventController : ControllerBase
         
         
     }
+    [AllowAnonymous]
+    [Route("GetRegistratedUsersForEvent/{name}")]
+    [HttpGet]
+    public ActionResult GetRegistratedUsersForEvent(string name)
+    {
+        var registratedUsers = Context.ConnectionEventUsers
+                                .Include(p=> p.ForWhatEvent)
+                                .Where(q=> q.ForWhatEvent.Name == name)
+                                .Include(e=> e.RegistratedUser);
+           
+            return Ok(registratedUsers);
+   
+    }
 
 
   
@@ -264,8 +277,12 @@ public class EventController : ControllerBase
                 return BadRequest("User doesn't exist");
             }        
 
-            //UserAdmin Creator = await Context.UsersAdmins.FindAsync(creatorId);
-               
+            var conection = Context.ConnectionEventUsers.Where(p => p.RegistratedUser == user1 && p.ForWhatEvent==event1).FirstOrDefault();   
+             if (conection != null)
+            {
+                return BadRequest("Conection alredy exist");
+            } 
+
             ConnectionEventUser ceu = new ConnectionEventUser();
             ceu.RegistratedUser = user1;
             ceu.ForWhatEvent = event1;

@@ -1,10 +1,12 @@
+import { UserEventService } from 'src/app/services/user-event.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EventClass } from 'src/app/classes/eventClass';
 import { EventServiceService } from 'src/app/services/event-service.service';
-import { LocalStorageService } from 'src/app/services/localStorage.services';
 import { ExampleHeader } from '../signup/exampleHeader';
-import { MatSelectChange } from '@angular/material/select';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/localStorage.services';
+import { UserEventConection } from 'src/app/classes/userEventConection';
+import { User } from 'src/app/classes/user';
 
 @Component({
   selector: 'app-event-information',
@@ -15,33 +17,60 @@ import { ActivatedRoute } from '@angular/router';
 
 export class EventInformationComponent {
 
-  
-  public eventForShow:EventClass = new EventClass("","","","","","","","","");
   exampleHeader = ExampleHeader;
+  
+  public eventForShow:EventClass = new EventClass("","","","","","","","",""); 
   public eventName:string="";
+  public dateForShow:Date= new Date();
+  //public users:User [] = [];
+  public eventUserConection: UserEventConection[]=[];
+ 
   
 
-  
-
-  constructor( private route: ActivatedRoute,
-    private eventService:EventServiceService) { 
-      
-    }
+  constructor(private eventService:EventServiceService,
+      private route: ActivatedRoute,
+      private localStorageService:LocalStorageService,
+      private router: Router,
+      private userEventService:UserEventService
+    ) { }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe(params=>{
-      this.eventName = params.get('eventName') || "";
-    })
-    
+
+    // this.eventService.eventAlredyExist("Novi").subscribe((eventData:any)=>{
+    //   this.eventForShow = eventData[0];
+    //   console.log(this.eventForShow)
+    // });
+
+    this.eventName = this.route.snapshot.queryParamMap.get('eventName') || "";
 
     this.eventService.eventAlredyExist(this.eventName).subscribe((eventData:any)=>{
-      this.eventForShow=eventData;
-      console.log(this.eventForShow)
+      this.eventForShow=eventData[0];
+      this.dateForShow =new Date(this.eventForShow.date)
+     // console.log(this.eventForShow)
     })
-    
+
+    this.userEventService.getRegistratedUsersForEvent(this.eventName).subscribe((conectionsData:any)=>{
+      this.eventUserConection = conectionsData;
+      //this.users = this.eventUserConection.registratedUser ;
+      console.log(this.eventUserConection)
+    })
+   
+   
+   
+
   }
 
-  
+  register(){
+    const checkifThereisToken = this.localStorageService.get("token")
+    if(checkifThereisToken == null){   
+       this.router.navigate(['login']); }
+       else{
+        let userId:number = Number(this.localStorageService.get("id"));
+     
+        this.eventService.registerForEvent(userId,Number(this.eventForShow.id)).subscribe();
+       }
+      
+  }
   
 
 }

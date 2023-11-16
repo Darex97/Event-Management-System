@@ -15,8 +15,9 @@
   </ng-container>
 
   <ng-container *ngIf=" idUser == null">
-    <a mat-button>Home</a>
-    <a mat-button>About</a>
-    <a mat-button>Contact</a>
+    <a routerLink="/pocetna" mat-button>Home</a>
+    <a routerLink="/login" mat-button>Log In</a>
+    <a routerLink="/signup" mat-button>Sign Up</a>
+    
   </ng-container>
 </mat-toolbar>

@@ -11,6 +11,7 @@ export class EventClass {
         longDescribe: string;
         shortDescribe: string;
         picturePath: string;
+        id?:number;
         categories?: Category;
         creator?: User;
 
@@ -25,6 +26,7 @@ export class EventClass {
         LongDescribe: string,
         ShortDescribe: string,
         PicturePath: string,
+        Id?:number,
         Categories?: Category,
         Creator?:User
 
@@ -40,6 +42,7 @@ export class EventClass {
         this.longDescribe = LongDescribe;
         this.shortDescribe=ShortDescribe;
         this.picturePath=PicturePath;
+        this.id= Id;
         this.creator = Creator;
 
     }

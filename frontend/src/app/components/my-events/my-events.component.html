@@ -38,7 +38,11 @@
                         </p>
                     </mat-card-content>
                     <mat-card-actions class="buttonPosition">
-                        <button (click)="openEvent(event)" class="button" mat-button>Edit Event</button>
+                        <button (click)="openEvent(event)" class="button" color="primary" mat-button>Edit Event</button>
+                       <form> 
+                        <button type="submit" (click)="deleteEvent(event.id)" class="button" color="warn" mat-button>Delete Event</button>
+
+                       </form>
 
 
                     </mat-card-actions>

@@ -9,8 +9,22 @@ import { environment } from 'src/environments/environment';
 export class EventServiceService {
 
   public selectedCategory:string = "All";
+ // public eventForShow:EventClass = new EventClass("","","","","","","","","");
+
+
 
   constructor(public httpClient: HttpClient) { }
+
+  // setEventForShow(name:string){
+  //   this.eventAlredyExist(name).subscribe((eventData:any)=>{
+  //     this.eventForShow=eventData;
+  //     console.log(this.eventForShow)
+  //   });
+
+  // }
+  // getEventForShow(){
+  //   return this.eventForShow;
+  // }
 
    getEventsUnauth(){
      return this.httpClient.get(environment.apiUrl+"Event/GetAllEvents")
@@ -39,5 +53,11 @@ export class EventServiceService {
   changeEvent(event : EventClass ){
     //console.log(event,idCreator);
     return   this.httpClient.put(environment.apiUrl+"Event/ChangeEventUser",event)
+   }
+   registerForEvent(userId:number,eventId?:number){
+    return   this.httpClient.put(environment.apiUrl+"Event/RegisterForEvent/"+eventId+"/"+userId,eventId)
+   }
+   deleteEvent(userId:number,eventId?:number){
+    return   this.httpClient.delete(environment.apiUrl+"Event/DeleteEvent/"+eventId+"/"+userId)
    }
 }

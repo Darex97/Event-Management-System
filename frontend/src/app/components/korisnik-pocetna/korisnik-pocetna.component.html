@@ -54,11 +54,11 @@
 
     <div class="listCategories">
       <ng-container *ngFor="let category of categories">
-        <div (click)="onCategoryClick(category)" class="oneCategory">
+        <div (click)="onCategoryClick(category.type)" class="oneCategory">
         <mat-card class="roundObject">
           <mat-card-header>
             <mat-card-title-group>
-              <mat-card-title>{{category}}</mat-card-title>
+              <mat-card-title>{{category.type}}</mat-card-title>
              
             </mat-card-title-group>
           </mat-card-header>

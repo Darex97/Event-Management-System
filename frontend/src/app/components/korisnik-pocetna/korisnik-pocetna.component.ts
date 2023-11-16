@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Category } from 'src/app/classes/category';
 import { User } from 'src/app/classes/user';
 import { EventServiceService } from 'src/app/services/event-service.service';
 import { UserService } from 'src/app/services/user.service';
@@ -19,7 +20,7 @@ export class KorisnikPocetnaComponent {
     that transcend virtual limitations.`;
 
   public users: User[] = [];
-  public categories: string[] = ["Social","Educational","Cultural","Sports","Business","Entertainment","Charity and Fundraising","Technology and Innovation","Health and Wellness","Community"];
+  public categories: Category[] = [];
   public hover = false;
   public userForSend:User = new User("","","","","","","","","");
   
@@ -36,11 +37,15 @@ export class KorisnikPocetnaComponent {
       console.log(this.users);
     })
 
+    this.eventService.getAllCategories().subscribe((categoryData:any) =>{
+      this.categories = categoryData
+    });
+
   }
   
   onCategoryClick(category:string){
     this.eventService.setCategory(category);
-    this.router.navigate(['eventsList'])
+    this.router.navigate(['/eventsList'],{queryParams: { selectedCategory: category }})
   }
   onHower(user:User) {
     console.log("Nestoooo")

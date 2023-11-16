@@ -14,6 +14,118 @@
   align-items: center;
   justify-content: center;
 }
+.info{
+  display: flex;
+  flex-direction: column;
+  padding: 7%;
+}
+.titles{
+padding-top: 1%;
+ // box-sizing :border-box;
+color :rgb(30, 10, 60);
+//display: block;
+font-family :"Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+font-size :24px;
+font-weight :700;
+height: 28px;
+letter-spacing :normal;
+line-height :28px;
+}
+.dateShort{
+  padding-bottom: 1%;
+  font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  font-size :18px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height : 24px;
+}
+.eventName{
+  padding-bottom: 1%;
+  font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+font-size :52px;
+font-weight :800;
+letter-spacing: normal;
+line-height: 64px;
+}
+.shortDes{
+  
+  padding-bottom: 1%;
+  font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  font-size :16px;
+  font-weight :600;
+  letter-spacing: normal;
+  line-height: 24px;
+}
+.date{
+  display: flex;
+  padding-top: 0.5%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  font-size :16px;
+  font-weight :600;
+  letter-spacing: normal;
+  line-height: 24px;
+}
+.location{
+  display: flex;
+  padding-top: 0.5%;
+  
+  padding-bottom: 1%;
+  padding-left: 1%;
+  font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  font-size :21px;
+  font-weight :570;
+  letter-spacing: normal;
+  line-height: 24px;
+}
+.longDes{
+  padding-top: 0.5%;
+
+  padding-bottom: 1%;
+  padding-left: 1%;
+  font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  font-size :16px;
+  font-weight :500;
+  letter-spacing: normal;
+  line-height: 24px;
+}
+.btnReg{
+  padding-top: 2%;
+  align-self: center;
+  width: 100px;
+  
+}
+.btn{
+  height: 80px;
+
+}
+.example-card {
+  max-width: 400px;
+  margin-bottom: 8px;
+  border-radius: 25px;
+
+}
+.registratedUsers{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  overflow-x: auto;
+}
+.oneUser{
+  padding-left: 3%;
+  padding-right: 3%;
+  display: flex;
+}
+.title{
+  display: flex;
+  justify-content: center;
+}
+.regUser{
+  align-self: center;
+}
+
 
 
 

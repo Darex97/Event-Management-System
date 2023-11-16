@@ -29,7 +29,8 @@ export class MyEventsComponent {
 
 
   constructor(private localStorageService: LocalStorageService,  
-    private userServie: UserService) { }
+    private userServie: UserService,
+    private eventService: EventServiceService) { }
 
   ngOnInit(): void {
 
@@ -59,6 +60,11 @@ export class MyEventsComponent {
   openEvent(event: EventClass) {
     this.eventForPopup = event;
     this.eventInformationPopup = true;
+  }
+  deleteEvent(eventId?:number){
+    let userId:number = Number(this.localStorageService.get("id"));
+    this.eventService.deleteEvent(userId,eventId).subscribe();
+
   }
 
   // onLocationChange(ob:any){

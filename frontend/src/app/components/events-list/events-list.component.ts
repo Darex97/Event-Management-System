@@ -9,6 +9,7 @@ import { LocalStorageService } from 'src/app/services/localStorage.services';
 import { UserService } from 'src/app/services/user.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 
 
@@ -18,11 +19,11 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./events-list.component.scss']
 })
 export class EventsListComponent {
-  public categorySelect:Category=new Category(0,"All")
+  //public categorySelect:Category=new Category(0,"All")
   public events: EventClass[] = [];
   public selectedLocation:string = "All";
   public allLocations:string [] = [];
-  public selectedCategory:string = "Social";
+  public selectedCategory:string = "All";
   public selectedLanguage:string = "All";
   public selectedPaid:number = 0;
   public checkifThereisToken:string | null = ""
@@ -32,7 +33,7 @@ export class EventsListComponent {
   public user:User = new User("","","","","","","","","");
   public userEvents?: EventClass[] = [];
   public categories:Category[] = [];
-  public nesto:any;
+  public selectedPriceFlag:boolean = false;
 
   //query params
   // public events$: Observable<EventClass[]>;
@@ -68,13 +69,12 @@ export class EventsListComponent {
              //query params
     this.route.queryParamMap.subscribe(params=>{
       this.selectedCategory = params.get('selectedCategory') || "All";
-      this.categorySelect = this.categories.find((obj:Category)=>{
-        console.log(obj.type)
-        return obj.type === this.selectedCategory;
-      }) || new Category(0,"All")
-      console.log(this.categorySelect)
+      // this.categorySelect = this.categories.find((obj:Category)=>{
+      //   return obj.type === this.selectedCategory;
+      // }) || new Category(0,"All")
       this.selectedLocation = params.get('selectedLocation') || "All";
       this.selectedLanguage = params.get('selectedLanguage') || "All";
+      this.selectedPriceFlag ="true"==params.get('selectedPriceFlag') || false;
     })
     
     //
@@ -120,29 +120,35 @@ export class EventsListComponent {
   onLocationChange(ob:MatSelectChange){
     this.selectedLocation=ob.value;
     
-    this.router.navigate(['/eventsList'],{queryParams: {selectedLocation: this.selectedLocation, selectedCategory: this.selectedCategory, selectedLanguage: this.selectedLanguage }})
+    this.router.navigate(['/eventsList'],{queryParams: {selectedLocation: this.selectedLocation, selectedCategory: this.selectedCategory, selectedLanguage: this.selectedLanguage, selectedPriceFlag: this.selectedPriceFlag  }})
     //console.log(this.selectedLocation);
   }
   onCategoryChange(ob:MatSelectChange){
     this.selectedCategory=ob.value;
-    this.router.navigate(['/eventsList'],{queryParams: {selectedLocation: this.selectedLocation, selectedCategory: this.selectedCategory, selectedLanguage: this.selectedLanguage }})
+    
+    this.router.navigate(['/eventsList'],{queryParams: {selectedLocation: this.selectedLocation, selectedCategory: this.selectedCategory, selectedLanguage: this.selectedLanguage, selectedPriceFlag: this.selectedPriceFlag  }})
     console.log(this.selectedCategory);
   }
   onLanguageChange(ob:MatSelectChange){
     this.selectedLanguage=ob.value;
-    this.router.navigate(['/eventsList'],{queryParams: {selectedLocation: this.selectedLocation, selectedCategory: this.selectedCategory, selectedLanguage: this.selectedLanguage }})
+    this.router.navigate(['/eventsList'],{queryParams: {selectedLocation: this.selectedLocation, selectedCategory: this.selectedCategory, selectedLanguage: this.selectedLanguage, selectedPriceFlag: this.selectedPriceFlag  }})
 
     //console.log(this.selectedLanguage);
   }
-  // onChangePaid(ob:any){
-  //   this.selectedPaid=ob.value;
-  //   //console.log(this.selectedPaid);
-  // }
+  onChangePaid(){
+    this.selectedPriceFlag = !this.selectedPriceFlag;
+    this.router.navigate(['/eventsList'],{queryParams: {selectedLocation: this.selectedLocation, selectedCategory: this.selectedCategory, selectedLanguage: this.selectedLanguage, selectedPriceFlag: this.selectedPriceFlag  }})
+
+    console.log(this.selectedPriceFlag);
+  }
   onRegister(){
     this.checkifThereisToken = this.localStorageService.get("token")
     if(this.checkifThereisToken == null){   
-       this.router.navigate(['login']); 
-    }
+       this.router.navigate(['login']); }
+    // }else{
+    //   const userId:number = Number(this.localStorageService.get("token"));
+    //   this.eventService.registerForEvent(userId,eventId).subscribe();
+    // }
   }
   onOpenEventInfo(eventName:string){
     this.router.navigate(['/eventsList/eventInformation'],{queryParams: {eventName: eventName}})

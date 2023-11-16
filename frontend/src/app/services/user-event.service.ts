@@ -12,4 +12,7 @@ export class UserEventService {
   getUserRegistratedEvents(idUser: number) {
     return this.httpClient.get(environment.apiUrl+"Event/GetEventWhereUserRegistrated/" + idUser)
   }
+  getRegistratedUsersForEvent(name: string) {
+    return this.httpClient.get(environment.apiUrl+"Event/GetRegistratedUsersForEvent/" + name)
+  }
 }
