@@ -1,0 +1,32 @@
+.main{
+    display: flex;
+    flex-direction: column;
+}
+.lists{
+    display: flex;
+    flex-direction: row;
+}
+.example-card {
+    width: 400px;
+    margin-bottom: 8px;
+  }
+.users{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    overflow-y: auto;
+
+}
+.events{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    overflow-y: auto;
+}
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

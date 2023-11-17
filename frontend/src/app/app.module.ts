@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 //ovo dodajem
 import {MatButtonModule} from '@angular/material/button';
@@ -33,6 +33,16 @@ import { MyEventsComponent } from './components/my-events/my-events.component';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { OrganizerHoverComponent } from './components/organizer-hover/organizer-hover.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { EurToRsdPipe } from './pipes/eur-to-rsd.pipe';
+import { AdminPocetnaComponent } from './components/admin-pocetna/admin-pocetna.component';
+////
+import { AppInitService } from './app-init.service';
+ 
+export function initializeApp1(appInitService: AppInitService) {
+  return () => { 
+    return appInitService.Init();
+  }
+}
 
 
 
@@ -56,7 +66,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     BottomBarComponent,
     MyEventsComponent,
     EditEventComponent,
-    OrganizerHoverComponent
+    OrganizerHoverComponent,
+    EurToRsdPipe,
+    AdminPocetnaComponent
   ],
   imports: [
     BrowserModule,
@@ -77,12 +89,15 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatMenuModule,
     MatSlideToggleModule
   ],
-  providers: [UserService,
+  providers: [
+    UserService,
   {
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi: true
-  }],
+  },
+  AppInitService,
+  { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: [AppInitService], multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

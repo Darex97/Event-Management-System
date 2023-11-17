@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class EventServiceService {
 
+
+
   public selectedCategory:string = "All";
  // public eventForShow:EventClass = new EventClass("","","","","","","","","");
 
@@ -26,6 +28,7 @@ export class EventServiceService {
   //   return this.eventForShow;
   // }
 
+  /////////////////
    getEventsUnauth(){
      return this.httpClient.get(environment.apiUrl+"Event/GetAllEvents")
    }
@@ -57,7 +60,7 @@ export class EventServiceService {
    registerForEvent(userId:number,eventId?:number){
     return   this.httpClient.put(environment.apiUrl+"Event/RegisterForEvent/"+eventId+"/"+userId,eventId)
    }
-   deleteEvent(userId:number,eventId?:number){
-    return   this.httpClient.delete(environment.apiUrl+"Event/DeleteEvent/"+eventId+"/"+userId)
+   deleteEvent(eventId?:number){
+    return   this.httpClient.delete(environment.apiUrl+"Event/DeleteEvent/"+eventId)
    }
 }

@@ -62,8 +62,8 @@ export class MyEventsComponent {
     this.eventInformationPopup = true;
   }
   deleteEvent(eventId?:number){
-    let userId:number = Number(this.localStorageService.get("id"));
-    this.eventService.deleteEvent(userId,eventId).subscribe();
+    //let userId:number = Number(this.localStorageService.get("id"));
+    this.eventService.deleteEvent(eventId).subscribe();
 
   }
 

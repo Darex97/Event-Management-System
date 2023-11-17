@@ -1,14 +1,15 @@
 <mat-toolbar class="main" color="primary">
-    <span a routerLink="/pocetna"  >NigniteEMS</span>
-    
+    <span a routerLink="/pocetna">NigniteEMS</span>
+
     <span class="copy">©Copyright2023</span>
     <div class="spacer"></div>
-      
-      <a mat-button>About</a>
-      <a (click)="onContact()" mat-button>Contact</a>
-    </mat-toolbar>
 
-     <!-- <a name="bottom"></a>
+    <a routerLink="/adminPocetna" *ngIf="!!isAdmin" mat-button>Admin</a>
+    <a mat-button>About</a>
+    <a (click)="onContact()" mat-button>Contact</a>
+</mat-toolbar>
+
+<!-- <a name="bottom"></a>
     <nav class="donjiKontejner">
         <div class="copy-container">
             ©Copyright2023

@@ -28,7 +28,7 @@ export class UserProfilComponent {
     private localStorageService: LocalStorageService,
     private router: Router,
     private userEventConectionService: UserEventService,
-    private userServie: UserService,
+    private userServie: UserService
                                      ) { }
 
   ngOnInit(): void {
