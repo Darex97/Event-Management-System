@@ -12,8 +12,8 @@
 
     <!-- EVENTI -->
     <div class="events">
-        <ng-container *ngFor="let event of userEvents">
-            <div *ngIf="event.place == selectedLocation || selectedLocation == 'All'" class="oneEvent">
+        <ng-container *ngFor="let event of userEvents" >
+            <div  *ngIf="event.place == selectedLocation || selectedLocation == 'All'" class="oneEvent">
 
 
 
@@ -21,7 +21,7 @@
 
 
 
-                    <mat-card-header>
+                    <mat-card-header (click)="onOpenEventInfo(event.name)">
 
 
                         <mat-card-title>Name :{{event.name}}</mat-card-title>

@@ -60,6 +60,7 @@ export class EventsListComponent {
         
         this.allLocations.push(element.place);
       });
+
 /////////////kategorije
       this.eventService.getAllCategories().subscribe((categoryData:any) =>{
         this.categories = categoryData
@@ -154,7 +155,16 @@ export class EventsListComponent {
     this.router.navigate(['/eventsList/eventInformation'],{queryParams: {eventName: eventName}})
 
   }
+  onSortChange(ob:MatSelectChange){
+    if(ob.value == "up"){
+      this.events.sort((e1,e2) => Number(e1.price) - Number(e2.price))
 
+    }
+    if(ob.value == "down"){
+      this.events.sort((e1,e2) => Number(e1.price) - Number(e2.price)).reverse()
+
+    }
+  }
   // uniqueNumbers = this.allLocations.filter(function(value, index, array) {
   //   return array.indexOf(value) === index;
   // });

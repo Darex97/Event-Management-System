@@ -53,7 +53,7 @@
         <hr>
     
         <div class="listEvents">
-          <div *ngFor="let event of events " class="event">
+          <div (click)="onOpenEventInfo(event.name)" *ngFor="let event of events " class="event">
             <!-- <div *ngIf="user.createdEvents?.length "> -->
     
             

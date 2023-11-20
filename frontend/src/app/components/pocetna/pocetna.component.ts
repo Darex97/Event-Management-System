@@ -41,6 +41,11 @@ export class PocetnaComponent {
 
   public onClick(elementId: string): void { this.viewportScroller.scrollToAnchor(elementId); }
 
+  onOpenEventInfo(eventName:string){
+    this.router.navigate(['/eventsList/eventInformation'],{queryParams: {eventName: eventName}})
+
+  }
+
   public onClickSeeALl(){
     
   };

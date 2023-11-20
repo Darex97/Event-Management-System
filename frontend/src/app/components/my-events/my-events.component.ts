@@ -30,7 +30,8 @@ export class MyEventsComponent {
 
   constructor(private localStorageService: LocalStorageService,  
     private userServie: UserService,
-    private eventService: EventServiceService) { }
+    private eventService: EventServiceService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -64,6 +65,10 @@ export class MyEventsComponent {
   deleteEvent(eventId?:number){
     //let userId:number = Number(this.localStorageService.get("id"));
     this.eventService.deleteEvent(eventId).subscribe();
+
+  }
+  onOpenEventInfo(eventName:string){
+    this.router.navigate(['/eventsList/eventInformation'],{queryParams: {eventName: eventName}})
 
   }
 
