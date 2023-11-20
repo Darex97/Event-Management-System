@@ -139,11 +139,12 @@
                                 {{event.forWhatEvent.shortDescribe}}
                             </p>
                         </mat-card-content>
-                        <mat-card-actions >
+                       
+                        <div class="btnReview"> 
+                                
+                            <button (click)="onAddReview(event.forWhatEvent.id)"  mat-raised-button>Add Review</button>
 
-
-                        </mat-card-actions>
-
+                        </div>
                     </mat-card>
 
                 </div>
@@ -159,3 +160,4 @@
 
     <app-bottom-bar></app-bottom-bar>
 </div>
+<app-review-popup [eventId]="idForReview"  (closePopup)="close()" *ngIf="review"></app-review-popup>

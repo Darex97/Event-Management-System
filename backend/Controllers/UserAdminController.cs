@@ -145,4 +145,30 @@ public class UserAdminController : ControllerBase
         }
 
     }
+
+        [Authorize(Roles = UserRoles.Admin)]
+        [Route("DeleteUser/{id}")]
+        [HttpDelete]
+        public async Task<ActionResult> DeleteUser(int id)
+        {
+            //var strucnoLiceA = Context.UsersAdmins.Where(p => p.ID == idUser).FirstOrDefault();
+            
+            var user2 = Context.UsersAdmins.Where(p => p.ID == id).FirstOrDefault();
+            if (user2 == null)
+            {
+                return BadRequest("Event ne postoji");
+            }
+            try
+            {
+                var user1 = await Context.UsersAdmins.FindAsync(user2.ID);
+                Context.UsersAdmins.Remove(user1);
+                await Context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
+        }
 }

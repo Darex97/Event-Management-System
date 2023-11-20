@@ -1,4 +1,5 @@
 import { Category } from "./category";
+import { Review } from "./review";
 import { User } from "./user";
 
 export class EventClass {
@@ -13,6 +14,7 @@ export class EventClass {
         picturePath: string;
         id?:number;
         categories?: Category;
+        reviews?:Review [];
         creator?: User;
 
     constructor(
@@ -28,6 +30,7 @@ export class EventClass {
         PicturePath: string,
         Id?:number,
         Categories?: Category,
+        Reviews?:Review [],
         Creator?:User
 
     ) 
@@ -39,6 +42,7 @@ export class EventClass {
         this.price = Price;
         this.language = Language;
         this.categories = Categories;
+        this.reviews=Reviews;
         this.longDescribe = LongDescribe;
         this.shortDescribe=ShortDescribe;
         this.picturePath=PicturePath;

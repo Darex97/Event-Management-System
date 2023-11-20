@@ -127,6 +127,13 @@ td {
     height: auto;
     flex-direction: column;
 }
+.btnReview{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 7px;
+}
 
 // .eventsList{
 //     width: 50%;

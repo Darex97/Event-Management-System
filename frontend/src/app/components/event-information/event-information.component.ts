@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/localStorage.services';
 import { UserEventConection } from 'src/app/classes/userEventConection';
 import { User } from 'src/app/classes/user';
+import { Review } from 'src/app/classes/review';
 
 @Component({
   selector: 'app-event-information',
@@ -24,6 +25,7 @@ export class EventInformationComponent {
   public dateForShow:Date= new Date();
   //public users:User [] = [];
   public eventUserConection: UserEventConection[]=[];
+  public averageRating?:number = 0;
  
   
 
@@ -45,8 +47,11 @@ export class EventInformationComponent {
 
     this.eventService.eventAlredyExist(this.eventName).subscribe((eventData:any)=>{
       this.eventForShow=eventData[0];
-      this.dateForShow =new Date(this.eventForShow.date)
-     // console.log(this.eventForShow)
+      this.dateForShow =new Date(this.eventForShow.date);
+      this.averageRating = Number(this.eventForShow.reviews?.reduce((a,b) => a + b.rating ,0)) / Number(this.eventForShow.reviews?.length);
+      this.averageRating = Number(this.averageRating.toFixed(2));
+      console.log(this.averageRating)
+      console.log(this.eventForShow.reviews)
     })
 
     this.userEventService.getRegistratedUsersForEvent(this.eventName).subscribe((conectionsData:any)=>{

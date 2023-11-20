@@ -32,5 +32,11 @@ export class AdminPocetnaComponent {
   
     }
 
+    onDeleteUser(idUser?:number){
+      this.userService.deleteUser(idUser).subscribe();
+    }
+    onDeleteEvent(idEvent?:number){
+      this.eventService.deleteEvent(idEvent).subscribe();
+    } 
     
 }

@@ -53,6 +53,9 @@ namespace Models
 
         public List<ConnectionEventUser> RegistredUsers {get; set;}
 
+        public List<Review> Reviews {get; set;}
+
+
 
     }
 }

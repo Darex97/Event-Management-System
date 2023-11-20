@@ -37,6 +37,7 @@ import { EurToRsdPipe } from './pipes/eur-to-rsd.pipe';
 import { AdminPocetnaComponent } from './components/admin-pocetna/admin-pocetna.component';
 ////
 import { AppInitService } from './app-init.service';
+import { ReviewPopupComponent } from './components/review-popup/review-popup.component';
  
 export function initializeApp1(appInitService: AppInitService) {
   return () => { 
@@ -68,7 +69,8 @@ export function initializeApp1(appInitService: AppInitService) {
     EditEventComponent,
     OrganizerHoverComponent,
     EurToRsdPipe,
-    AdminPocetnaComponent
+    AdminPocetnaComponent,
+    ReviewPopupComponent
   ],
   imports: [
     BrowserModule,

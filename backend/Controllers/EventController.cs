@@ -134,7 +134,8 @@ public class EventController : ControllerBase
     {
         var eventReturn = Context.Events
             .Include(p=>p.Categories)
-            .Where(e => e.Name==name);
+            .Where(e => e.Name==name)
+            .Include(q=> q.Reviews);
            
             return Ok(eventReturn);
 
@@ -381,10 +382,10 @@ public class EventController : ControllerBase
            
         }
 
-        [Route("DeleteEvent/{id}/{idUser}")]
+        [Route("DeleteEvent/{id}")]
         [HttpDelete]
         [AllowAnonymous]
-        public async Task<ActionResult> DeleteEvent(int id, int idUser)
+        public async Task<ActionResult> DeleteEvent(int id)
         {
             //var strucnoLiceA = Context.UsersAdmins.Where(p => p.ID == idUser).FirstOrDefault();
             
@@ -406,4 +407,57 @@ public class EventController : ControllerBase
             }
             
         }
+
+    ///add review
+    [AllowAnonymous] // izmeni posle na korisnika i admina
+    [Route("AddReview/{idEvent}/{comment}/{rating}")] 
+    [HttpPost]
+    public async Task<ActionResult> AddReview (int idEvent, string comment, int rating)
+    {
+        try
+        {
+            
+
+            var event1 = Context.Events.Where(p => p.ID == idEvent).FirstOrDefault();
+            if (event1 == null)
+            {
+                return BadRequest("Event doesn't exist");
+            }    
+
+
+            Review rev = new Review();
+            rev.ForWhatEvent = event1;
+            rev.Comment = comment;
+            rev.Rating=rating;
+                
+            if(rev!= null){                          
+            Context.Reviews.Add(rev);
+            await Context.SaveChangesAsync();
+            return Ok();
+            }
+            else 
+            {
+                return BadRequest("Review fail");
+            }
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+    }
+    //samo za pregled 
+    [Route("GetAllReviews")]
+    [AllowAnonymous]
+    [HttpGet]
+    public ActionResult GetAllReviews()
+    {
+        var reviews = Context.Reviews;
+        
+
+            
+           
+        return Ok(reviews);
+    }
+
 }

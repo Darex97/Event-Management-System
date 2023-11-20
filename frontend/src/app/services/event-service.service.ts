@@ -63,4 +63,7 @@ export class EventServiceService {
    deleteEvent(eventId?:number){
     return   this.httpClient.delete(environment.apiUrl+"Event/DeleteEvent/"+eventId)
    }
+   addReview(comment:string, rating:number,eventId?:number){
+    return   this.httpClient.post(environment.apiUrl+"Event/AddReview/"+eventId+"/"+comment+"/"+rating,eventId)
+   }
 }

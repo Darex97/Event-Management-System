@@ -40,6 +40,17 @@
       <mat-label class="titles">  Price RSD:  </mat-label>
       <mat-label class="location"><mat-icon> money </mat-icon> {{eventForShow.price | eurToRsd | currency :'RSD '}} </mat-label>
 
+      <ng-container *ngIf="!!averageRating">
+        <mat-label class="titles">
+          Average Rating: 
+         </mat-label>
+       <mat-label class="location">
+        <mat-icon>star</mat-icon>  
+         {{averageRating}}
+       </mat-label>
+
+      </ng-container>
+
       <mat-label class="titles">
          Language: 
         </mat-label>
@@ -61,6 +72,7 @@
       <mat-label class="longDes">  {{eventForShow.longDescribe}} </mat-label>
       
       <mat-label class="titles regUser">  Registrated Users  </mat-label>
+      
       <div class="registratedUsers"> 
         
         <div *ngFor="let conection of eventUserConection" class="oneUser"> 
@@ -85,6 +97,34 @@
         
   
       </div>
+      <ng-container *ngIf="!!averageRating"> 
+      <mat-label class="titles regUser">  Reviews  </mat-label>
+
+      <div class="registratedUsers"> 
+        
+        <div *ngFor="let reviev of eventForShow.reviews" class="oneUser"> 
+          
+
+          <mat-card class="example-card reviewCard">
+            <mat-card-header>
+              <mat-card-title><mat-icon>star</mat-icon> {{reviev.rating}} </mat-card-title>
+              
+            </mat-card-header>
+            <mat-card-content class="content">
+              <p><mat-icon> comment</mat-icon> {{reviev.comment}}</p>
+            </mat-card-content>
+            
+          </mat-card>
+
+          
+          </div>
+
+          
+  
+        
+  
+      </div>
+    </ng-container>
 
       <div class="btnReg"> <button (click)="register()" type="submit" mat-raised-button color="primary" class="btn">Register For Event</button> </div>
       

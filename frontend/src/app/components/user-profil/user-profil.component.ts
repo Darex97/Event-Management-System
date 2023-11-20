@@ -22,6 +22,8 @@ export class UserProfilComponent {
   public user: User = new User("", "", "", "", "", "", "", "", "");
   public userEvents?: EventClass[] = [];
   public userEventConections?: UserEventConection[] = []
+  public review:boolean = false;
+  public idForReview?:number;
 
 
   constructor(private eventService: EventServiceService,
@@ -85,6 +87,14 @@ export class UserProfilComponent {
   }
   onChangeUser(){
     this.userServie.putUserForChange(this.user).subscribe();
+  }
+  onAddReview(eventId?:number){
+    console.log(eventId)
+    this.idForReview = eventId;
+    this.review=true;
+  }
+  close() {
+    this.review = false;
   }
   
 
