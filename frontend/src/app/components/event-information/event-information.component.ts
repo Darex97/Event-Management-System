@@ -25,6 +25,7 @@ export class EventInformationComponent {
   public dateForShow:Date= new Date();
   //public users:User [] = [];
   public eventUserConection: UserEventConection[]=[];
+  public placeForSend:string=""
   public averageRating?:number = 0;
  
   
@@ -47,10 +48,12 @@ export class EventInformationComponent {
 
     this.eventService.eventAlredyExist(this.eventName).subscribe((eventData:any)=>{
       this.eventForShow=eventData[0];
+      this.placeForSend = this.eventForShow.place;
       this.dateForShow =new Date(this.eventForShow.date);
       this.averageRating = Number(this.eventForShow.reviews?.reduce((a,b) => a + b.rating ,0)) / Number(this.eventForShow.reviews?.length);
       this.averageRating = Number(this.averageRating.toFixed(2));
-      console.log(this.averageRating)
+      console.log( this.placeForSend)
+      //console.log(this.eventForShow.place)
       console.log(this.eventForShow.reviews)
     })
 

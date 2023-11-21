@@ -38,6 +38,8 @@ import { AdminPocetnaComponent } from './components/admin-pocetna/admin-pocetna.
 ////
 import { AppInitService } from './app-init.service';
 import { ReviewPopupComponent } from './components/review-popup/review-popup.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MapComponent } from './components/map/map.component';
  
 export function initializeApp1(appInitService: AppInitService) {
   return () => { 
@@ -70,7 +72,8 @@ export function initializeApp1(appInitService: AppInitService) {
     OrganizerHoverComponent,
     EurToRsdPipe,
     AdminPocetnaComponent,
-    ReviewPopupComponent
+    ReviewPopupComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +92,8 @@ export function initializeApp1(appInitService: AppInitService) {
     MatIconModule,
     MatRadioModule,
     MatMenuModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    LeafletModule
   ],
   providers: [
     UserService,

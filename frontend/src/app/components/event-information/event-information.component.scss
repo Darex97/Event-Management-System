@@ -132,7 +132,24 @@ line-height: 64px;
 .regUser{
   align-self: center;
 }
-
+.map{
+  height: 30vh;
+  width: 90%;
+}
+.infoLeft{
+  display: flex;
+  flex-direction: column;
+}
+.infoRight{
+  display: flex;
+  width: 50%;
+  
+}
+.forDisplay{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 
 
