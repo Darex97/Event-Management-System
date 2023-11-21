@@ -70,7 +70,7 @@ export const getMarkers = (leti:number,long:number): Leaflet.Marker[] => {
   return [
     new Leaflet.Marker(new Leaflet.LatLng(leti,long), {
       icon: new Leaflet.Icon({
-        iconSize: [50, 41],
+        iconSize: [30, 41],
         iconAnchor: [13, 41],
         iconUrl: 'assets/marker.png',
       }),

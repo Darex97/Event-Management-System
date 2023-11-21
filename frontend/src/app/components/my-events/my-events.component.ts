@@ -26,6 +26,7 @@ export class MyEventsComponent {
   public eventForPopup: EventClass = new EventClass("", "", "", "", "", "", "", "", "");
   public user: User = new User("", "", "", "", "", "", "", "", "");
   public userEvents?: EventClass[] = [];
+  public twText:string = "evo sve ";
 
 
   constructor(private localStorageService: LocalStorageService,  
@@ -39,7 +40,7 @@ export class MyEventsComponent {
 
     this.userServie.getUsersEvents(Number(this.localStorageService.get("id"))).subscribe((userData: any) => {
       this.user = userData[0];
-      console.log(this.user);
+      
       this.userEvents = this.user.createdEvents;
       console.log(this.userEvents);
     })

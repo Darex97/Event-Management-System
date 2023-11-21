@@ -6,14 +6,14 @@
         <hr>
     </div>
 
-   
+
 
 
 
     <!-- EVENTI -->
     <div class="events">
-        <ng-container *ngFor="let event of userEvents" >
-            <div  *ngIf="event.place == selectedLocation || selectedLocation == 'All'" class="oneEvent">
+        <ng-container *ngFor="let event of userEvents">
+            <div *ngIf="event.place == selectedLocation || selectedLocation == 'All'" class="oneEvent">
 
 
 
@@ -39,10 +39,15 @@
                     </mat-card-content>
                     <mat-card-actions class="buttonPosition">
                         <button (click)="openEvent(event)" class="button" color="primary" mat-button>Edit Event</button>
-                       <form> 
-                        <button type="submit" (click)="deleteEvent(event.id)" class="button" color="warn" mat-button>Delete Event</button>
+                        <form>
+                            <button type="submit" (click)="deleteEvent(event.id)" class="button" color="warn"
+                                mat-button>Delete Event</button>
 
-                       </form>
+                        </form>
+                        <a class="button" color="primary" href="https://twitter.com/intent/tweet?text= Name: {{event.name}}%0D%0A Location: {{event.place}} %0D%0A When: {{event.date}} %0D%0A Link: &url=http://localhost:4200/eventsList/eventInformation?eventName={{event.name}}" mat-button>Tweet It</a>
+
+                        <!-- <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Hello%20world">
+                            Tweet</a> -->
 
 
                     </mat-card-actions>
