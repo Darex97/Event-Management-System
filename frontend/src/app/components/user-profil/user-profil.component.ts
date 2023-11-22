@@ -22,7 +22,7 @@ export class UserProfilComponent {
   public user: User = new User("", "", "", "", "", "", "", "", "");
   public userEvents?: EventClass[] = [];
   public userEventConections?: UserEventConection[] = []
-  public review:boolean = true;
+  public review:boolean = false;
   public idForReview?:number;
 
 

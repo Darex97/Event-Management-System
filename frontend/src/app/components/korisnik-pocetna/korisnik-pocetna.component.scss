@@ -1,14 +1,21 @@
 .glavna{
     overflow-x: hidden;
+    font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+
 }
 .slika{
 
     padding-left: 1%;
     padding-right: 2%;
+    padding-top: 0.5%;
+    padding-bottom: 1%;
+
     width: 98%;
     max-width: 100%;
     max-height: 700px;
     height: auto;
+    border-radius: 132px;
+
 
     
  
@@ -25,6 +32,9 @@
     -ms-transform: translate(-50%, -50%);
     //background-color: whitesmoke;
     background-color: rgba(225, 225, 225, 0.459);
+    border-radius: 40px;
+    font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+
     
     
     color: orange;
@@ -38,12 +48,19 @@
     background-color: whitesmoke;
     
     }
+    .createBtn{
+        border-radius: 27px;
+
+    }
 .createText{
-    padding-top: 1%;
-    padding-bottom: 1%;
+    font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+
+    padding-top: 2%;
+    padding-bottom: 2%;
     color: orange;
     font-size: 35px;
     text-align: center;
+
 }
 .createDonji{
     display: flex;
@@ -64,6 +81,8 @@
     max-width: 100%;
     max-height: 700px;
     height: auto;
+    border-radius: 27px;
+
 }
 
 .textDugme{
@@ -84,7 +103,8 @@
     @media (max-width: 832px) {
         display: none;
     }
-    
+    font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+
     align-self: center;
     color: orange;
     font-size: 25px;
@@ -130,12 +150,24 @@
     align-items: center;
     padding-left: 1.5%;
     padding-right: 1.5%;
-    overflow-x: auto;
     
+    overflow-x: auto;
+    width: 91%;
+    align-self: center;
+    
+}
+.kategorije{
+    display: flex;
+    flex-direction: column;
 }
 .oneCategory{
     padding-left: 2%;
     padding-right: 2%;
+    padding-bottom: 2%;
+}
+.organizatori{
+    display: flex;
+    flex-direction: column;
 }
 .listOrganizatori{
     
@@ -144,6 +176,7 @@
     align-items: center;
     padding-left: 1.5%;
     padding-right: 1.5%;
+    align-self: center;
 }.oneOrganizator{
     
     padding-left: 1.5%;
@@ -166,5 +199,8 @@
     background-color: rgba(225, 225, 225, 0.459);
     cursor: pointer;
     }
+.hr{
+    width: 95%;
+}
 
 

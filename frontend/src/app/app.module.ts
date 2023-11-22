@@ -40,6 +40,7 @@ import { AppInitService } from './app-init.service';
 import { ReviewPopupComponent } from './components/review-popup/review-popup.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MapComponent } from './components/map/map.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
  
 export function initializeApp1(appInitService: AppInitService) {
   return () => { 
@@ -93,7 +94,8 @@ export function initializeApp1(appInitService: AppInitService) {
     MatRadioModule,
     MatMenuModule,
     MatSlideToggleModule,
-    LeafletModule
+    LeafletModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     UserService,

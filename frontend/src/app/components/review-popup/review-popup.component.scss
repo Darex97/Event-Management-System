@@ -8,6 +8,10 @@
     overflow: auto; /* Enable scroll if needed */
     background-color:whitesmoke;
     border: 1px solid black;
+    border-radius: 25px;
+    overflow-y: hidden;
+    
+
   }
 .text{
     padding-top: 0.5%;
@@ -46,6 +50,8 @@
 .btn{
     border: none;
     background-color: white;
+    border-radius: 8px;
+
 }
 .btn:hover{
 background-color: rgb(220, 220, 220);

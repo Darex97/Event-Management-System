@@ -72,6 +72,17 @@
     
                 </form>
 
+                <form class="formPrice">
+
+                
+
+                <div class="slideToggle">
+                    <mat-slide-toggle checked={{selectedPriceFlag}} (toggleChange)="onChangePaid()">Free
+                    </mat-slide-toggle>
+    
+                </div>
+             </form>
+
 
             </div>
 
@@ -83,12 +94,7 @@
                   </mat-radio-group>
 
             </div> -->
-            <div class="slideToggle">
-                <mat-slide-toggle checked={{selectedPriceFlag}} (toggleChange)="onChangePaid()">Free
-                </mat-slide-toggle>
-
-            </div>
-
+            
             
 
         </div>

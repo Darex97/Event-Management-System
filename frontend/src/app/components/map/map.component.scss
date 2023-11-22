@@ -3,3 +3,16 @@
     width: 100%;
     padding: 0;
   }
+  .spiner{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .txt{
+    font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  font-size :16px;
+    padding-bottom: 5%;
+  }

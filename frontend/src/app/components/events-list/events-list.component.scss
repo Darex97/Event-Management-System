@@ -10,11 +10,17 @@
     // padding-left: 5%;
     // padding-right: 3%;
   }
+.example-card:hover {
+  cursor: pointer;
+  }
   .filters{
     display: flex;
     flex-direction: row;
     padding-left: 3%;
     padding-right: 3%;
+    padding-top: 2%;
+    padding-bottom: 0.5%;
+
   }
   .slectFilters{
     display: flex;
@@ -34,8 +40,13 @@
     flex-direction: row;
     padding-left: 4%;
     padding-right: 3%;
-    align-items: center;
     
+    
+  }
+  .formPrice{
+    display: flex;
+    align-items: center;
+
   }
   .formClass{
     padding-left: 1%;
@@ -49,7 +60,7 @@
   .events{
     // padding-left: 3%;
     // padding-right: 3%;
-    // padding-top: 3%;
+     padding-top: 3%;
     display: flex;
     flex-direction: row;
      flex-wrap: wrap;
@@ -86,3 +97,4 @@
     background-color: white;
     //border: 1px solid black;
   }
+  

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { MapService } from 'src/app/services/map.service';
 
@@ -15,6 +15,8 @@ export class MapComponent {
 
   lat?:number=0;
   lon?:number=0;
+  loading = signal(true);
+
   @Input() nameCity:string= "";
   options?: Leaflet.MapOptions;
   // options: Leaflet.MapOptions = {
@@ -40,13 +42,14 @@ export class MapComponent {
         center: new Leaflet.LatLng(Number(this.lat),Number(this.lon))
       }
       console.log(data[0]);
+      this.loading.set(false);
     })
     // 
-    
-
   }
   
-  
+  isLoading() {
+    return this.loading();
+  }
  
 
   
