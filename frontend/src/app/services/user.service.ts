@@ -39,6 +39,10 @@ export class UserService {
     
     return this.httpClient.put(environment.apiUrl+"UserAdmin/ChangeUser/"+user.id+"/"+user.firstName+"/"+user.lastName+"/"+user.city+"/"+user.email+"/"+user.gender+"/"+user.picturePath,user)
    }
+  putUserForChangeFromBody(user:User){
+    
+    return this.httpClient.put(environment.apiUrl+"UserAdmin/ChangeUserFromBody",user)
+   }
    deleteUser(userId?:number){
     return   this.httpClient.delete(environment.apiUrl+"UserAdmin/DeleteUser/"+userId)
    }

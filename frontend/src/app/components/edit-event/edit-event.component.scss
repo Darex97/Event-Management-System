@@ -36,10 +36,13 @@
   }
  
  .slika{
-  max-width: 350px;
-  max-height: 350px;
-  width: auto;
-  height: auto;  
+  // max-width: 350px;
+  // max-height: 350px;
+  // width: auto;
+  // height: auto;  
+  width: 260px;
+  height: 275px;
+
  
  }
  .btnUrl{
@@ -60,6 +63,23 @@
   display: flex;
   flex-direction: column;
  }
+ .creatingEvent{
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 45%;
+  z-index: 100; /* Sit on top */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e3e2e2;
+  width: 195px;
+  height: 134px;
+  border-radius: 25px;}
+.spinertxt{
+  font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  font-size :18px;
+}
+
  
  
  

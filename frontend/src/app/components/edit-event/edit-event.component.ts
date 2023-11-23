@@ -24,6 +24,8 @@ export class EditEventComponent {
   exampleHeader = ExampleHeader;
   public categories:Category[] = [];
   public chosenCategory?:string = "dddd";
+  public spinner:boolean=false;
+
 
 
 
@@ -60,9 +62,21 @@ export class EditEventComponent {
   addMinutes() {
     for (let i = 0; i < 60; i++) {
       if (i < 24) {
-        this.timeHours.push(String(i));
+        if(i<10){
+          this.timeHours.push("0"+String(i));
+        }
+        else{
+          this.timeHours.push(String(i));
+
+        }
       }
-      this.timeMinuts.push(String(i));
+      if(i<10){
+        this.timeMinuts.push("0"+String(i));
+
+      }else{
+        this.timeMinuts.push(String(i));
+
+      }
     }
   }
 
@@ -130,8 +144,11 @@ export class EditEventComponent {
    }
 
    onChangeEvent(){
-
+        this.spinner=true;
         this.eventService.changeEvent(this.eventForChange).subscribe();
+        setTimeout(() => {
+          this.spinner=false;
+      }, 500);
 
       
      

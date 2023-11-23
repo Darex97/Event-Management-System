@@ -1,9 +1,19 @@
+<ng-container *ngIf="spinner"> 
+    <div class="creatingEvent">
+        <div class="spinertxt"> Creating Event</div>
+        <mat-spinner class="spiner"></mat-spinner> 
+    </div>
+    
+</ng-container>
+
 <div class="glavni">
 
     <div>
         <app-nav-bar></app-nav-bar>
         <hr>
     </div>
+
+    
 
     <div class="donjiDeo">
 
@@ -12,47 +22,103 @@
 
             
 
-            <form class="example-form">
+            <form [formGroup]="registerForm" class="example-form">
 
-
+                <p> 
 
                 <mat-form-field class="example-full-width">
 
                     <mat-label>Event Name</mat-label>
-                    <input (keyup)="onChangeName($event)" matInput>
+                    <input 
+                    formControlName="eventName"
+                    required
+                    (keyup)="onChangeName($event)"
+                     matInput>
+                     <mat-hint> 
+                        <span class="text-danger"
+                *ngIf="(registerFormControl.eventName.touched || submitted) && registerFormControl.eventName.errors?.required">
+                Event name is required
+                </span>
+
+                     </mat-hint>
                 </mat-form-field>
+            </p>
+                
 
                 <p>
                     <mat-form-field class="example-full-width" >
-                        <mat-label>Custom calendar header</mat-label>
-                        <input (dateChange)="onChangeDate($event)"  matInput [matDatepicker]="picker">
+                        <mat-label>Enter Event Date</mat-label>
+                        <input 
+                        (dateChange)="onChangeDate($event)"  
+                        matInput 
+                        formControlName="eventDate"
+                        required
+                        [matDatepicker]="picker">
                         <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
+                    <mat-hint>
+                        <span class="text-danger"
+                        *ngIf="(registerFormControl.eventDate.touched || submitted) && registerFormControl.eventDate.errors?.required">
+                        Event date is required
+                        </span>
+                    </mat-hint>
                     </mat-form-field>
 
                 </p>
-
+               
                 <p>
                     <mat-form-field >
                         <mat-label>Hour</mat-label>
-                        <mat-select (selectionChange)="onChangeHour($event)">
+                        <mat-select
+                        formControlName="eventHour"
+                        required
+                         (selectionChange)="onChangeHour($event)">
                             <mat-option *ngFor="let hour of timeHours" value={{hour}}>{{hour}}</mat-option>
                         </mat-select>
+                        <mat-hint>
+                            <span class="text-danger"
+                            *ngIf="(registerFormControl.eventHour.touched || submitted) && registerFormControl.eventHour.errors?.required">
+                            Hour is required
+                            </span>
+                        </mat-hint>
                     </mat-form-field>
                     <mat-form-field >
                         <mat-label>Minut</mat-label>
-                        <mat-select (selectionChange)="onChangeMinutes($event)">
+                        <mat-select
+                        formControlName="eventMinut"
+                        required
+                        (selectionChange)="onChangeMinutes($event)">
                             <mat-option *ngFor="let minute of timeMinuts" value={{minute}}>{{minute}}</mat-option>
                       
                         </mat-select>
+                        <mat-hint>
+                            <span class="text-danger"
+                            *ngIf="(registerFormControl.eventMinut.touched || submitted) && registerFormControl.eventMinut.errors?.required">
+                            Minut is required
+                            </span>
+                        </mat-hint>
                     </mat-form-field>
+                    
+                     
+                    
                 </p>
 
+                
                 <p> 
                     <mat-form-field class="example-full-width">
-                        <mat-label>Place</mat-label>
-                        <input (keyup)="onChangePlace($event)" matInput>
+                        <mat-label>City</mat-label>
+                        <input 
+                        formControlName="eventCity"
+                        required
+                        (keyup)="onChangePlace($event)" 
+                        matInput>
+                        <mat-hint>
+                            <span class="text-danger"
+                            *ngIf="(registerFormControl.eventCity.touched || submitted) && registerFormControl.eventCity.errors?.required">
+                            City is required
+                            </span>
+                        </mat-hint>
 
                     </mat-form-field>
                 </p>
@@ -62,21 +128,39 @@
                 <p>
                     <mat-form-field class="example-full-width">
                         <mat-label>Categories</mat-label>
-                        <mat-select (selectionChange)="onChangeCategory($event)">
+                        <mat-select
+                        formControlName="eventCategory"
+                        required
+                        (selectionChange)="onChangeCategory($event)">
                             <mat-option *ngFor="let category of categories"  value={{category.id}}>{{category.type}}</mat-option>
 
                         </mat-select>
+                        <mat-hint>
+                            <span class="text-danger"
+                            *ngIf="(registerFormControl.eventCategory.touched || submitted) && registerFormControl.eventCategory.errors?.required">
+                            Category is required
+                            </span>
+                        </mat-hint>
                     </mat-form-field>
 
                     <mat-form-field class="example-full-width">
                         <mat-label>Language</mat-label>
-                        <mat-select (selectionChange)="onChangeLanguage($event)">
+                        <mat-select 
+                        formControlName="eventLanguage"
+                        required
+                        (selectionChange)="onChangeLanguage($event)">
                             <mat-option value="English">English </mat-option>
                             <mat-option value="German">German </mat-option>
                             <mat-option value="Spanish">Spanish </mat-option>
                             <mat-option value="French">French </mat-option>
                             <mat-option value="Italian">Italian </mat-option>
                         </mat-select>
+                        <mat-hint>
+                            <span class="text-danger"
+                            *ngIf="(registerFormControl.eventLanguage.touched || submitted) && registerFormControl.eventLanguage.errors?.required">
+                            Language is required
+                            </span>
+                        </mat-hint>
                     </mat-form-field>
                 </p>
 
@@ -89,7 +173,18 @@
                 <p> 
                     <mat-form-field class="example-full-width">
                         <mat-label>Price €</mat-label>
-                        <input (keyup)="onChangePrice($event)" matInput>
+                        <input 
+                        type="number"
+                        formControlName="eventPrice"
+                        required
+                        (keyup)="onChangePrice($event)" 
+                        matInput>
+                        <mat-hint>
+                            <span class="text-danger"
+                            *ngIf="(registerFormControl.eventPrice.touched || submitted) && registerFormControl.eventPrice.errors?.required">
+                            Price is required
+                            </span>
+                        </mat-hint>
 
                     </mat-form-field>
                 </p>
@@ -97,21 +192,40 @@
                 <p> 
                     <mat-form-field class="example-full-width">
                         <mat-label>Describe</mat-label>
-                        <input (keyup)="onChangeDescribe($event)" matInput>
-
+                        <input 
+                        formControlName="eventDesL"
+                        required
+                        (keyup)="onChangeDescribe($event)" 
+                        matInput>
+                        <mat-hint>
+                            <span class="text-danger"
+                            *ngIf="(registerFormControl.eventDesL.touched || submitted) && registerFormControl.eventDesL.errors?.required">
+                            Describe is required
+                            </span>
+                        </mat-hint>
                     </mat-form-field>
                 </p>
 
                 <p> 
                     <mat-form-field class="example-full-width">
                         <mat-label>Describe Briefly</mat-label>
-                        <input (keyup)="onChangeDescibeShort($event)" matInput>
+                        <input 
+                        formControlName="eventDesS"
+                        required
+                        (keyup)="onChangeDescibeShort($event)"
+                         matInput>
+                         <mat-hint>
+                            <span class="text-danger"
+                            *ngIf="(registerFormControl.eventDesS.touched || submitted) && registerFormControl.eventDesS.errors?.required">
+                            Describe is required
+                            </span>
+                        </mat-hint>
 
                     </mat-form-field>
                 </p>
             </form >
 
-            <form class="formPT">
+        <form [formGroup]="registerForm" class="formPT">
             <mat-card-header class="slika">
                 
                 <mat-card-title-group>
@@ -123,7 +237,20 @@
             <mat-form-field class="example-full-width">
 
                 <mat-label>Insert picture URL</mat-label>
-                <input #imageSrc class="urlInputTxt" matInput>
+                <input 
+                #imageSrc 
+                formControlName="eventURl"
+                required
+                class="urlInputTxt" 
+                matInput>
+
+                <mat-hint>
+                    <span class="text-danger"
+                    *ngIf="(registerFormControl.eventURl.touched || submitted) && registerFormControl.eventURl.errors?.required">
+                    Url is required
+                    </span>
+                </mat-hint>
+                
                 
             </mat-form-field>
             <button type="button" (click)="onChangeUrl(imageSrc.value)" mat-raised-button class="btnUrl" color="primary">Insert</button>
@@ -135,7 +262,7 @@
         <div class="buttons">
             <div *ngIf="true" class="example-button-row">
 
-                <button (click)="onCreate()" mat-raised-button color="primary">Create</button>
+                <button (click)="onCreate()" mat-raised-button color="primary">Create </button>
                 <button mat-raised-button a routerLink="/korisnikPocetna">Exit</button>
 
             </div>
@@ -151,5 +278,9 @@
         <app-bottom-bar class="botomBar"></app-bottom-bar>
     </div>
     
+    
 
 </div>
+
+
+

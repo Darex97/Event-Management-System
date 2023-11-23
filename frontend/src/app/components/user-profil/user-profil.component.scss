@@ -4,7 +4,8 @@
     
 }
 .picture{
-    width: 200px;
+    width: 134px;
+    height: auto;
     align-self: center;
 }
 .text {
@@ -133,6 +134,15 @@ td {
     justify-content: center;
     align-items: center;
     padding-bottom: 7px;
+}
+.alineTextRegistratedEvents{
+    display: flex;
+    justify-content: center;
+}
+.mdc-card__media:last-child {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    object-fit: cover;
 }
 
 // .eventsList{

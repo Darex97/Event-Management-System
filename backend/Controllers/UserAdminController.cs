@@ -2,6 +2,7 @@ using JWTAuthentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Models;
 
 namespace backend.Controllers;
@@ -134,6 +135,42 @@ public class UserAdminController : ControllerBase
             userForChange.Email = email;
             userForChange.Gender = gender;
             userForChange.PicturePath = picturePath;
+
+            await Context.SaveChangesAsync();
+            return Ok();
+        }
+
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+    }
+
+    [Route("ChangeUserFromBody")]
+    [HttpPut]
+    [AllowAnonymous]
+    public async Task<ActionResult> ChangeUserFromBody([FromBody] UserAdmin model)
+    {
+        //var strucnoLiceA = Context.StrucnaLIca.Where(p => p.ID == idStrucnjaka).FirstOrDefault();
+
+        var user2 = Context.UsersAdmins.Where(p => p.ID == model.ID).FirstOrDefault();
+        if (user2 == null)
+        {
+            return BadRequest("User ne postoji");
+        }
+        try
+        {
+            var userForChange = await Context.UsersAdmins.FindAsync(model.ID);
+            //UserAdmin Creator2 = Context.UsersAdmins.Where(p => p.ID == 7).FirstOrDefault();
+
+
+            userForChange.FirstName = model.FirstName;
+            userForChange.LastName = model.LastName;
+            userForChange.City = model.City;
+            userForChange.Email = model.Email;
+            userForChange.Gender = model.Gender;
+            userForChange.PicturePath = model.PicturePath;
 
             await Context.SaveChangesAsync();
             return Ok();

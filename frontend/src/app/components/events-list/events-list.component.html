@@ -128,9 +128,8 @@
                         <mat-card-subtitle>Time: {{event.time}}</mat-card-subtitle>
                         <mat-card-subtitle>Price: {{event.price | currency :'EUR'}}</mat-card-subtitle>
                     </mat-card-header>
-                    PROMENI SLIKA DA SE CITA IZ BAZU
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                        alt="Photo of a Shiba Inu">
+                    <img class="slikaEventa" mat-card-image src={{event.picturePath}}>                    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                        alt="Photo of a Shiba Inu"> -->
                     <mat-card-content>
                         <p>
                             {{event.shortDescribe}}

@@ -27,6 +27,7 @@ export class EventInformationComponent {
   public eventUserConection: UserEventConection[]=[];
   public placeForSend:string=""
   public averageRating?:number = 0;
+  public spinner:boolean = false;
  
   
 
@@ -73,9 +74,14 @@ export class EventInformationComponent {
     if(checkifThereisToken == null){   
        this.router.navigate(['login']); }
        else{
+        this.spinner=true;
         let userId:number = Number(this.localStorageService.get("id"));
      
         this.eventService.registerForEvent(userId,Number(this.eventForShow.id)).subscribe();
+        setTimeout(() => {
+          this.spinner=false;
+         // this.router.navigate(['eventsList']);
+      }, 500);
        }
       
   }

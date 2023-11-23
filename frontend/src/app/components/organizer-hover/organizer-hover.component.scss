@@ -45,3 +45,8 @@
    
     flex-wrap: wrap;
 }
+.mdc-card__media:last-child {
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  border-radius: 25px;
+}

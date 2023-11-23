@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/localStorage.services';
 import { MatSelectChange } from '@angular/material/select';
 import { Category } from 'src/app/classes/category';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-event',
@@ -16,6 +17,9 @@ import { Category } from 'src/app/classes/category';
 export class CreateEventComponent {
 
   exampleHeader = ExampleHeader;
+  registerForm!: FormGroup;
+  submitted = false;
+  
 
   public timeHours: string[] = [];
   public timeMinuts: string[] = [];
@@ -23,10 +27,12 @@ export class CreateEventComponent {
   public hour:string="0";
   public minut:string="0";
   public categories:Category[] = [];
+  public spinner:boolean=false;
 
   constructor(private eventService: EventServiceService,
     private router: Router,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService,
+    private fb: FormBuilder) {
     this.addMinutes()
   }
 
@@ -37,14 +43,48 @@ export class CreateEventComponent {
       console.log(this.categories);
     })
     //////////////
+    this.registerForm = this.fb.group({
+      eventName: ['', Validators.required],
+      eventDate: ['', Validators.required],
+      eventHour: ['', Validators.required],
+      eventMinut: ['', Validators.required],
+      eventCity: ['', Validators.required],
+      eventCategory: ['', Validators.required],
+      eventLanguage: ['', Validators.required],
+      eventPrice: ['', Validators.required],
+      eventDesL: ['', Validators.required],
+      eventDesS: ['', Validators.required],
+      eventURl: ['', Validators.required],
+      // email: ['', [Validators.required,Validators.email]],
+      // password: ['', [Validators.required]],
+     
+     
+  })
   }
+
+  get registerFormControl() {
+    return this.registerForm.controls;
+  }
+    
 
   addMinutes() {
     for (let i = 0; i < 60; i++) {
       if (i < 24) {
-        this.timeHours.push(String(i));
+        if(i<10){
+          this.timeHours.push("0"+String(i));
+        }
+        else{
+          this.timeHours.push(String(i));
+
+        }
       }
-      this.timeMinuts.push(String(i));
+      if(i<10){
+        this.timeMinuts.push("0"+String(i));
+
+      }else{
+        this.timeMinuts.push(String(i));
+
+      }
     }
   }
 
@@ -102,19 +142,26 @@ export class CreateEventComponent {
   }
 
   onCreate() {
-
+    this.submitted = true;
+  if (this.registerForm.valid){
+    this.spinner=true;
     console.log(this.event,Number(this.localStorageService.get("id")));
     this.eventService.eventAlredyExist(this.event.name).subscribe((ifExist: any) => {
       //console.log(ifExist)
       if (ifExist.length == 0) { // ovaj niz uvek ima samo 1 clana ako postoji takav korisnik
         
         this.eventService.postEvent(this.event, Number(this.localStorageService.get("id"))).subscribe();
-        //this.router.navigate(['pocetna']);
+        setTimeout(() => {
+          this.spinner=false;
+          this.router.navigate(['eventsList']);
+      }, 500);
+        
       }
       else {
         alert("Event exist or invalid!")
       }
     });
   }
+}
 
 }

@@ -7,6 +7,8 @@ import { ExampleHeader } from './exampleHeader';
 import { User } from 'src/app/classes/user';
 import { Router } from '@angular/router';
 import { MatSelectChange } from '@angular/material/select';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,10 +19,34 @@ export class SignupComponent {
   
   exampleHeader = ExampleHeader;
   hide = true;
+  registerForm!: FormGroup;
+  submitted = false;
 
-  public user:User = new User("","","M","","","","","","");
+  public user:User = new User("","","","","","","","","");
 
-  constructor(private userService: UserService,private router: Router) { }
+  constructor(private userService: UserService,
+    private router: Router,
+    private fb: FormBuilder,
+    private customValidator: CustomvalidationService) { }
+
+    ngOnInit() {
+      
+      this.registerForm = this.fb.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        gender: ['', Validators.required],
+        date: ['', Validators.required],
+        username: ['', Validators.required],
+        email: ['', [Validators.required,Validators.email]],
+        password: ['', [Validators.required,this.customValidator.patternValidator()]],
+       
+       
+    })
+  }
+  get registerFormControl() {
+    return this.registerForm.controls;
+  }
+    
 
 onChangeFirstName(event : Event){
    this.user.firstName = (event.target as HTMLInputElement).value;
@@ -46,6 +72,8 @@ onChangePassword(event : Event){
    this.user.password = (event.target as HTMLInputElement).value;
   }
 onSignup(){
+  this.submitted = true;
+  if (this.registerForm.valid){
   this.userService.userAlredyExist(this.user.username).subscribe((ifExist:any)=>{
        console.log(ifExist)
     if(ifExist.length==0){ // ovaj niz uvek ima samo 1 clana ako postoji takav korisnik
@@ -53,9 +81,11 @@ onSignup(){
       this.router.navigate(['pocetna']);  
      } 
      else{
-      alert("User exist or invalid!")
+      alert("User exist!")
      }
-   });}
+   });
+  } 
+  }
 }
 
 

@@ -20,7 +20,7 @@
                                     <mat-card-title>Profil Photo</mat-card-title>
 
                                     <img mat-card-xl-image
-                                        src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                        src={{user.picturePath}}>
 
                                 </div>
 
@@ -130,11 +130,12 @@
                             <mat-card-subtitle>Location: {{event.forWhatEvent.place}}</mat-card-subtitle>
                             <mat-card-subtitle>Date: {{event.forWhatEvent.date}}</mat-card-subtitle>
                             <mat-card-subtitle>Time: {{event.forWhatEvent.time}}</mat-card-subtitle>
+                            <mat-card-subtitle>Price: {{event.forWhatEvent.price | currency :'EUR'}}</mat-card-subtitle>
                         </mat-card-header>
-                        PROMENI SLIKA DA SE CITA IZ BAZU
                         <img class="picture" mat-card-image
-                            src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                        <mat-card-content>
+                        src={{event.forWhatEvent.picturePath}}>                        <!-- <img class="picture" mat-card-image
+                            src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+                        <mat-card-content class="alineTextRegistratedEvents">
                             <p>
                                 {{event.forWhatEvent.shortDescribe}}
                             </p>

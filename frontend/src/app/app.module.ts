@@ -41,6 +41,7 @@ import { ReviewPopupComponent } from './components/review-popup/review-popup.com
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MapComponent } from './components/map/map.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
  
 export function initializeApp1(appInitService: AppInitService) {
   return () => { 
@@ -95,7 +96,8 @@ export function initializeApp1(appInitService: AppInitService) {
     MatMenuModule,
     MatSlideToggleModule,
     LeafletModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserService,
