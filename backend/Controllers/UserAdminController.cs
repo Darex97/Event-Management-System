@@ -22,7 +22,7 @@ public class UserAdminController : ControllerBase
         _config = config;
     }
 
-    //Cisto za proveru podataka u bazi
+    //Za signup nema autorizacije
     //[Authorize(Roles = UserRoles.User)]
     [AllowAnonymous]
     [Route("GetUSers")]
@@ -60,7 +60,7 @@ public class UserAdminController : ControllerBase
 
     //[Authorize(Roles = UserRoles.User)]
     [Route("GetUserEvents/{idUser}")]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     [HttpGet]
     public ActionResult GetUserEvents(int idUser)
     {
@@ -113,7 +113,7 @@ public class UserAdminController : ControllerBase
 
     [Route("ChangeUser/{idUser}/{firstName}/{lastName}/{city}/{email}/{gender}/{picturePath}")]
     [HttpPut]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public async Task<ActionResult> ChangeUser(int idUser,string firstName,string lastName,string city,string email,string gender,string picturePath)
     {
         //var strucnoLiceA = Context.StrucnaLIca.Where(p => p.ID == idStrucnjaka).FirstOrDefault();
@@ -149,7 +149,7 @@ public class UserAdminController : ControllerBase
 
     [Route("ChangeUserFromBody")]
     [HttpPut]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public async Task<ActionResult> ChangeUserFromBody([FromBody] UserAdmin model)
     {
         //var strucnoLiceA = Context.StrucnaLIca.Where(p => p.ID == idStrucnjaka).FirstOrDefault();
@@ -199,6 +199,16 @@ public class UserAdminController : ControllerBase
             {
                 var user1 = await Context.UsersAdmins.FindAsync(user2.ID);
                 Context.UsersAdmins.Remove(user1);
+
+                //skoro dodato
+                var events = await Context.Events.Where(p=> p.Creator.ID == id).ToListAsync();
+                events.ForEach(p =>{ 
+                        Context.Events.Remove(p);
+
+                });
+                //
+
+                
                 await Context.SaveChangesAsync();
                 return Ok();
             }

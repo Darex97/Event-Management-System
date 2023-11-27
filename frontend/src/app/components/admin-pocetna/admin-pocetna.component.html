@@ -1,3 +1,11 @@
+<ng-container *ngIf="spinner"> 
+    <div class="creatingEvent">
+        <div class="spinertxt"> Save Changes</div>
+        <mat-spinner class="spiner"></mat-spinner> 
+    </div>
+    
+  </ng-container>
+  
 <div class="main">
     <div class="nav">
         <app-nav-bar> </app-nav-bar>
@@ -14,11 +22,11 @@
                 
                 <div *ngFor="let user of users" class="oneUser">
 
-                    <mat-card class="example-card">
+                    <mat-card class="example-card round">
                         <mat-card-header>
                             <mat-card-title-group>
 
-                                <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                <img class="slika" mat-card-md-image src={{user.picturePath}} style="border-radius: 55px;">
                             </mat-card-title-group>
                         </mat-card-header>
                         <mat-card-content>
@@ -30,7 +38,7 @@
                             <mat-card-title>{{user.gender}}</mat-card-title>
 
                             <div class="btn"> 
-                                <button (click)="onDeleteUser(user.id)"  type="submit" mat-raised-button color="warn">DELETE</button>
+                                <button (click)="onDeleteUser(user,user.id)"  type="submit" mat-raised-button color="warn">DELETE</button>
 
                             </div>
                         </mat-card-content>
@@ -43,11 +51,11 @@
 
                 <div *ngFor="let oneEvent of eventsForShow" class="oneEvent">
                     
-                    <mat-card class="example-card">
+                    <mat-card class="example-card round">
                         <mat-card-header>
                             <mat-card-title-group>
 
-                                <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                <img class="slika" mat-card-md-image src={{oneEvent.picturePath}} style="border-radius: 25px;">
                             </mat-card-title-group>
                         </mat-card-header>
                         <mat-card-content>
@@ -58,7 +66,7 @@
                             <mat-card-title>{{oneEvent.price}}</mat-card-title>
                             <mat-card-title>{{oneEvent.shortDescribe}}</mat-card-title>
                             <div class="btn"> 
-                                <button (click)="onDeleteEvent(oneEvent.id)" type="submit" mat-raised-button color="warn">DELETE</button>
+                                <button (click)="onDeleteEvent(oneEvent,oneEvent.id)" type="submit" mat-raised-button color="warn">DELETE</button>
 
                             </div>
 

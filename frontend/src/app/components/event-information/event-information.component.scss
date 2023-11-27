@@ -141,10 +141,11 @@ line-height: 64px;
 .infoLeft{
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .infoRight{
   display: flex;
-  width: 50%;
+  width: 100%;
   
 }
 .forDisplay{
@@ -172,6 +173,13 @@ line-height: 64px;
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
   border-radius: 25px;
+  object-fit: cover;
+}
+.justify{
+  display: flex;
+  justify-content: center;
+  object-fit: cover;
+
 }
 
 

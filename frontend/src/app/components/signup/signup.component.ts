@@ -22,7 +22,7 @@ export class SignupComponent {
   registerForm!: FormGroup;
   submitted = false;
 
-  public user:User = new User("","","","","","","","","");
+  public user:User = new User("","","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEsqHlF8M_vZxj2QEV5CdeLqLzdprFXj8q_eIKFr3Aj4lpQhf0CESalnCLrH9O02OcN68&usqp=CAU","","","","","");
 
   constructor(private userService: UserService,
     private router: Router,

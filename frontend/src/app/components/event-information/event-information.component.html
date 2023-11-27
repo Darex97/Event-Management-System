@@ -6,6 +6,14 @@
     </div>
     
 </ng-container>
+
+<ng-container *ngIf="alredyRegister"> 
+  <div class="creatingEvent">
+      <div class="spinertxt"> Alredy Registrated </div>
+      <mat-spinner class="spiner"></mat-spinner> 
+  </div>
+  
+</ng-container>
 <div class="main">
 
 
@@ -97,7 +105,7 @@
       </div>
 
 
-
+      <ng-container *ngIf="!!eventUserConection.length"> 
       <mat-label class="titles regUser"> Registrated Users </mat-label>
 
       <div class="registratedUsers">
@@ -107,7 +115,7 @@
 
           <mat-card class="example-card">
             <mat-card-header>
-              <mat-card-title-group>
+              <mat-card-title-group class="justify">
                 <img mat-card-sm-image src={{conection.registratedUser.picturePath}}>
               </mat-card-title-group>
             </mat-card-header>
@@ -124,6 +132,7 @@
 
 
       </div>
+    </ng-container>
       <ng-container *ngIf="!!averageRating">
         <mat-label class="titles regUser"> Reviews </mat-label>
 

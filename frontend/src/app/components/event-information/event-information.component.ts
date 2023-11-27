@@ -28,6 +28,7 @@ export class EventInformationComponent {
   public placeForSend:string=""
   public averageRating?:number = 0;
   public spinner:boolean = false;
+  public alredyRegister:boolean = false;
  
   
 
@@ -47,7 +48,7 @@ export class EventInformationComponent {
 
     this.eventName = this.route.snapshot.queryParamMap.get('eventName') || "";
 
-    this.eventService.eventAlredyExist(this.eventName).subscribe((eventData:any)=>{
+    this.eventService.getEventUnathorized(this.eventName).subscribe((eventData:any)=>{
       this.eventForShow=eventData[0];
       this.placeForSend = this.eventForShow.place;
       this.dateForShow =new Date(this.eventForShow.date);
@@ -77,7 +78,18 @@ export class EventInformationComponent {
         this.spinner=true;
         let userId:number = Number(this.localStorageService.get("id"));
      
-        this.eventService.registerForEvent(userId,Number(this.eventForShow.id)).subscribe();
+        this.eventService.registerForEvent(userId,Number(this.eventForShow.id)).subscribe(()=>{},
+        ()=>{
+          this.spinner=false;
+          this.alredyRegister=true;
+          setTimeout(() => {
+            this.alredyRegister=false;
+           // this.router.navigate(['eventsList']);
+        }, 500);
+
+        },
+        ()=>{
+          location.reload();});
         setTimeout(() => {
           this.spinner=false;
          // this.router.navigate(['eventsList']);

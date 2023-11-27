@@ -70,6 +70,8 @@ section {
     justify-content: space-between;
     padding-left: 1%;
     padding-right: 1%;
+    background-color: white;
+    border-bottom: solid black 1px;
   }
   .glavna{
     display: flex;
@@ -91,6 +93,8 @@ section {
   }
 .mdc-card__media:last-child {
   border-radius: 132px;
+  object-fit: cover;
+
 
 }
 //   eventi

@@ -13,6 +13,8 @@ export class AdminPocetnaComponent {
 
     users:User [] = []; 
     eventsForShow:EventClass [] = [];
+    public spinner:boolean=false;
+
 
     constructor(private eventService: EventServiceService,
       private userService: UserService) {  }
@@ -32,11 +34,31 @@ export class AdminPocetnaComponent {
   
     }
 
-    onDeleteUser(idUser?:number){
+    onDeleteUser(user:User,idUser?:number){
+      this.spinner=true;
+
+      const index = this.users.indexOf(user, 0);
+      if (index > -1) {
+        this.users.splice(index, 1);
+      }
+
       this.userService.deleteUser(idUser).subscribe();
+      setTimeout(() => {
+        this.spinner=false;
+    }, 500);
     }
-    onDeleteEvent(idEvent?:number){
+    onDeleteEvent(oneEvent:EventClass,idEvent?:number){
+      this.spinner=true;
+
+      const index = this.eventsForShow.indexOf(oneEvent, 0);
+      if (index > -1) {
+        this.eventsForShow.splice(index, 1);
+      }
+
       this.eventService.deleteEvent(idEvent).subscribe();
+      setTimeout(() => {
+        this.spinner=false;
+    }, 500);
     } 
     
 }

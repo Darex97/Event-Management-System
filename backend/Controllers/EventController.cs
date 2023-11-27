@@ -20,7 +20,7 @@ public class EventController : ControllerBase
 
     //Cisto za proveru baze
     [Route("GetEventbyId/{id}")]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     [HttpGet]
     public ActionResult GetEventbyId(int id)
     {
@@ -34,6 +34,7 @@ public class EventController : ControllerBase
         return Ok(events);
     }
 
+    //za pocetnu nema autorizacije
     [Route("GetAllEvents")]
     [AllowAnonymous]
     [HttpGet]
@@ -48,6 +49,7 @@ public class EventController : ControllerBase
         return Ok(events);
     }
 
+    //za listu eventa nema autorizacije
     [Route("GetAllCategories")]
     [AllowAnonymous]
     [HttpGet]
@@ -100,7 +102,7 @@ public class EventController : ControllerBase
 
 
     [Route("GetAllEventsWithRegistratedUsers")]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     [HttpGet]
     public ActionResult GetAllEventsWithRegistratedUsers()
     {
@@ -113,11 +115,12 @@ public class EventController : ControllerBase
     }
 
     [Route("GetEventWhereUserRegistrated/{idUser}")]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     [HttpGet]
     public ActionResult GetEventWhereUserRegistrated(int idUser)
     {
     var events = Context.ConnectionEventUsers.Include(p=> p.ForWhatEvent)
+                                .ThenInclude(z=> z.Categories)
                                 .Include(t=> t.RegistratedUser)
                                 .Where(q=> q.RegistratedUser.ID==idUser);
             
@@ -127,7 +130,7 @@ public class EventController : ControllerBase
         return Ok(events);
     }
 
-    [AllowAnonymous]
+    //[AllowAnonymous]
     [Route("GetEvent/{name}")]
     [HttpGet]
     public ActionResult GetUsersIdAsync(string name)
@@ -143,6 +146,24 @@ public class EventController : ControllerBase
         
         
     }
+
+    [AllowAnonymous]
+    [Route("GetEventUnathorized/{name}")]
+    [HttpGet]
+    public ActionResult GetEventUnathorized(string name)
+    {
+        var eventReturn = Context.Events
+            .Include(p=>p.Categories)
+            .Where(e => e.Name==name)
+            .Include(q=> q.Reviews);
+           
+            return Ok(eventReturn);
+
+
+        
+        
+    }
+    //za info o eventu bez autorizacije
     [AllowAnonymous]
     [Route("GetRegistratedUsersForEvent/{name}")]
     [HttpGet]
@@ -159,7 +180,7 @@ public class EventController : ControllerBase
 
 
   
-     // izmeni posle na korisnika i admina
+    
     [Route("AddEvent/{idCreator}")] 
     //[AllowAnonymous]
     [HttpPost]
@@ -258,7 +279,7 @@ public class EventController : ControllerBase
     // }
 
     ///register for event
-    [AllowAnonymous] // izmeni posle na korisnika i admina
+    //[AllowAnonymous] // izmeni posle na korisnika i admina
     [Route("RegisterForEvent/{idEvent}/{idUser}")] 
     [HttpPut]
     public async Task<ActionResult> RegisterForEvent (int idEvent, int idUser)
@@ -344,11 +365,11 @@ public class EventController : ControllerBase
 
         [Route("ChangeEventUser")]
         [HttpPut]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<ActionResult> ChangeEventUser([FromBody] Event ev){
             //var strucnoLiceA = Context.StrucnaLIca.Where(p => p.ID == idStrucnjaka).FirstOrDefault();
-            
-            var event2 = Context.Events.Where(p => p.Name == ev.Name).FirstOrDefault();
+            //ovde sam prebacio od name na ID
+            var event2 = Context.Events.Where(p => p.ID == ev.ID).FirstOrDefault();
             if (event2 == null)
             {
                 return BadRequest("Plan ne postoji");
@@ -384,7 +405,7 @@ public class EventController : ControllerBase
 
         [Route("DeleteEvent/{id}")]
         [HttpDelete]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<ActionResult> DeleteEvent(int id)
         {
             //var strucnoLiceA = Context.UsersAdmins.Where(p => p.ID == idUser).FirstOrDefault();
@@ -409,7 +430,7 @@ public class EventController : ControllerBase
         }
 
     ///add review
-    [AllowAnonymous] // izmeni posle na korisnika i admina
+    //[AllowAnonymous] // izmeni posle na korisnika i admina
     [Route("AddReview/{idEvent}/{comment}/{rating}")] 
     [HttpPost]
     public async Task<ActionResult> AddReview (int idEvent, string comment, int rating)
@@ -446,6 +467,45 @@ public class EventController : ControllerBase
         }
 
     }
+
+    //novi
+    [Route("AddReviewBody")] 
+    [HttpPost]
+    public async Task<ActionResult> AddReviewBody ([FromBody] Review model)
+    {
+        try
+        {
+            
+
+            var event1 = Context.Events.Where(p => p.ID == model.ForWhatEvent.ID).FirstOrDefault();
+            if (event1 == null)
+            {
+                return BadRequest("Event doesn't exist");
+            }    
+
+
+            Review rev = new Review();
+            rev.ForWhatEvent = event1;
+            rev.Comment = model.Comment;
+            rev.Rating=model.Rating;
+                
+            if(rev!= null){                          
+            Context.Reviews.Add(rev);
+            await Context.SaveChangesAsync();
+            return Ok();
+            }
+            else 
+            {
+                return BadRequest("Review fail");
+            }
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+    }
+
     //samo za pregled 
     [Route("GetAllReviews")]
     [AllowAnonymous]

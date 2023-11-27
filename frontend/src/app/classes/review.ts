@@ -1,20 +1,28 @@
+import { EventClass } from "./eventClass";
+
 export class Review {
 
     
-    id: number;
+    
     comment: string;
     rating:number;
+    forWhatEvent:EventClass;
+    id?: number;
    
     
 
     constructor(      
-        Id: number,
+        
         Comment: string,
-        Rating:number   
+        Rating:number,
+        ForWhatEvent:EventClass,
+        Id?: number
     ) 
     {        
-        this.id=Id;
+        
         this.comment=Comment;
         this.rating=Rating;
+        this.forWhatEvent=ForWhatEvent;
+        this.id=Id;
     }
 }

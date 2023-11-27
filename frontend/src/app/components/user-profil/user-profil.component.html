@@ -1,8 +1,14 @@
+<ng-container *ngIf="spinner"> 
+    <div class="editUser">
+        <div class="spinertxt"> Save Changes</div>
+        <mat-spinner class="spiner"></mat-spinner> 
+    </div>
+    
+  </ng-container>
 <div class="mainDiv">
 
     <div class="g">
         <app-nav-bar></app-nav-bar>
-        <hr>
         <div class="text">Account Information</div>
         <hr>
     </div>
@@ -143,7 +149,7 @@
                        
                         <div class="btnReview"> 
                                 
-                            <button (click)="onAddReview(event.forWhatEvent.id)"  mat-raised-button>Add Review</button>
+                            <button (click)="onAddReview(event.forWhatEvent)"  mat-raised-button>Add Review</button>
 
                         </div>
                     </mat-card>
@@ -161,4 +167,4 @@
 
     <app-bottom-bar></app-bottom-bar>
 </div>
-<app-review-popup [eventId]="idForReview"  (closePopup)="close()" *ngIf="review"></app-review-popup>
+<app-review-popup [eventRev]="eventForReview"  (closePopup)="close()" *ngIf="review"></app-review-popup>

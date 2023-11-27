@@ -8,7 +8,7 @@ namespace Models
         [Key]
         public int ID { get; set; }
 
-        //[Required]
+        [Required]
         //[JsonIgnore]
         public UserAdmin RegistratedUser {get; set;}
 

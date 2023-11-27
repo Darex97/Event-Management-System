@@ -23,7 +23,9 @@ export class UserProfilComponent {
   public userEvents?: EventClass[] = [];
   public userEventConections?: UserEventConection[] = []
   public review:boolean = false;
-  public idForReview?:number;
+  public eventForReview!:EventClass;
+  public spinner:boolean=false;
+
 
 
   constructor(private eventService: EventServiceService,
@@ -86,11 +88,16 @@ export class UserProfilComponent {
     // //this.event.picturePath;
   }
   onChangeUser(){
-    this.userServie.putUserForChange(this.user).subscribe();
+    this.spinner=true;
+
+    this.userServie.putUserForChangeFromBody(this.user).subscribe();
+    setTimeout(() => {
+      this.spinner=false;
+  }, 500);
   }
-  onAddReview(eventId?:number){
-    console.log(eventId)
-    this.idForReview = eventId;
+  onAddReview(event:EventClass){
+    console.log(event)
+    this.eventForReview = event;
     this.review=true;
   }
   close() {
