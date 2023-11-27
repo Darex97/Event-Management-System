@@ -2,24 +2,27 @@
     display: flex;
     flex-direction: row;
     
+    overflow-y: none;
+  
    
-    
     
 }
 
 .slika{
-    @media (max-width: 1256px) {
+    @media (max-width: 1525px) {
         display: none;
     }
-    
+    object-fit: cover;
+    object-position: -100% 0%;
     width: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
+   // max-width: 100%;
+    //max-height: 100%;
+    display: flex;
+    height: 94vh;
 }
 
 .forma{
-    @media (max-width: 1256px) {
+    @media (max-width: 1525px) {
         margin-left: auto;
         margin-right: auto;
     }
@@ -64,6 +67,9 @@
   .example-button-row .mat-mdc-button-base {
     margin: 8px 8px 8px 0;
   }
+  .mdc-button{
+    width: 100%;
+  }
   
   .example-flex-container {
     display: flex;
@@ -82,7 +88,8 @@
   }
   .text{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: orange;
+    ///color: orange;
+    color: #3f51b5;
     font-size: 50px;
     min-height: 50px;
     cursor: pointer;
@@ -92,4 +99,14 @@
     color: black;
     font-size: 50px;
     min-height: 50px;
+  }
+  .oneBtn{
+    padding-top: 0.5%;
+    width: 100%;
+    padding-bottom: 2.5px;
+  }
+  .botom{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }

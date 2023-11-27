@@ -63,7 +63,7 @@
                             <mat-card-title>{{oneEvent.date}}</mat-card-title>
                             <mat-card-title>{{oneEvent.place}}</mat-card-title>
                             <mat-card-title>{{oneEvent.language}}</mat-card-title>
-                            <mat-card-title>{{oneEvent.price}}</mat-card-title>
+                            <mat-card-title>{{oneEvent.price | currency :'EUR'}}</mat-card-title>
                             <mat-card-title>{{oneEvent.shortDescribe}}</mat-card-title>
                             <div class="btn"> 
                                 <button (click)="onDeleteEvent(oneEvent,oneEvent.id)" type="submit" mat-raised-button color="warn">DELETE</button>

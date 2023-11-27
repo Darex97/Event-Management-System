@@ -21,9 +21,9 @@
 
 
 
-            <button (click)="onClick('AnchorId')" mat-raised-button>Find Events</button>
-            <button a routerLink="/login" mat-raised-button>Log In</button>
-            <button a routerLink="/signup" mat-raised-button>Sign Up</button>
+            <button class="btnn" (click)="onClick('AnchorId')" mat-stroked-button>Find Events</button>
+            <button class="btnn" a routerLink="/login" mat-stroked-button>Log In</button>
+            <button class="btnn" a routerLink="/signup" mat-stroked-button>Sign Up</button>
 
 
         </div>
@@ -32,14 +32,16 @@
     <!-- SLIKA -->
     <div class="slika">
         <img class="slika"
-            src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            src="https://images.unsplash.com/photo-1643102842184-3be251fec986?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            >
+            <!-- "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" -->
     </div>
     <!-- Eventi -->
 
     <div class="eventi">
 
         <div id="AnchorId" class="eventi"></div>
-        <div class="expiriecesText">
+        <div class="expiriecesText2">
           Events
         </div>
         
@@ -50,7 +52,6 @@
                 See All Events
            
           </div>
-        <hr>
     
         <div class="listEvents">
           <div (click)="onOpenEventInfo(event.name)" *ngFor="let event of events " class="event">

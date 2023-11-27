@@ -76,7 +76,7 @@
                          (selectionChange)="onChangeHour($event)">
                             <mat-option *ngFor="let hour of timeHours" value={{hour}}>{{hour}}</mat-option>
                         </mat-select>
-                        <mat-hint>
+                        <mat-hint style="min-width: 100px;">
                             <span class="text-danger"
                             *ngIf="(registerFormControl.eventHour.touched || submitted) && registerFormControl.eventHour.errors?.required">
                             Hour is required
@@ -92,7 +92,7 @@
                             <mat-option *ngFor="let minute of timeMinuts" value={{minute}}>{{minute}}</mat-option>
                       
                         </mat-select>
-                        <mat-hint>
+                        <mat-hint style="min-width: 100px;">
                             <span class="text-danger"
                             *ngIf="(registerFormControl.eventMinut.touched || submitted) && registerFormControl.eventMinut.errors?.required">
                             Minut is required

@@ -16,11 +16,14 @@
                             formControlName="firstName"
                             required
                             (keyup)="onChangeFirstName($event)">
-                        </mat-form-field>
-                        <span class="text-danger"
+                            <mat-hint>
+                                <span class="text-danger"
                                 *ngIf="(registerFormControl.firstName.touched || submitted) && registerFormControl.firstName.errors?.required">
                                 First name is required
                             </span>
+                            </mat-hint>
+                        </mat-form-field>
+                        
                     </td>
                     <td><mat-form-field class="example-full-width">
                             <mat-label>Last Name</mat-label>
@@ -28,11 +31,14 @@
                              formControlName="lastName" 
                              required 
                              (keyup)="onChangeLastName($event)">
-                        </mat-form-field>
-                        <span class="text-danger"
+                             <mat-hint> 
+                                <span class="text-danger"
                         *ngIf="(registerFormControl.lastName.touched || submitted) && registerFormControl.lastName.errors?.required">
                         Last name is required
                     </span>
+                             </mat-hint>
+                        </mat-form-field>
+                        
                     </td>
 
                 </tr>
@@ -48,13 +54,16 @@
                         <mat-option value="M">Male</mat-option>
                         <mat-option value="F">Female</mat-option>
                     </mat-select>
-                </mat-form-field>
-                
-            </p>
-            <span class="text-danger"
+                    <mat-hint> 
+                        <span class="text-danger"
                         *ngIf="(registerFormControl.gender.touched || submitted) && registerFormControl.gender.errors?.required">
                         Gender is required
                     </span>
+                    </mat-hint>
+                </mat-form-field>
+                
+            </p>
+            
 
             <p>
                 <mat-form-field>
@@ -67,13 +76,16 @@
                     [matDatepicker]="picker">
                     <mat-datepicker-toggle  matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
+                    <mat-hint> 
+                        <span class="text-danger"
+                        *ngIf="(registerFormControl.date.touched || submitted) && registerFormControl.date.errors?.required">
+                        Birthday is required
+                    </span>
+                    </mat-hint>
                 </mat-form-field>
 
             </p>
-            <span class="text-danger"
-            *ngIf="(registerFormControl.date.touched || submitted) && registerFormControl.date.errors?.required">
-            Birthday is required
-        </span>
+          
 
             <p>
                 <mat-form-field class="example-full-width">
@@ -83,13 +95,16 @@
                     formControlName="username" 
                     required  
                     (keyup)="onChangeUsername($event)" ></textarea>
+                    <mat-hint>
+                        <span class="text-danger"
+                        *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.required">
+                        Username is required
+                    </span>
+                    </mat-hint>
                 </mat-form-field>
 
             </p>
-            <span class="text-danger"
-            *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.required">
-            Username is required
-        </span>
+            
 
             <p>
                 <mat-form-field class="example-full-width">
@@ -100,17 +115,20 @@
                      formControlName="email" 
                      required  
                      (keyup)="onChangeEmail($event)"></textarea>
+                     <mat-hint>
+                        <span class="text-danger"
+                        *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                        Email is required
+                        </span>
+                    <span class="text-danger"
+                        *ngIf="registerFormControl.email.touched  && registerFormControl.email.errors?.email">
+                        Enter a valid Email address
+                    </span>
+                     </mat-hint>
                 </mat-form-field>
 
             </p>
-            <span class="text-danger"
-            *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
-            Email is required
-            </span>
-        <span class="text-danger"
-            *ngIf="registerFormControl.email.touched  && registerFormControl.email.errors?.email">
-            Enter a valid Email address
-        </span>
+            
            
             <p>
                 <mat-form-field>
@@ -124,27 +142,30 @@
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
+                    <mat-hint>
+                        <span class="text-danger"
+                        *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
+                        Password is required
+                        </span>
+                    <span class="text-danger"
+                        *ngIf="registerFormControl.password.touched  && registerFormControl.password.errors?.invalidPassword">
+                        Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase and 1 special character
+                    </span>
+                    </mat-hint>
                   </mat-form-field>
             </p>
-            <span class="text-danger"
-            *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
-            Password is required
-            </span>
-        <span class="text-danger"
-            *ngIf="registerFormControl.password.touched  && registerFormControl.password.errors?.invalidPassword">
-            Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase and 1 special character
-        </span>
+           
 
            
 
             <div class="dugmici"> 
                 <div class="oneBtn">
                     
-                    <button class="oneBtn" type="button" (click)="onSignup()" mat-raised-button color="warn">Sign Up</button>
+                    <button class="oneBtn" type="button" (click)="onSignup()" mat-raised-button color="primary">Sign Up</button>
 
                 </div>
                 <div class="oneBtn">
-                    <button class="oneBtn"  a routerLink="/login" mat-raised-button color="warn">Log In</button>
+                    <button class="oneBtn"  a routerLink="/login" mat-raised-button color="primary">Log In</button>
 
                 </div>
             </div>
@@ -158,7 +179,7 @@
     </form>
     <div class="slika">
         <img class="slika"
-            src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            src="https://images.unsplash.com/photo-1487954152950-e0584673b7f3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
 
     </div>
 
@@ -166,6 +187,6 @@
 
 </div>
 
-<app-bottom-bar class="bottomBar"></app-bottom-bar>
+<app-bottom-bar class="botom"></app-bottom-bar>
     
 </div>

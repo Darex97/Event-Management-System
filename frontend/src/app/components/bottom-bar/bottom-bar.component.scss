@@ -1,8 +1,10 @@
 .mat-toolbar{
-    background-color: black;
-    color: orange;
+    //background-color: black;
+    //color: orange;
+    background-color: #cbcbcb;
+    color: #3f51b5;
     font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
-
+  border-top: solid black 1px;
   }
   .mat-button{
      color: orange;
@@ -13,8 +15,10 @@
 .main{
   display: flex;
   justify-content: space-between;
+  
 }
 .copy{
+  color: black;
   text-align: center;
   width: 100%;
 }

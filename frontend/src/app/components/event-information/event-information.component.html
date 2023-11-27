@@ -20,7 +20,6 @@
 
   <div class="navBar">
     <app-nav-bar> </app-nav-bar>
-    <hr>
   </div>
 
   <div class="allinfo">
@@ -98,11 +97,22 @@
 
         </div>
         <div class="infoRight">
+
+          <!-- <div class="imageDiv">
+            <img class="slika2"
+              src={{eventForShow.picturePath}}>
+
+          </div> -->
+
+          
           <app-map [nameCity]="placeForSend" *ngIf="!!placeForSend" class="map"> </app-map>
 
         </div>
 
       </div>
+
+      <div class="btnReg"> <button (click)="register()" type="submit" mat-raised-button color="primary" style="border-radius: 25px;"
+        class="btn">Register For Event</button> </div>
 
 
       <ng-container *ngIf="!!eventUserConection.length"> 
@@ -164,8 +174,8 @@
 
 
 
-      <div class="btnReg"> <button (click)="register()" type="submit" mat-raised-button color="primary"
-          class="btn">Register For Event</button> </div>
+      <!-- <div class="btnReg"> <button (click)="register()" type="submit" mat-raised-button color="primary" style="border-radius: 25px;"
+          class="btn">Register For Event</button> </div> -->
 
 
     </div>

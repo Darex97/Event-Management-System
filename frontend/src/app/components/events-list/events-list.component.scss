@@ -46,6 +46,7 @@
   .formPrice{
     display: flex;
     align-items: center;
+    height: 50%;
 
   }
   .formClass{
@@ -101,5 +102,8 @@
     width: 400px;
     height: 266px;
     object-fit: cover;
+  }
+  .navPadding{
+    padding-top: 5%;
   }
   

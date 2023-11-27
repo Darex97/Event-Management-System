@@ -1,14 +1,19 @@
 <div class="popup">
     <div class="main">
         <div class="image">
-            <img mat-card-md-image src={{userForShow.picturePath}}>
+            <img class="slika" mat-card-md-image src={{userForShow.picturePath}}>
 
         </div>
 
         <div class="info">
+            <label class="lblTxt"> First Name: {{userForShow.firstName}}</label>
+            <label class="lblTxt"> Last Name: {{userForShow.lastName}}</label>
+
+
             <label class="lblTxt"> Username: {{userForShow.username}} </label>
             <label class="lblTxt"> Email: {{userForShow.email}} </label>
             <label class="lblTxt"> City: {{userForShow.city}}</label>
+
             
             
             

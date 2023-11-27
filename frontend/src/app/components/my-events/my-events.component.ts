@@ -62,6 +62,7 @@ export class MyEventsComponent {
   openEvent(event: EventClass) {
     this.eventForPopup = event;
     this.eventInformationPopup = true;
+    
   }
   deleteEvent(eventId?:number){
     //let userId:number = Number(this.localStorageService.get("id"));

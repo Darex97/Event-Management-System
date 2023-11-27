@@ -33,12 +33,23 @@
                 </mat-form-field>
 
             </p> -->
+            <!-- <div class="dugmici"> 
+                <button type="button" (click)="onLogin()" mat-raised-button color="primary">Log In</button>
+
+                <button a routerLink="/signup" mat-raised-button color="primary">Sign Up</button>
+            </div> -->
+
             <div class="dugmici"> 
-                <button type="button" (click)="onLogin()" mat-raised-button color="warn">Log In</button>
+                <div class="oneBtn">
+                    
+                    <button type="button" (click)="onLogin()" mat-raised-button color="primary">Log In</button>
 
-                <button a routerLink="/signup" mat-raised-button color="warn">Sign Up</button>
+                </div>
+                <div class="oneBtn">
+                    <button a routerLink="/signup" mat-raised-button color="primary">Sign Up</button>
+
+                </div>
             </div>
-
 
 
           
@@ -48,10 +59,11 @@
     </div>
     <div class="slika">
         <img class="slika"
-            src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            src="https://images.unsplash.com/photo-1487954152950-e0584673b7f3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <!-- https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D -->
 
     </div>
 
 
 </div>
-<app-bottom-bar> </app-bottom-bar>
+<app-bottom-bar class="botom"> </app-bottom-bar>
