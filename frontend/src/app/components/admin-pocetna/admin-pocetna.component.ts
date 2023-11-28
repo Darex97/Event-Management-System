@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { finalize } from 'rxjs';
 import { EventClass } from 'src/app/classes/eventClass';
 import { User } from 'src/app/classes/user';
 import { EventServiceService } from 'src/app/services/event-service.service';
@@ -42,10 +43,11 @@ export class AdminPocetnaComponent {
         this.users.splice(index, 1);
       }
 
-      this.userService.deleteUser(idUser).subscribe();
-      setTimeout(() => {
-        this.spinner=false;
-    }, 500);
+      this.userService.deleteUser(idUser).pipe(finalize(() => this.spinner = false)).subscribe();
+
+    //   setTimeout(() => {
+    //     this.spinner=false;
+    // }, 500);
     }
     onDeleteEvent(oneEvent:EventClass,idEvent?:number){
       this.spinner=true;

@@ -13,12 +13,12 @@ public class UserAdminController : ControllerBase
 {
     public EMSContext Context { get; set; }
 
-
     private IConfiguration _config;
     public UserAdminController(EMSContext context,
     IConfiguration config)
     {
         Context = context;
+        
         _config = config;
     }
 
